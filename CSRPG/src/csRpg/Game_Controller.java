@@ -5,8 +5,8 @@ import org.newdawn.slick.state.*;
 
 public class Game_Controller extends StateBasedGame {
 
-	public static final int windowWidth = 800;
-	public static final int windowHeight = 600;
+	public static final int windowWidth = 1366;
+	public static final int windowHeight = 768;
 	public static boolean fullScreen = false;
 	
 	public Game_Controller(String name) {
@@ -20,6 +20,7 @@ public class Game_Controller extends StateBasedGame {
 	
 		this.addState(new Title_Menu());
 		this.addState(new Game());
+		this.addState(new Dummy());
 
 	}
 	
