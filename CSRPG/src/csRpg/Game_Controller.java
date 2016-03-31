@@ -9,6 +9,11 @@ public class Game_Controller extends StateBasedGame {
 	public static final int windowHeight = 768;
 	public static boolean fullScreen = false;
 	
+	public static final int TitleId = 0;
+	public static final int Character_CreationId = 1;
+	public static final int RoomID = 2;
+	public static final int MapID = 3;
+	
 	public Game_Controller(String name) {
 		
 		super(name);
@@ -19,8 +24,14 @@ public class Game_Controller extends StateBasedGame {
 	public void initStatesList(GameContainer container) throws SlickException {
 	
 		this.addState(new Title_Menu());
+
 		this.addState(new Game());
 		this.addState(new Dummy());
+
+		this.addState(new Character_Creation());
+		this.addState(new Room());
+		this.addState(new Map());
+	
 
 	}
 	
