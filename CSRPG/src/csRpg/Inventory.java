@@ -26,6 +26,7 @@ public class Inventory {
 	public int numItems()
 	{
 		return items.size();
+		
 	}
 	
 	public Item getItem(int n)

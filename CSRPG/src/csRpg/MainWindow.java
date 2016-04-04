@@ -21,6 +21,7 @@ public class MainWindow extends BasicGameState {
 	private Button save;
 	private Button options;
 	private Button map;
+	private Button back;
 	
 	private GameList list;
 	
@@ -68,8 +69,20 @@ public class MainWindow extends BasicGameState {
 		this.quit = new Button(container, "./Quit", Color.white, false);
 		this.quit.setLocation(menu_right_margin, container.getHeight() - 50);
 		
+		
+		// DEBUG CODE FOR INVENTORY ------------------------------------
+		Item i1 = new Item("Food", 0);
+		Item i2 = new Item("Beer", 1);
+		
+		Inventory inven = new Inventory();
+		inven.addItem(i1);
+		inven.addItem(i2);
+		// -------------------------------------------------------------
+		
+		
 		this.list = new GameList(container, "ListItem", Color.white, 3, true);
-		this.list.setLocation(menu_right_margin + 10, 235);
+		this.list.setLocation(menu_right_margin + 10, 325);
+		this.list.setInventoryList(inven);
 //		this.list.setLocation(0, 0);
 	}
 
@@ -90,13 +103,19 @@ public class MainWindow extends BasicGameState {
 		// sets the color to white and renders all the buttons on the screen
 		g.setColor(Color.white);
 		g.drawString("CS_RPG", menu_right_margin , 25);
-		g.drawString("Inventory:", menu_right_margin , 215);
+
 		
 		g.drawString("Attributes:", menu_right_margin, 75);
 		g.drawString("HP:", menu_right_margin + 10, 95);
 		g.drawString("Programming:", menu_right_margin + 10, 115);
 		g.drawString("Business:", menu_right_margin + 10, 135);
 		g.drawString("Beer-tolerance:", menu_right_margin + 10, 155);
+				
+		g.drawString("Vitals", menu_right_margin, 195);
+		g.drawString("Health:", menu_right_margin + 10, 220);
+		g.drawString("Sanity", menu_right_margin + 10, 245);
+		
+		g.drawString("Inventory:", menu_right_margin , 305);
 		
 		this.save.render(container, g);
 		this.options.render(container, g);
@@ -105,7 +124,21 @@ public class MainWindow extends BasicGameState {
 		this.list.render(container, g);
 		
 	}
-
+	public void mousePressed(int button, int x, int y) {
+		if (button == 0) { //left mouse was pressed
+			if (this.save.ButtonPressed(x, y)) {
+				
+			} else if (this.options.ButtonPressed(x, y)) {
+				
+			} else if (this.quit.ButtonPressed(x, y)) {
+				System.exit(0);
+			} else if (this.map.ButtonPressed(x, y)) {
+				
+			} else if (this.back.ButtonPressed(x, y)){
+				
+			}
+		}
+	}
 	@Override
 	public void update(GameContainer arg0, StateBasedGame arg1, int arg2) throws SlickException {
 		// TODO Auto-generated method stub

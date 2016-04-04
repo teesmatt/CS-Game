@@ -26,7 +26,6 @@ public class Game_Controller extends StateBasedGame {
 		this.addState(new Title_Menu());
 
 		this.addState(new Game());
-
 		this.addState(new Character_Creation());
 		this.addState(new Room());
 		this.addState(new Map());
