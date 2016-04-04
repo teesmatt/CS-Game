@@ -5,8 +5,8 @@ import org.newdawn.slick.state.*;
 
 public class Game_Controller extends StateBasedGame {
 
-	public static final int windowWidth = 800;
-	public static final int windowHeight = 600;
+	public static final int windowWidth = 1366;
+	public static final int windowHeight = 768;
 	public static boolean fullScreen = false;
 	
 	public static final int TitleId = 0;
@@ -24,11 +24,15 @@ public class Game_Controller extends StateBasedGame {
 	public void initStatesList(GameContainer container) throws SlickException {
 	
 		this.addState(new Title_Menu());
+
+		this.addState(new Game());
+
 		this.addState(new Character_Creation());
 		this.addState(new Room());
 		this.addState(new Map());
 		this.addState(new MainWindow());
 		this.addState(new Highscores());
+
 	}
 	
 	public int getWidth() {
