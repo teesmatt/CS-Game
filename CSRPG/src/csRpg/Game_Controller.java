@@ -11,8 +11,15 @@ public class Game_Controller extends StateBasedGame {
 	
 	public static final int TitleId = 0;
 	public static final int Character_CreationId = 1;
-	public static final int RoomID = 2;
-	public static final int MapID = 3;
+	public static final int MapID = 2;
+	
+	// The ID for each room in the map
+	public static final int ClassID = 3;
+	public static final int LoungeID = 4;
+	public static final int PubID = 5;
+	public static final int BussinessID = 6;
+	public static final int LibraryID = 7;
+	public static final int MathID = 8;
 	
 	public Game_Controller(String name) {
 		
@@ -29,10 +36,16 @@ public class Game_Controller extends StateBasedGame {
 		this.addState(new Dummy());
 
 		this.addState(new Character_Creation());
-		this.addState(new Room());
 		this.addState(new Map());
+		
+		// adds each room to the game
+		this.addState(new Room("",ClassID));
+		this.addState(new Room("",LoungeID));
+		this.addState(new Room("",PubID));
+		this.addState(new Room("",BussinessID));
+		this.addState(new Room("",LibraryID));
+		this.addState(new Room("",MathID));
 	
-
 	}
 	
 	public int getWidth() {
