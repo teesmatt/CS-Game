@@ -33,8 +33,6 @@ public class Game_Controller extends StateBasedGame {
 		this.addState(new Title_Menu());
 
 		this.addState(new Game());
-		this.addState(new Dummy());
-
 		this.addState(new Character_Creation());
 		this.addState(new Map());
 		
@@ -45,7 +43,10 @@ public class Game_Controller extends StateBasedGame {
 		this.addState(new Room("",BussinessID));
 		this.addState(new Room("",LibraryID));
 		this.addState(new Room("",MathID));
-	
+
+		this.addState(new MainWindow());
+		this.addState(new Highscores());
+
 	}
 	
 	public int getWidth() {

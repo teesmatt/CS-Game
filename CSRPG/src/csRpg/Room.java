@@ -55,5 +55,6 @@ public class Room extends BasicGameState{
 	public int getID() {
 		// TODO Auto-generated method stub
 		return this.roomID;
+
 	}
 }

@@ -21,6 +21,7 @@ public class Title_Menu extends BasicGameState {
 	private Button quit;
 	private Button load;
 	private Button options;
+	private Button highscores;
 	
 	// option buttons
 	private Button options_close; // close the options window
@@ -83,9 +84,12 @@ public class Title_Menu extends BasicGameState {
 		this.options = new Button(container, "./Options", Color.white, false);
 		this.options.setLocation(50, 200);
 		
+		this.highscores = new Button(container, "./Highscores", Color.white, false);
+		this.highscores.setLocation(50, 250);
+		
 		// ./quit button
 		this.quit = new Button(container, "./Quit", Color.white, false);
-		this.quit.setLocation(50, 250);
+		this.quit.setLocation(50, 300);
 		
 		// option controls
 		// close button
@@ -113,10 +117,12 @@ public class Title_Menu extends BasicGameState {
 		// sets the color to white and renders all the buttons on the screen
 		g.setColor(Color.white);
 		g.drawString("CS_RPG",50,50);
+		
 		this.play.render(container, g);
 		this.load.render(container, g);
 		this.options.render(container, g);
 		this.quit.render(container, g);
+		this.highscores.render(container, g);
 		
 		// tests if the options should be displayed
 		if (this.optionsDisplay) {
@@ -143,14 +149,17 @@ public class Title_Menu extends BasicGameState {
 			if (play.ButtonPressed(x, y)) {
 				game.enterState(1, new FadeOutTransition(Color.black), new FadeInTransition(Color.black));
 			} else if (load.ButtonPressed(x, y)) {
-				
+				game.enterState(10, new FadeOutTransition(Color.black), new FadeInTransition(Color.black));
 			} else if (options.ButtonPressed(x, y)) {
 				
 				optionsDisplay = true;
 				
 			} else if (quit.ButtonPressed(x, y)) {
 				System.exit(0);
+			} else if (this.highscores.ButtonPressed(x, y)) {
+				game.enterState(11, new FadeOutTransition(Color.black), new FadeInTransition(Color.black));
 			}
+			
 			
 			// get the mouse input if the options are being displayed
 			if (this.optionsDisplay) {
