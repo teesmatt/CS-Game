@@ -27,8 +27,8 @@ public class Game_Controller extends StateBasedGame {
 		this.addState(new Character_Creation());
 		this.addState(new Room());
 		this.addState(new Map());
-		
-
+		this.addState(new MainWindow());
+		this.addState(new Highscores());
 	}
 	
 	public int getWidth() {
