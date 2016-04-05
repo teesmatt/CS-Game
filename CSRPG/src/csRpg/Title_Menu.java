@@ -106,7 +106,7 @@ public class Title_Menu extends BasicGameState {
 			throws SlickException {
 		 
 		// draws the background image
-		this.background.draw(0,0,this.windowWidth,this.windowHeight);
+		this.background.draw(0,0,container.getWidth(),container.getHeight());
 		
 		// sets the color for the rectangles behind the buttons
 		g.setColor(new Color(0,0,0,0.2f));
@@ -148,7 +148,9 @@ public class Title_Menu extends BasicGameState {
 	public void mousePressed(int button, int x, int y) {
 		if (button == 0) { // if the left mouse button is pressed
 			if (play.ButtonPressed(x, y)) {
-				game.enterState(1, new FadeOutTransition(Color.black), new FadeInTransition(Color.black));
+				
+				game.enterState(2, new FadeOutTransition(Color.black), new FadeInTransition(Color.black));
+
 			} else if (load.ButtonPressed(x, y)) {
 				game.enterState(10, new FadeOutTransition(Color.black), new FadeInTransition(Color.black));
 			} else if (options.ButtonPressed(x, y)) {
@@ -159,7 +161,7 @@ public class Title_Menu extends BasicGameState {
 				System.exit(0);
 			} else if (this.highscores.ButtonPressed(x, y)) {
 				game.enterState(11, new FadeOutTransition(Color.black), new FadeInTransition(Color.black));
-			}
+			} 
 			
 			
 			// get the mouse input if the options are being displayed

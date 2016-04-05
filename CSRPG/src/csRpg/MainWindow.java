@@ -30,13 +30,12 @@ public class MainWindow extends BasicGameState {
 	private Rectangle menu;
 	private Rectangle optionWindow;
 	
-	private int windowWidth;
-	private int windowHeight;
-	
 	private Font font;
-	private boolean optionsDisplay;
 	
-	private Image background;
+	
+	public MainWindow() {
+		// TODO Auto-generated constructor stub
+	}
 	
 	@Override
 	public void init(GameContainer container, StateBasedGame game) throws SlickException {
@@ -45,16 +44,11 @@ public class MainWindow extends BasicGameState {
 		
 		this.game = game;
 		
-		this.windowWidth = container.getWidth();
-		this.windowHeight= container.getHeight();
-		
 		this.menu = new Rectangle(container.getWidth() - 225, 0, container.getWidth() - 225, container.getHeight());
 		
 		// font to be used in the menu
 		this.font = new Font("Time New Roman", Font.BOLD, 14);
 		
-		// loads the image for the background of the menu
-		this.background = new Image("/assets/Background.jpeg");
 				
 		
 		// back to maain menu
@@ -100,8 +94,6 @@ public class MainWindow extends BasicGameState {
 
 	@Override
 	public void render(GameContainer container, StateBasedGame game, Graphics g) throws SlickException {
-		// draws the background image
-//		this.background.draw(0,0,this.windowWidth,this.windowHeight);
 		
 		int menu_right_margin = container.getWidth() - 215;
 		
@@ -145,7 +137,7 @@ public class MainWindow extends BasicGameState {
 			} else if (this.quit.ButtonPressed(x, y)) {
 				System.exit(0);
 			} else if (this.map.ButtonPressed(x, y)) {
-				
+				game.enterState(2, new FadeOutTransition(Color.black), new FadeInTransition(Color.black));
 			} else if (this.back.ButtonPressed(x, y)){
 				game.enterState(0, new FadeOutTransition(Color.black), new FadeInTransition(Color.black));
 			} else if (this.list.ButtonPressed(x, y)) {

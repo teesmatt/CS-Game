@@ -21,6 +21,8 @@ public class Game_Controller extends StateBasedGame {
 	public static final int LibraryID = 7;
 	public static final int MathID = 8;
 	
+	public static Character player;
+	
 	public Game_Controller(String name) {
 		
 		super(name);
@@ -31,20 +33,17 @@ public class Game_Controller extends StateBasedGame {
 	public void initStatesList(GameContainer container) throws SlickException {
 	
 		this.addState(new Title_Menu());
-
-		this.addState(new Game());
 		this.addState(new Character_Creation());
 		this.addState(new Map());
 		
 		// adds each room to the game
-//		this.addState(new Room("",ClassID));
-//		this.addState(new Room("",LoungeID));
-//		this.addState(new Room("",PubID));
-//		this.addState(new Room("",BussinessID));
-//		this.addState(new Room("",LibraryID));
-//		this.addState(new Room("",MathID));
+		this.addState(new Room("/assets/ClassroomLounge.png",ClassID,""));
+		this.addState(new Room("/assets/ClassroomLounge.png",LoungeID,""));
+		this.addState(new Room("/assets/Pub.png",PubID,"Button_Smash"));
+		this.addState(new Room("/assets/Bussiness.png",BussinessID,""));
+		this.addState(new Room("/assets/Library.png",LibraryID,""));
+		this.addState(new Room("/assets/Math.png",MathID,""));
 
-		this.addState(new MainWindow());
 		this.addState(new Highscores());
 
 	}
