@@ -10,8 +10,7 @@ import org.newdawn.slick.SlickException;
 import org.newdawn.slick.geom.Rectangle;
 import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
-import org.newdawn.slick.state.transition.FadeInTransition;
-import org.newdawn.slick.state.transition.FadeOutTransition;
+import org.newdawn.slick.state.transition.*;
 
 public class Title_Menu extends BasicGameState {
 
@@ -148,7 +147,7 @@ public class Title_Menu extends BasicGameState {
 	public void mousePressed(int button, int x, int y) {
 		if (button == 0) { // if the left mouse button is pressed
 			if (play.ButtonPressed(x, y)) {
-				game.enterState(2, new FadeOutTransition(Color.black), new FadeInTransition(Color.black));
+				game.enterState(1, new FadeOutTransition(Color.black), new FadeInTransition(Color.black));
 			} else if (load.ButtonPressed(x, y)) {
 				game.enterState(10, new FadeOutTransition(Color.black), new FadeInTransition(Color.black));
 			} else if (options.ButtonPressed(x, y)) {
