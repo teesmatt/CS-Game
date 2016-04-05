@@ -134,6 +134,7 @@ public class Title_Menu extends BasicGameState {
 			this.options_fullToggle.render(container, g);
 		}
 		
+		
 	}
 
 	@Override
