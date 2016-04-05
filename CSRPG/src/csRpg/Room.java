@@ -15,7 +15,11 @@ public class Room extends BasicGameState{
 	private boolean playing;
 	
 	// play minigame button
-	private int[] mini_button = new int[4];
+	private int[] mini_button = new int[2];
+	private int[] buis_button = new int[2];
+	private int[] button_size = new int[2];
+	
+	private int[] close_button = new int[4];
 	
 	// Hud on right side 
 	private MainWindow hud = new MainWindow();
@@ -27,6 +31,8 @@ public class Room extends BasicGameState{
 	private StateBasedGame game;
 	
 	private Image minigamebutton;
+	private Image buisnessstuff;
+	private Image closebutton;
 	
 	public Room(String image, int ID, String miniGame) throws SlickException {
 		// TODO Auto-generated constructor stub
@@ -53,6 +59,8 @@ public class Room extends BasicGameState{
 		this.game = game;
 		
 		this.minigamebutton = new Image("assets/MiniGameButton.png");
+		this.buisnessstuff = new Image("assets/Buisness_Stuff.png");
+		this.closebutton = new Image("assets/close.png");
 		
 		hud.init(container, game);
 		
@@ -60,8 +68,17 @@ public class Room extends BasicGameState{
 		
 		mini_button[0] = 10; // x
 		mini_button[1] = 10; // y
-		mini_button[2] = 200; // width
-		mini_button[3] = 50; // height
+		
+		buis_button[0] = 10; // x
+		buis_button[1] = 70; // y
+		
+		button_size[0] = 200; // width
+		button_size[1] = 50; // height
+		
+		close_button[0] = container.getWidth() - 335;
+		close_button[1] = 15;
+		close_button[2] = 100;
+		close_button[3] = 70;
 		
 	}
 
@@ -72,12 +89,14 @@ public class Room extends BasicGameState{
 		
 		this.background.draw(0,0,container.getWidth()-215,container.getHeight());
 		
-		minigamebutton.draw(mini_button[0], mini_button[1], mini_button[2], mini_button[3]);
+		minigamebutton.draw(mini_button[0], mini_button[1], button_size[0], button_size[1]);
+		buisnessstuff.draw(buis_button[0], buis_button[1], button_size[0], button_size[1]);
 		
 		hud.render(container,game,g);
 		
 		if (playing) {
 			showMiniGame(container,game,g);
+			closebutton.draw(close_button[0],close_button[1],close_button[2],close_button[3]);
 		}
 		
 	}
@@ -97,7 +116,7 @@ public class Room extends BasicGameState{
 			if (playing) {
 				clickMiniGame(x,  y);
 			}
-			if (x > mini_button[0] && x < mini_button[0] + mini_button[2] && y > mini_button[1] && y < mini_button[1] + mini_button[3]) {
+			if (x > mini_button[0] && x < mini_button[0] + button_size[0] && y > mini_button[1] && y < mini_button[1] + button_size[1]) {
 				playing = !playing;
 				try {
 					initMiniGame();
@@ -105,6 +124,14 @@ public class Room extends BasicGameState{
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
+			}
+			if (x > buis_button[0] && x < buis_button[0] + button_size[1] && y > buis_button[1] && y < buis_button[1] + button_size[1]) {
+				
+				
+				
+			}
+			if (x > close_button[0] && x < close_button[0] + close_button[2] && y > close_button[1] && y < close_button[1] + close_button[3]) {
+				playing = false;
 			}
 			hud.wPressed(x, y);
 		}

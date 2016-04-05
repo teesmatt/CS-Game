@@ -7,6 +7,7 @@ import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
+import org.newdawn.slick.TrueTypeFont;
 import org.newdawn.slick.geom.Rectangle;
 import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
@@ -36,7 +37,9 @@ public class Title_Menu extends BasicGameState {
 	private Rectangle menu;
 	private Rectangle optionWindow;
 	
-	private Font font;
+	private Font awtFont = new Font("Times New Roman", Font.BOLD, 24);
+    private TrueTypeFont font = new TrueTypeFont(awtFont, false);
+    
 	private boolean optionsDisplay;
 
 	public Title_Menu() {
@@ -65,9 +68,6 @@ public class Title_Menu extends BasicGameState {
 		// The options menu
 		this.optionWindow = new Rectangle(300,container.getHeight()/2-125,125,250);
 		this.optionsDisplay = false;
-		
-		// font to be used in the menu
-		this.font = new Font("Time New Roman", Font.BOLD, 20);
 		
 		// loads the image for the background of the menu
 		this.background = new Image("/assets/Background.jpeg");
@@ -116,7 +116,7 @@ public class Title_Menu extends BasicGameState {
 		
 		// sets the color to white and renders all the buttons on the screen
 		g.setColor(Color.white);
-		g.drawString("CS_RPG",50,50);
+		font.drawString(50,50,"CS_RPG");
 		
 		this.play.render(container, g);
 		this.load.render(container, g);
