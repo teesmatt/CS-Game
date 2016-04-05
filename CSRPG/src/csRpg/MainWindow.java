@@ -28,13 +28,12 @@ public class MainWindow extends BasicGameState {
 	private Rectangle menu;
 	private Rectangle optionWindow;
 	
-	private int windowWidth;
-	private int windowHeight;
-	
 	private Font font;
-	private boolean optionsDisplay;
 	
-	private Image background;
+	
+	public MainWindow() {
+		// TODO Auto-generated constructor stub
+	}
 	
 	@Override
 	public void init(GameContainer container, StateBasedGame game) throws SlickException {
@@ -43,16 +42,11 @@ public class MainWindow extends BasicGameState {
 		
 		this.game = game;
 		
-		this.windowWidth = container.getWidth();
-		this.windowHeight= container.getHeight();
-		
 		this.menu = new Rectangle(container.getWidth() - 225, 0, container.getWidth() - 225, container.getHeight());
 		
 		// font to be used in the menu
 		this.font = new Font("Time New Roman", Font.BOLD, 14);
 		
-		// loads the image for the background of the menu
-		this.background = new Image("/assets/Background.jpeg");
 				
 		// ./load_saved_game button
 		this.save = new Button(container, "./Save", Color.white, false);
@@ -88,8 +82,6 @@ public class MainWindow extends BasicGameState {
 
 	@Override
 	public void render(GameContainer container, StateBasedGame game, Graphics g) throws SlickException {
-		// draws the background image
-//		this.background.draw(0,0,this.windowWidth,this.windowHeight);
 		
 		int menu_right_margin = container.getWidth() - 215;
 		

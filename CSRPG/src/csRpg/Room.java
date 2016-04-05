@@ -12,6 +12,10 @@ public class Room extends BasicGameState{
 	private Image background;
 	private int roomID;
 	
+	private MainWindow inventory = new MainWindow();
+	
+	private Button_Smash button_smash = new Button_Smash();
+	
 	public Room(String image, int ID) throws SlickException {
 		// TODO Auto-generated constructor stub
 		
@@ -33,6 +37,9 @@ public class Room extends BasicGameState{
 			throws SlickException {
 		// TODO Auto-generated method stub
 		
+		inventory.init(container, game);
+		button_smash.init(container, game);
+		
 	}
 
 	@Override
@@ -40,7 +47,10 @@ public class Room extends BasicGameState{
 			throws SlickException {
 		// TODO Auto-generated method stub
 		
+		this.background.draw(0,0,container.getWidth()-215,container.getHeight());
 		
+		inventory.render(container,game,g);
+		button_smash.render(container, game, g);
 		
 	}
 
@@ -51,9 +61,17 @@ public class Room extends BasicGameState{
 		
 	}
 
+	public void mousePressed(int button, int x, int y) {
+		if (button == 0) { //left mouse was pressed
+			button_smash.buttonPressed(x, y);
+			
+		}
+	}
+	
 	@Override
 	public int getID() {
 		// TODO Auto-generated method stub
+
 		return this.roomID;
 
 	}
