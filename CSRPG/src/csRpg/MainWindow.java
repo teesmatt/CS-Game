@@ -86,7 +86,11 @@ public class MainWindow extends BasicGameState {
 	@Override
 	public void render(GameContainer container, StateBasedGame game, Graphics g) throws SlickException {
 		// draws the background image
+<<<<<<< HEAD
 		this.background.draw(0,0,container.getWidth(),container.getHeight());
+=======
+//		this.background.draw(0,0,this.windowWidth,this.windowHeight);
+>>>>>>> 2ac087ed0d16726c178a7c7384e10beb8c54c7f5
 		
 		int menu_right_margin = container.getWidth() - 215;
 		
