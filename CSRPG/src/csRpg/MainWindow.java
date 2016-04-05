@@ -50,6 +50,11 @@ public class MainWindow extends BasicGameState {
 		this.font = new Font("Time New Roman", Font.BOLD, 14);
 		
 				
+		
+		// back to maain menu
+		this.back = new Button(container, "./Save", Color.white, false);
+		this.back.setLocation(menu_right_margin, container.getHeight() - 150);
+		
 		// ./load_saved_game button
 		this.save = new Button(container, "./Save", Color.white, false);
 		this.save.setLocation(menu_right_margin, container.getHeight() - 125);
@@ -69,14 +74,16 @@ public class MainWindow extends BasicGameState {
 		// DEBUG CODE FOR INVENTORY ------------------------------------
 		Item i1 = new Item("Food", 0);
 		Item i2 = new Item("Beer", 1);
-		
+		Item i3 = new Item("Beer", 1);
 		Inventory inven = new Inventory();
 		inven.addItem(i1);
 		inven.addItem(i2);
+		inven.addItem(i3);
+	
 		// -------------------------------------------------------------
 		
 		
-		this.list = new GameList(container, "ListItem", Color.white, 3, true);
+		this.list = new GameList(container, "ListItem", Color.white, inven.numItems(), true);
 		this.list.setLocation(menu_right_margin + 10, 325);
 		this.list.setInventoryList(inven);
 //		this.list.setLocation(0, 0);
@@ -118,31 +125,30 @@ public class MainWindow extends BasicGameState {
 		this.list.render(container, g);
 		
 	}
-	public void mousePressed(int button, int x, int y) {
-		if (button == 0) { //left mouse was pressed
-			if (this.save.ButtonPressed(x, y)) {
-				
-			} else if (this.options.ButtonPressed(x, y)) {
-				
-			} else if (this.quit.ButtonPressed(x, y)) {
-				System.exit(0);
-			} else if (this.map.ButtonPressed(x, y)) {
-				game.enterState(2, new FadeOutTransition(Color.black), new FadeInTransition(Color.black));
-			} else if (this.back.ButtonPressed(x, y)){
-				
-			}
+	public void wPressed(int x, int y) {
+		if (this.save.ButtonPressed(x, y)) {
+			
+		} else if (this.options.ButtonPressed(x, y)) {
+			
+		} else if (this.quit.ButtonPressed(x, y)) {
+			System.exit(0);
+		} else if (this.map.ButtonPressed(x, y)) {
+			game.enterState(2, new FadeOutTransition(Color.black), new FadeInTransition(Color.black));
+		} else if (this.back.ButtonPressed(x, y)){
+			game.enterState(0, new FadeOutTransition(Color.black), new FadeInTransition(Color.black));
+		} else if (this.list.ButtonPressed(x, y)) {
+			
 		}
 	}
 	@Override
-	public void update(GameContainer arg0, StateBasedGame arg1, int arg2) throws SlickException {
-		// TODO Auto-generated method stub
+	public void update(GameContainer container, StateBasedGame game, int arg2) throws SlickException {
 		
 	}
 
 	@Override
 	public int getID() {
 		// TODO Auto-generated method stub
-		return 10;
+		return 2015;
 	}
 
 }
