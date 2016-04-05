@@ -26,7 +26,7 @@ public class Character {
 		this.sanity = 100;
 		this.gpa = 0;
 		
-		
+		this.location = "CS_Lounge";
 	}
 	
 	public String getName() {
