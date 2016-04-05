@@ -1,5 +1,6 @@
 package csRpg;
 
+import org.newdawn.slick.Color;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Image;
@@ -29,6 +30,8 @@ public class Room extends BasicGameState{
 	private mathMiniGame mathMnGm = new mathMiniGame();
 
 	private BeerMinigame beerMG = new BeerMinigame();
+	
+	private BuisnessGame buisGame = new BuisnessGame();
 	
 
 	private Library_Adventure lib_adv = new Library_Adventure();
@@ -96,11 +99,17 @@ public class Room extends BasicGameState{
 		this.background.draw(0,0,container.getWidth()-215,container.getHeight());
 		
 		minigamebutton.draw(mini_button[0], mini_button[1], button_size[0], button_size[1]);
-		buisnessstuff.draw(buis_button[0], buis_button[1], button_size[0], button_size[1]);
+		if (Game_Controller.player.getBuis()) {
+			buisnessstuff.draw(buis_button[0], buis_button[1], button_size[0], button_size[1]);
+		}
 		
 		hud.render(container,game,g);
 		
 		if (playing) {
+			g.setColor(Color.black);
+			g.fillRect(50,50,container.getWidth()-315,container.getHeight()-100);
+			g.setColor(Color.gray);
+			g.fillRect(75,75,container.getWidth()-365,container.getHeight()-150);
 			showMiniGame(container,game,g);
 			closebutton.draw(close_button[0],close_button[1],close_button[2],close_button[3]);
 		}
@@ -131,7 +140,7 @@ public class Room extends BasicGameState{
 					e.printStackTrace();
 				}
 			}
-			if (x > buis_button[0] && x < buis_button[0] + button_size[1] && y > buis_button[1] && y < buis_button[1] + button_size[1]) {
+			if (Game_Controller.player.getBuis() && x > buis_button[0] && x < buis_button[0] + button_size[1] && y > buis_button[1] && y < buis_button[1] + button_size[1]) {
 				
 				
 				
@@ -160,6 +169,9 @@ public class Room extends BasicGameState{
 			lib_adv.init(container,  game);
 			break;
 		
+		case "buis_visit":
+			buisGame.init(container, game);
+			break;
 		}
 	}
 	
@@ -175,6 +187,9 @@ public class Room extends BasicGameState{
 			beerMG.buttonPressed(x, y);
 		case "library_adventure":
 			lib_adv.buttonPressed(x, y);
+			break;
+		case "buis_visit":
+			buisGame.buttonPressed(x,y);
 			break;
 		}
 	}
@@ -203,6 +218,9 @@ public class Room extends BasicGameState{
 			lib_adv.render(container, game, g);
 			break;
 
+		case "buis_visit":
+			buisGame.render(container, game, g);
+			break;
 		}
 	}
 	
@@ -218,6 +236,9 @@ public class Room extends BasicGameState{
 			beerMG.update(container, game, delta);
 		case "library_adventure":
 			lib_adv.update(container, game, delta);
+			break;
+		case "buis_visit":
+			buisGame.update(container, game, delta);
 			break;
 		}
 	}
