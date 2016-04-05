@@ -37,12 +37,12 @@ public class Game_Controller extends StateBasedGame {
 		this.addState(new Map());
 		
 		// adds each room to the game
-		this.addState(new Room("",ClassID));
-		this.addState(new Room("",LoungeID));
-		this.addState(new Room("",PubID));
-		this.addState(new Room("",BussinessID));
-		this.addState(new Room("",LibraryID));
-		this.addState(new Room("",MathID));
+//		this.addState(new Room("",ClassID));
+//		this.addState(new Room("",LoungeID));
+//		this.addState(new Room("",PubID));
+//		this.addState(new Room("",BussinessID));
+//		this.addState(new Room("",LibraryID));
+//		this.addState(new Room("",MathID));
 
 		this.addState(new MainWindow());
 		this.addState(new Highscores());
