@@ -37,35 +37,25 @@ public class Game_Controller extends StateBasedGame {
 		this.addState(new Title_Menu());
 		this.addState(new Character_Creation());
 		this.addState(new Map());
-<<<<<<< HEAD
+
 
 		// adds each room to the game
 
 
-		this.addState(new Room("/assets/ClassroomLounge.png",ClassID,"button_smash"));
-
-		this.addState(new Room("/assets/ClassroomLounge.png",LoungeID,""));
-		this.addState(new Room("/assets/Pub.png",PubID,""));
-		this.addState(new Room("/assets/Bussiness.png",BussinessID,""));
-		this.addState(new Room("/assets/Library.png",LibraryID,"library_adventure"));
 
 
 
-		
-=======
 
->>>>>>> cf77353b8efe4e0201b7199d65ef6efdec22e464
 		// adds each room to the game
 		this.addState(new LoadSaves());
 
 		this.addState(new Room("/assets/ClassroomLounge.png",ClassID,"button_smash"));
-<<<<<<< HEAD
-=======
+
 		this.addState(new Room("/assets/ClassroomLounge.png",LoungeID,""));
 		this.addState(new Room("/assets/Pub.png",PubID,"Beer_Minigame"));
 		this.addState(new Room("/assets/Bussiness.png",BussinessID,""));
 		this.addState(new Room("/assets/Library.png",LibraryID,"library_adventure"));
->>>>>>> cf77353b8efe4e0201b7199d65ef6efdec22e464
+
 		this.addState(new Room("/assets/Math.png",MathID,"mathGame"));
 
 		this.addState(new Highscores());

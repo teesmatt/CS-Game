@@ -14,6 +14,7 @@ public class Library_Adventure extends BasicGameState {
 
 	private int[][] library;
 	private int books[];
+	private int books_count;
 	private int loc_x, loc_y;
 	
 	private int x,y,width,height;
@@ -28,6 +29,7 @@ public class Library_Adventure extends BasicGameState {
 		// TODO Auto-generated method stub
 		this.gen = new Random();
 		this.books = new int[3];
+		this.books_count = 0;
 		
 		this.library = new int[10][10];
 		for (int i = 0; i < 9; i++)
@@ -59,25 +61,38 @@ public class Library_Adventure extends BasicGameState {
 		
 		if (library[loc_x][loc_y] == 0) {
 			g.drawString("There is nothing in this section of the Library." 
-					+ "[" + loc_x + "][" + loc_y + "] books:" + books , 50, 50);
+					+ "[" + loc_x + "][" + loc_y + "] books:" + books_count , 50, 50);
 		}
 		else if(library[loc_x][loc_y] == 1)
 		{
 			g.drawString("You found the Science Book!" 
-					+ "[" + loc_x + "][" + loc_y + "] books:" + books, 50, 50);
-			books[0] = 1;
+					+ "[" + loc_x + "][" + loc_y + "] books:" + books_count, 50, 50);
+			if (books[0] != 1) {
+				books[0] = 1;
+				this.books_count++;
+			}
+			
 		}
 		else if(library[loc_x][loc_y] == 2)
 		{
 			g.drawString("You found the Geology Book!" 
-					+ "[" + loc_x + "][" + loc_y + "] books:" + books, 50, 50);
-			books[1] = 1;
+					+ "[" + loc_x + "][" + loc_y + "] books:" + books_count, 50, 50);
+			if (books[1] != 1) {
+				books[1] = 1;
+				this.books_count++;
+			}
+			
 		}
 		else if(library[loc_x][loc_y] == 3)
 		{
 			g.drawString("You found the Porn Book!" 
-					+ "[" + loc_x + "][" + loc_y + "] " + books, 50, 50);
-			books[2] = 1;
+					+ "[" + loc_x + "][" + loc_y + "] " + books_count, 50, 50);
+			if (books[2] != 1)
+			{
+				books[2] = 1;
+				this.books_count++;
+			}
+			
 		}
 	}
 
