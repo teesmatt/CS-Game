@@ -22,6 +22,8 @@ public class Room extends BasicGameState{
 	
 	private Button_Smash button_smash = new Button_Smash();
 	private mathMiniGame mathMnGm = new mathMiniGame();
+	private BeerMinigame beerMG = new BeerMinigame();
+	
 	private String miniGame;
 	private GameContainer container;
 	private StateBasedGame game;
@@ -118,7 +120,9 @@ public class Room extends BasicGameState{
 		case "mathGame":
 			mathMnGm.init(container, game);
 			break;
-			
+		case "Beer_Minigame":
+			beerMG.init(container, game);
+			break;
 		}
 	}
 	
@@ -130,7 +134,9 @@ public class Room extends BasicGameState{
 		case "mathGame":
 			mathMnGm.buttonPressed(x, y);
 			break;
-			
+		case "Beer_Minigame":
+			beerMG.buttonPressed(x, y);
+			break;
 		}
 	}
 	
@@ -141,6 +147,9 @@ public class Room extends BasicGameState{
 			break;
 		case "mathGame":
 			mathMnGm.render(container, game, g);
+			break;
+		case "Beer_Minigame":
+			beerMG.render(container, game, g);
 			break;
 			
 		}
@@ -153,6 +162,9 @@ public class Room extends BasicGameState{
 			break;
 		case "mathGame":
 			mathMnGm.update(container, game, delta);
+			break;
+		case "Beer_Minigame":
+			beerMG.update(container, game, delta);
 			break;
 		}
 	}
