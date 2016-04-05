@@ -28,10 +28,6 @@ public class Title_Menu extends BasicGameState {
 	private Button options_close; // close the options window
 	private Button options_fullToggle; // fullscreen toggle
 	
-	
-	private int windowWidth;
-	private int windowHeight;
-	
 	private Image background;
 	
 	private Rectangle menu;
@@ -59,9 +55,6 @@ public class Title_Menu extends BasicGameState {
 			throws SlickException {
 		
 		this.game = game;
-		
-		this.windowWidth = container.getWidth();
-		this.windowHeight= container.getHeight();
 		
 		this.menu = new Rectangle(0,0,250,container.getHeight());
 		

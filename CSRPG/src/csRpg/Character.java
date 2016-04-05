@@ -15,7 +15,8 @@ public class Character extends Entity {
 	private int[] credits;
 	private int alignment;
 	private String location;
-
+	private boolean isBuis;
+	
 	
 	public Character(String name, int intelligence, int endurance, int alcohol_tolerance, int alignment, String image) throws SlickException {	
 		super(image);
@@ -28,6 +29,8 @@ public class Character extends Entity {
 		this.health = 100;
 		this.sanity = 100;
 		this.gpa = 0;
+		
+		this.isBuis = false;
 		
 		this.location = "CS_Lounge";
 	}
@@ -155,5 +158,13 @@ public class Character extends Entity {
 		}
 		
 		inventory.removeItem(temp);
+	}
+	
+	public boolean getBuis() {
+		return this.isBuis;
+	}
+	
+	public void setBuis(boolean buis) {
+		this.isBuis = buis;
 	}
 }

@@ -42,13 +42,12 @@ public class Character_Creation extends BasicGameState {
 	private Image char_sprite_2;
 	
 	private Rectangle menu;
-	private Rectangle sprite_container;
 	
 	private Font font;
 	private UnicodeFont uni_font;
 	
 	// Colors
-	private Color color;
+	private Color black;
 	private Color white;	
 	
 	private int sprite_state;
@@ -66,7 +65,7 @@ public class Character_Creation extends BasicGameState {
 	public Character_Creation() {
 		// TODO Auto-generated constructor stub
 		font = new Font("Time New Roman", Font.BOLD, 20);
-		color = new Color(0, 0, 0);
+		black = new Color(0, 0, 0);
 		white = new Color(255, 255, 255);
 		sprite_state = 1;
 	}
@@ -97,39 +96,40 @@ public class Character_Creation extends BasicGameState {
         // Initializes the Background
 		this.background = new Image("/assets/Background.jpeg");
 		
+		this.menu = new Rectangle(0,0,250,container.getHeight());
+		
 		// Adds Name Text Field
-		this.name = new TextField(container, uni_font, 50, 100, 250, 50);
-		this.name.setText("Name");
+		this.name = new TextField(container, uni_font, 25, 100, 200, 25);
+		//this.name.setText("Name");
 		this.name.setBackgroundColor(white);
-		this.name.setBorderColor(color);
+		this.name.setBorderColor(black);
 		
 		// Adds the Intelligence Text Field
-		this.intelligence = new TextField(container, uni_font, 50, 150, 250, 50);
-		this.intelligence.setText("Intelligence");
+		this.intelligence = new TextField(container, uni_font, 25, 150, 200, 25);
+		//this.intelligence.setText("Intelligence");
 		this.intelligence.setBackgroundColor(white);
-		this.intelligence.setBorderColor(color);
+		this.intelligence.setBorderColor(black);
 		
 		// Adds the Endurance Text Field
-		this.endurance = new TextField(container, uni_font, 50, 200, 250, 50);
-		this.endurance.setText("Endurance");
+		this.endurance = new TextField(container, uni_font, 25, 200, 200, 25);
+		//this.endurance.setText("Endurance");
 		this.endurance.setBackgroundColor(white);
-		this.endurance.setBorderColor(color);
+		this.endurance.setBorderColor(black);
 		
 		// Add the Alcohol Tolerance Text Field
-		this.alcohol_tolerance = new TextField(container, uni_font, 50, 250, 250, 50);
-		this.alcohol_tolerance.setText("Alcohol Tolerance");
+		this.alcohol_tolerance = new TextField(container, uni_font, 25, 250, 200, 25);
+		//this.alcohol_tolerance.setText("Alcohol Tolerance");
 		this.alcohol_tolerance.setBackgroundColor(white);
-		this.alcohol_tolerance.setBorderColor(color);
+		this.alcohol_tolerance.setBorderColor(black);
 		
 		// Make Character Sprite Area
-		this.sprite_container = new Rectangle(300, 50, 250, container.getHeight());
 		this.char_sprite_1 = new Image("/assets/male_playable_character_sprite.png");
 		this.char_sprite_2 = new Image("/assets/female_playable_character_sprite.png");
 		
-		this.gender = new Button(container, "Change Sprite", Color.white, false);
+		this.gender = new Button(container, "./Change_Gender", Color.white, false);
 		this.gender.setLocation(50, 300);
 		
-		this.submit = new Button(container, "SUBMIT", Color.white, false);
+		this.submit = new Button(container, "./Create!", Color.white, false);
 		this.submit.setLocation(50, 350);
 	}
 
@@ -139,18 +139,32 @@ public class Character_Creation extends BasicGameState {
 		
 		this.background.draw(0,0,this.windowWidth,this.windowHeight);
 		
+		// sets the color for the rectangles behind the buttons
+		g.setColor(new Color(0,0,0,0.2f));
+		
+		// fills the rectangle behind the menu options
+		g.fill(this.menu);
+		
 		if (sprite_state == 1) {
-			this.char_sprite_1.draw(300, 50, 500, this.windowHeight);
+			this.char_sprite_1.draw(300, 50, 500, 500);
 		} else {
-			this.char_sprite_2.draw(300, 50, 500, this.windowHeight);
+			this.char_sprite_2.draw(300, 50, 500, 500);
 		}
 
+		g.setColor(Color.white);
 		
+		g.drawString("Name:",25,80);
 		this.name.render(container, g);
+		
+		g.drawString("Intelligence:",25,130);
 		this.intelligence.render(container, g);
+		
+		g.drawString("Endurance:",25,180);
 		this.endurance.render(container, g);
+		
+		g.drawString("Alcohol Tolerance:",25,230);
 		this.alcohol_tolerance.render(container, g);
-		g.setFont(uni_font);
+		//g.setFont(uni_font);
 		
 		this.gender.render(container, g);	
 		this.submit.render(container, g);
@@ -205,7 +219,7 @@ public class Character_Creation extends BasicGameState {
 							// TODO Auto-generated catch block
 							e.printStackTrace();
 						}
-					game.enterState(0, new FadeOutTransition(Color.black), new FadeInTransition(Color.black));
+					game.enterState(2, new FadeOutTransition(Color.black), new FadeInTransition(Color.black));
 				}
 				
 				

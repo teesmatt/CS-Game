@@ -59,11 +59,6 @@ public class Button_Smash extends BasicGameState{
 			throws SlickException {
 		// TODO Auto-generated method stub
 		
-		g.setColor(Color.black);
-		g.fillRect(50,50,container.getWidth()-315,container.getHeight()-100);
-		g.setColor(Color.gray);
-		g.fillRect(75,75,container.getWidth()-365,container.getHeight()-150);
-		
 		if (pressed) {
 			down.draw(this.x,this.y,this.width,this.height);
 			pressed = false;
