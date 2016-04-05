@@ -22,7 +22,8 @@ public class Map extends BasicGameState{
 	private int[] Classroom = new int[4];
 	private int[] Lounge = new int[4];
 	
-	private MainWindow inventory = new MainWindow();
+	// Hud on right side 
+	private MainWindow hud = new MainWindow();
 	
 	public Map() {
 		// TODO Auto-generated constructor stub
@@ -41,7 +42,7 @@ public class Map extends BasicGameState{
 			throws SlickException {
 		// TODO Auto-generated method stub
 		
-		inventory.init(container, game);
+		hud.init(container, game);
 		
 		this.game = game;
 		
@@ -69,7 +70,7 @@ public class Map extends BasicGameState{
 		
 		this.background.draw(0,0,container.getWidth()-215,container.getHeight());
 		
-		inventory.render(container,game,g);
+		hud.render(container,game,g);
 		
 	}
 
@@ -97,6 +98,8 @@ public class Map extends BasicGameState{
 			} else if (x > Lounge[0] && x < Lounge[0] + Lounge[2] && y > Lounge[1] && y < Lounge[1] + Lounge[3]) {
 				game.enterState(4, new FadeOutTransition(Color.black), new FadeInTransition(Color.black));
 			}
+			
+			hud.wPressed(x, y);
 			
 		}
 		
