@@ -10,6 +10,8 @@ import org.newdawn.slick.SlickException;
 import org.newdawn.slick.geom.Rectangle;
 import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
+import org.newdawn.slick.state.transition.FadeInTransition;
+import org.newdawn.slick.state.transition.FadeOutTransition;
 
 
 public class MainWindow extends BasicGameState {
@@ -125,7 +127,7 @@ public class MainWindow extends BasicGameState {
 			} else if (this.quit.ButtonPressed(x, y)) {
 				System.exit(0);
 			} else if (this.map.ButtonPressed(x, y)) {
-				
+				game.enterState(2, new FadeOutTransition(Color.black), new FadeInTransition(Color.black));
 			} else if (this.back.ButtonPressed(x, y)){
 				
 			}
