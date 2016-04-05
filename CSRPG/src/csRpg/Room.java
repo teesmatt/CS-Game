@@ -3,6 +3,7 @@ package csRpg;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Image;
+import org.newdawn.slick.Input;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
@@ -22,8 +23,11 @@ public class Room extends BasicGameState{
 	
 	private Button_Smash button_smash = new Button_Smash();
 	private mathMiniGame mathMnGm = new mathMiniGame();
+
 	private BeerMinigame beerMG = new BeerMinigame();
 	
+
+	private Library_Adventure lib_adv = new Library_Adventure();
 	private String miniGame;
 	private GameContainer container;
 	private StateBasedGame game;
@@ -120,9 +124,15 @@ public class Room extends BasicGameState{
 		case "mathGame":
 			mathMnGm.init(container, game);
 			break;
+
 		case "Beer_Minigame":
 			beerMG.init(container, game);
 			break;
+
+		case "library_adventure":
+			lib_adv.init(container,  game);
+			break;
+		
 		}
 	}
 	
@@ -136,9 +146,19 @@ public class Room extends BasicGameState{
 			break;
 		case "Beer_Minigame":
 			beerMG.buttonPressed(x, y);
+		case "library_adventure":
+			lib_adv.buttonPressed(x, y);
 			break;
 		}
 	}
+	
+	public void keyPressed(int key, char c) {
+		switch(this.miniGame) {
+		case "library_adventure":
+			lib_adv.keyPressed(key, c);
+			break;
+		}
+    }
 	
 	private void showMiniGame(GameContainer container, StateBasedGame game, Graphics g) throws SlickException {
 		switch(this.miniGame) {
@@ -152,6 +172,10 @@ public class Room extends BasicGameState{
 			beerMG.render(container, game, g);
 			break;
 			
+		case "library_adventure":
+			lib_adv.render(container, game, g);
+			break;
+
 		}
 	}
 	
@@ -165,6 +189,8 @@ public class Room extends BasicGameState{
 			break;
 		case "Beer_Minigame":
 			beerMG.update(container, game, delta);
+		case "library_adventure":
+			lib_adv.update(container, game, delta);
 			break;
 		}
 	}
