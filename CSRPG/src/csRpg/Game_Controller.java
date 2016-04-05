@@ -21,6 +21,8 @@ public class Game_Controller extends StateBasedGame {
 	public static final int LibraryID = 7;
 	public static final int MathID = 8;
 	
+	public static final int LoadSavesID = 69;
+	
 	public static Character player;
 	
 	public Game_Controller(String name) {
@@ -36,6 +38,7 @@ public class Game_Controller extends StateBasedGame {
 		this.addState(new Character_Creation());
 		this.addState(new Map());
 		this.addState(new LoadSaves());
+		this.addState(new BeerMinigame());
 		
 		this.addState(new Room("/assets/ClassroomLounge.png",ClassID,""));
 		this.addState(new Room("/assets/ClassroomLounge.png",LoungeID,""));
