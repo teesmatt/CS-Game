@@ -7,6 +7,8 @@ import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
+import org.newdawn.slick.UnicodeFont;
+import org.newdawn.slick.font.effects.ColorEffect;
 import org.newdawn.slick.geom.Rectangle;
 import org.newdawn.slick.gui.TextField;
 import org.newdawn.slick.state.BasicGameState;
@@ -29,8 +31,6 @@ public class Character_Creation extends BasicGameState {
 	private TextField endurance;
 	private TextField alcohol_tolerance;
 	
-	private Font font;
-	
 	private int windowWidth;
 	private int windowHeight;
 	
@@ -41,9 +41,23 @@ public class Character_Creation extends BasicGameState {
 	
 	int sprite_state;
 	
+	// Fonts
+	private Font font;
+	private UnicodeFont uni_font;
+	
+	// Colors
+	private Color black;
+	private Color white;
+	
 	public Character_Creation() {
 		// TODO Auto-generated constructor stub
 		sprite_state = 1;
+		font = new Font("Time New Roman", Font.BOLD, 20);
+		uni_font = new UnicodeFont(font);
+		uni_font.addGlyphs("@");
+        uni_font.getEffects().add(new ColorEffect(java.awt.Color.black));
+		black = new Color(0, 0, 0);
+		white = new Color(255, 255, 255);
 	}
 
 	/**
@@ -64,26 +78,26 @@ public class Character_Creation extends BasicGameState {
 		this.windowHeight= container.getHeight();
 		
 		this.menu = new Rectangle(0,0,250,container.getHeight());
-		this.font = new Font("Time New Roman", Font.BOLD, 20);
-		
+	
 		this.background = new Image("/assets/Background.jpeg");
 		
-		this.name = new TextField(container, null, 50, 100, 25, 25);
+		this.name = new TextField(container, uni_font, 50, 100, 75, 25);
 		this.name.setText("Name");
+		this.name.setMaxLength(10);
 		
-		this.intelligence = new TextField(container, null, 50, 150, 25, 25);
+		this.intelligence = new TextField(container, uni_font, 50, 150, 25, 25);
 		this.intelligence.setText("Intelligence");
 		
-		this.endurance = new TextField(container, null, 50, 200, 25, 25);
+		this.endurance = new TextField(container, uni_font, 50, 200, 25, 25);
 		this.endurance.setText("Endurance");
 		
-		this.alcohol_tolerance = new TextField(container, null, 50, 250, 25, 25);
+		this.alcohol_tolerance = new TextField(container, uni_font, 50, 250, 25, 25);
 		this.endurance.setText("Alcohol Tolerance");
 		
 		this.gender = new Button(container, "Change Sprite", Color.white, false);
 		this.gender.setLocation(50, 300);
 		
-		this.submit = new Button(container, "Change Sprite", Color.white, false);
+		this.submit = new Button(container, "SUBMIT", Color.white, false);
 		this.submit.setLocation(50, 350);
 	}
 
@@ -91,6 +105,7 @@ public class Character_Creation extends BasicGameState {
 	public void render(GameContainer container, StateBasedGame game, Graphics g)
 			throws SlickException {
 		
+		g.setFont(uni_font);
 		this.background.draw(0,0,this.windowWidth,this.windowHeight);
 		
 		this.name.render(container, g);
@@ -108,6 +123,7 @@ public class Character_Creation extends BasicGameState {
 	public void update(GameContainer arg0, StateBasedGame arg1, int arg2)
 			throws SlickException {
 		// TODO Auto-generated method stub
+		uni_font.loadGlyphs();
 		
 	}
 
