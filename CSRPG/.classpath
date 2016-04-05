@@ -4,5 +4,17 @@
 	<classpathentry kind="src" path="assets"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.7"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/Slick"/>
+	<classpathentry kind="lib" path="slick2d/lib/lwjgl.jar">
+		<attributes>
+			<attribute name="javadoc_location" value="file:/home/Pac/Documents/COMP3663/CS-Game/CS-Game/CSRPG/slick2d/"/>
+			<attribute name="org.eclipse.jdt.launching.CLASSPATH_ATTR_LIBRARY_PATH_ENTRY" value="/home/Pac/Documents/COMP3663/CS-Game/CS-Game/CSRPG/slick2d"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="slick2d/lib/slick.jar">
+		<attributes>
+			<attribute name="javadoc_location" value="file:/home/Pac/Documents/COMP3663/CS-Game/CS-Game/CSRPG/slick2d/"/>
+			<attribute name="org.eclipse.jdt.launching.CLASSPATH_ATTR_LIBRARY_PATH_ENTRY" value="/home/Pac/Documents/COMP3663/CS-Game/CS-Game/CSRPG"/>
+		</attributes>
+	</classpathentry>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

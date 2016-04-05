@@ -37,6 +37,7 @@ public class Game_Controller extends StateBasedGame {
 		this.addState(new Title_Menu());
 		this.addState(new Character_Creation());
 		this.addState(new Map());
+<<<<<<< HEAD
 
 
 		// adds each room to the game
@@ -44,6 +45,8 @@ public class Game_Controller extends StateBasedGame {
 
 
 
+=======
+>>>>>>> 04e054e0f6308e858423683a05d3d4ec587232ae
 
 
 		// adds each room to the game
