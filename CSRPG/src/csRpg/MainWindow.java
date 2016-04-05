@@ -10,6 +10,8 @@ import org.newdawn.slick.SlickException;
 import org.newdawn.slick.geom.Rectangle;
 import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
+import org.newdawn.slick.state.transition.FadeInTransition;
+import org.newdawn.slick.state.transition.FadeOutTransition;
 
 
 public class MainWindow extends BasicGameState {
@@ -54,6 +56,11 @@ public class MainWindow extends BasicGameState {
 		// loads the image for the background of the menu
 		this.background = new Image("/assets/Background.jpeg");
 				
+		
+		// back to maain menu
+		this.back = new Button(container, "./Save", Color.white, false);
+		this.back.setLocation(menu_right_margin, container.getHeight() - 150);
+		
 		// ./load_saved_game button
 		this.save = new Button(container, "./Save", Color.white, false);
 		this.save.setLocation(menu_right_margin, container.getHeight() - 125);
@@ -73,14 +80,19 @@ public class MainWindow extends BasicGameState {
 		// DEBUG CODE FOR INVENTORY ------------------------------------
 		Item i1 = new Item("Food", 0);
 		Item i2 = new Item("Beer", 1);
-		
+		Item i3 = new Item("Beer", 1);
 		Inventory inven = new Inventory();
 		inven.addItem(i1);
 		inven.addItem(i2);
+		inven.addItem(i3);
+		
+		for (int i = 0; i < inven.numItems(); i++){
+			System.out.println(inven.getItem(i).getName());
+		}
 		// -------------------------------------------------------------
 		
 		
-		this.list = new GameList(container, "ListItem", Color.white, 3, true);
+		this.list = new GameList(container, "ListItem", Color.white, inven.numItems(), true);
 		this.list.setLocation(menu_right_margin + 10, 325);
 		this.list.setInventoryList(inven);
 //		this.list.setLocation(0, 0);
@@ -135,13 +147,14 @@ public class MainWindow extends BasicGameState {
 			} else if (this.map.ButtonPressed(x, y)) {
 				
 			} else if (this.back.ButtonPressed(x, y)){
-				
+				game.enterState(0, new FadeOutTransition(Color.black), new FadeInTransition(Color.black));
+			} else if (this.list.ButtonPressed(x, y)) {
+				System.out.println("This fackin button got pressed");
 			}
 		}
 	}
 	@Override
-	public void update(GameContainer arg0, StateBasedGame arg1, int arg2) throws SlickException {
-		// TODO Auto-generated method stub
+	public void update(GameContainer container, StateBasedGame game, int arg2) throws SlickException {
 		
 	}
 

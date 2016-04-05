@@ -28,7 +28,9 @@ public class Button extends AbstractComponent {
 		this.solid = solid;
 		
 	}
-
+	public String getName(){
+		return this.name;
+	}
 	@Override
 	public int getHeight() {
 		
