@@ -12,6 +12,8 @@ public class Button_Smash extends BasicGameState{
 	private int x,y,width,height;
 	private int score;
 	
+	private int timer;
+	
 	public Button_Smash() {
 		// TODO Auto-generated constructor stub
 	}
@@ -33,6 +35,7 @@ public class Button_Smash extends BasicGameState{
 		this.x = (container.getWidth() - 215 - this.width)/2;
 		this.y = (container.getHeight() - this.height)/2;
 		this.score = 0;
+		this.timer = 10;
 	}
 
 	@Override
@@ -54,9 +57,11 @@ public class Button_Smash extends BasicGameState{
 	}
 
 	@Override
-	public void update(GameContainer arg0, StateBasedGame arg1, int arg2)
+	public void update(GameContainer arg0, StateBasedGame arg1, int delta)
 			throws SlickException {
 		// TODO Auto-generated method stub
+		
+		timer -= delta;
 		
 	}
 
