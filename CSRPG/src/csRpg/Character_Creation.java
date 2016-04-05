@@ -85,13 +85,13 @@ public class Character_Creation extends BasicGameState {
 		this.name.setText("Name");
 		this.name.setMaxLength(10);
 		
-		this.intelligence = new TextField(container, uni_font, 50, 150, 25, 25);
+		this.intelligence = new TextField(container, uni_font, 50, 150, 75, 25);
 		this.intelligence.setText("Intelligence");
 		
-		this.endurance = new TextField(container, uni_font, 50, 200, 25, 25);
+		this.endurance = new TextField(container, uni_font, 50, 200, 75, 25);
 		this.endurance.setText("Endurance");
 		
-		this.alcohol_tolerance = new TextField(container, uni_font, 50, 250, 25, 25);
+		this.alcohol_tolerance = new TextField(container, uni_font, 50, 250, 75, 25);
 		this.endurance.setText("Alcohol Tolerance");
 		
 		this.gender = new Button(container, "Change Sprite", Color.white, false);
@@ -144,8 +144,17 @@ public class Character_Creation extends BasicGameState {
 				}
 			} else if (submit.ButtonPressed(x, y)) {
 				// Check to see if stats are aight
+				// Make sure all stats are numeric.
+				
+				
 			} 
 		}
+	}
+	
+	
+	// Source: http://stackoverflow.com/questions/14206768/how-to-check-if-a-string-is-numeric
+	public boolean isNumeric(String s) {  
+	    return s.matches("[-+]?\\d*\\.?\\d+");  
 	}
 	
 	@Override
