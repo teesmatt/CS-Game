@@ -1,6 +1,8 @@
 package csRpg;
 
-public class Character {
+import org.newdawn.slick.SlickException;
+
+public class Character extends Entity {
 	
 	private String name;
 	private int intelligence;
@@ -13,9 +15,11 @@ public class Character {
 	private int[] credits;
 	private int alignment;
 	private String location;
-
+	private boolean isBuis;
 	
-	public Character(String name, int intelligence, int endurance, int alcohol_tolerance, int alignment) {
+	
+	public Character(String name, int intelligence, int endurance, int alcohol_tolerance, int alignment, String image) throws SlickException {	
+		super(image);
 		this.name = name;
 		this.intelligence = intelligence;
 		this.endurance = endurance;
@@ -25,6 +29,8 @@ public class Character {
 		this.health = 100;
 		this.sanity = 100;
 		this.gpa = 0;
+		
+		this.isBuis = false;
 		
 		this.location = "CS_Lounge";
 	}
@@ -152,5 +158,13 @@ public class Character {
 		}
 		
 		inventory.removeItem(temp);
+	}
+	
+	public boolean getBuis() {
+		return this.isBuis;
+	}
+	
+	public void setBuis(boolean buis) {
+		this.isBuis = buis;
 	}
 }
