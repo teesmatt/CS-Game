@@ -33,7 +33,7 @@ public class GameList extends AbstractComponent {
 		this.X = 0;
 		this.Y = 0;
 		this.width = name.length() * 10;
-		this.height = 20 * (num_items - 1);
+		this.height = 20 * (num_items);
 		this.numItems = num_items;
 		this.name = name;
 		this.color = color;
@@ -86,6 +86,8 @@ public class GameList extends AbstractComponent {
 			} else if (isInventory) {
 				
 				this.width = 40;
+				this.height = 20 * (this.numItems);
+				
 				
 				g.setColor(Color.black);
 				g.drawRect(this.X,this.Y,this.width,this.height);
@@ -96,15 +98,22 @@ public class GameList extends AbstractComponent {
 				
 				g.setColor(Color.black);
 				
+				// add to the buttons in the list 
+				this.invenButtons = new ArrayList<Button>();
+				
 				for (int i = 0; i < inventory.numItems(); i++) {
-					this.invenButtons = new ArrayList<Button>();
+
 					Item curItem = this.inventory.getItem(i);
-					Button curButton = new Button(container, "./Use_item", Color.red, true);
+					Button curButton = new Button(container, "./Use_item" + i, Color.red, true);
+					
 					curButton.setLocation(this.X + 40, this.Y + 20 * i);
 					curButton.render(container, g);
+					
 					this.invenButtons.add(curButton);
-					g.drawString(curItem.getName(), this.X, this.Y + 20*i);
-				}
+					
+					g.drawString(curItem.getName(), this.X, this.Y + 20 * i);
+					
+					}
 			}
 		} else {
 			// Adding to list
@@ -123,10 +132,19 @@ public class GameList extends AbstractComponent {
 	}
 	public boolean ButtonPressed(int x, int y){
 		if (isInventory){
-			for (Button b: invenButtons) {
+
+			int i = 0;
+			
+			for (Button b: this.invenButtons) {
 				if (b.ButtonPressed(x, y)) {
+					System.out.println(i);
 					invenButtons.remove(b);
+					System.out.println("Removing: " + this.inventory.getItem(i).getName());
+					this.inventory.removeItem(this.inventory.getItem(i));
+					this.numItems--;
 					return true;
+				} else {
+					i++;
 				}
 			}
 			return false;
@@ -137,6 +155,7 @@ public class GameList extends AbstractComponent {
 	public void setInventoryList(Inventory inventory){
 		isInventory = true;
 		this.inventory = inventory;
+		this.numItems = inventory.numItems();
 		
 	}
 	
