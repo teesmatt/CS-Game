@@ -81,13 +81,10 @@ public class mathMiniGame extends BasicGameState {
 
 	@Override
 	public int getID() {
-		// TODO Auto-generated method stub
 		return 120;
 	}
 
 	public void buttonPressed(int x, int y) {
-		// TODO Auto-generated method stub
-		
 		switch (currentProb) {
 		case 1:
 			if (y < 210 && y > 190 && timer > 0)
