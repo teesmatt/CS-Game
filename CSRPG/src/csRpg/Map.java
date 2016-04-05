@@ -22,6 +22,8 @@ public class Map extends BasicGameState{
 	private int[] Classroom = new int[4];
 	private int[] Lounge = new int[4];
 	
+	private MainWindow inventory = new MainWindow();
+	
 	public Map() {
 		// TODO Auto-generated constructor stub
 	}
@@ -38,6 +40,8 @@ public class Map extends BasicGameState{
 	public void init(GameContainer container, StateBasedGame game)
 			throws SlickException {
 		// TODO Auto-generated method stub
+		
+		inventory.init(container, game);
 		
 		this.game = game;
 		
@@ -64,6 +68,8 @@ public class Map extends BasicGameState{
 		// TODO Auto-generated method stub
 		
 		this.background.draw(0,0,container.getWidth()-215,container.getHeight());
+		
+		inventory.render(container,game,g);
 		
 	}
 

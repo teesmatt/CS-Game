@@ -12,6 +12,8 @@ public class Room extends BasicGameState{
 	private Image background;
 	private int roomID;
 	
+	private MainWindow inventory = new MainWindow();
+	
 	public Room(String image, int ID) throws SlickException {
 		// TODO Auto-generated constructor stub
 		
@@ -33,6 +35,8 @@ public class Room extends BasicGameState{
 			throws SlickException {
 		// TODO Auto-generated method stub
 		
+		inventory.init(container, game);
+		
 	}
 
 	@Override
@@ -41,6 +45,8 @@ public class Room extends BasicGameState{
 		// TODO Auto-generated method stub
 		
 		this.background.draw(0,0,container.getWidth()-215,container.getHeight());
+		
+		inventory.render(container,game,g);
 		
 	}
 

@@ -21,6 +21,8 @@ public class Game_Controller extends StateBasedGame {
 	public static final int LibraryID = 7;
 	public static final int MathID = 8;
 	
+	public static Character player;
+	
 	public Game_Controller(String name) {
 		
 		super(name);
@@ -43,7 +45,6 @@ public class Game_Controller extends StateBasedGame {
 		this.addState(new Room("/assets/Library.png",LibraryID));
 		this.addState(new Room("/assets/Math.png",MathID));
 
-		this.addState(new MainWindow());
 		this.addState(new Highscores());
 
 	}
