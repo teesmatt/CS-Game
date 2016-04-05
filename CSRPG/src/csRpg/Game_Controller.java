@@ -35,14 +35,37 @@ public class Game_Controller extends StateBasedGame {
 		this.addState(new Title_Menu());
 		this.addState(new Character_Creation());
 		this.addState(new Map());
+<<<<<<< HEAD
+		
+		// adds each room to the game
+
+
+
+//		this.addState(new Room("",ClassID));
+//		this.addState(new Room("",LoungeID));
+//		this.addState(new Room("",PubID));
+//		this.addState(new Room("",BussinessID));
+//		this.addState(new Room("",LibraryID));
+//		this.addState(new Room("",MathID));
+
+
+
+		this.addState(new Room("/assets/ClassroomLounge.png",ClassID,""));
+=======
 		this.addState(new LoadSaves());
 
 		this.addState(new Room("/assets/ClassroomLounge.png",ClassID,"button_smash"));
+>>>>>>> 4eff25bb4b8553e9b6c663e9473e656413c8fecf
 		this.addState(new Room("/assets/ClassroomLounge.png",LoungeID,""));
 		this.addState(new Room("/assets/Pub.png",PubID,""));
 		this.addState(new Room("/assets/Bussiness.png",BussinessID,""));
 		this.addState(new Room("/assets/Library.png",LibraryID,""));
+<<<<<<< HEAD
+		this.addState(new Room("/assets/Math.png",MathID,""));
+
+=======
 		this.addState(new Room("/assets/Math.png",MathID,"mathGame"));
+>>>>>>> 4eff25bb4b8553e9b6c663e9473e656413c8fecf
 		this.addState(new Highscores());
 		
 		
