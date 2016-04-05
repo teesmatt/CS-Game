@@ -79,10 +79,7 @@ public class MainWindow extends BasicGameState {
 		inven.addItem(i1);
 		inven.addItem(i2);
 		inven.addItem(i3);
-		
-		for (int i = 0; i < inven.numItems(); i++){
-			System.out.println(inven.getItem(i).getName());
-		}
+	
 		// -------------------------------------------------------------
 		
 		
@@ -128,21 +125,19 @@ public class MainWindow extends BasicGameState {
 		this.list.render(container, g);
 		
 	}
-	public void mousePressed(int button, int x, int y) {
-		if (button == 0) { //left mouse was pressed
-			if (this.save.ButtonPressed(x, y)) {
-				
-			} else if (this.options.ButtonPressed(x, y)) {
-				
-			} else if (this.quit.ButtonPressed(x, y)) {
-				System.exit(0);
-			} else if (this.map.ButtonPressed(x, y)) {
-				game.enterState(2, new FadeOutTransition(Color.black), new FadeInTransition(Color.black));
-			} else if (this.back.ButtonPressed(x, y)){
-				game.enterState(0, new FadeOutTransition(Color.black), new FadeInTransition(Color.black));
-			} else if (this.list.ButtonPressed(x, y)) {
-				System.out.println("This fackin button got pressed");
-			}
+	public void wPressed(int x, int y) {
+		if (this.save.ButtonPressed(x, y)) {
+			
+		} else if (this.options.ButtonPressed(x, y)) {
+			
+		} else if (this.quit.ButtonPressed(x, y)) {
+			System.exit(0);
+		} else if (this.map.ButtonPressed(x, y)) {
+			game.enterState(2, new FadeOutTransition(Color.black), new FadeInTransition(Color.black));
+		} else if (this.back.ButtonPressed(x, y)){
+			game.enterState(0, new FadeOutTransition(Color.black), new FadeInTransition(Color.black));
+		} else if (this.list.ButtonPressed(x, y)) {
+			
 		}
 	}
 	@Override
@@ -153,7 +148,7 @@ public class MainWindow extends BasicGameState {
 	@Override
 	public int getID() {
 		// TODO Auto-generated method stub
-		return 10;
+		return 2015;
 	}
 
 }

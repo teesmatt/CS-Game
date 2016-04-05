@@ -35,6 +35,7 @@ public class Game_Controller extends StateBasedGame {
 		this.addState(new Title_Menu());
 		this.addState(new Character_Creation());
 		this.addState(new Map());
+		this.addState(new LoadSaves());
 		
 		// adds each room to the game
 		this.addState(new Room("/assets/ClassroomLounge.png",ClassID,""));
@@ -45,7 +46,7 @@ public class Game_Controller extends StateBasedGame {
 		this.addState(new Room("/assets/Math.png",MathID,""));
 
 		this.addState(new Highscores());
-
+		
 	}
 	
 	public int getWidth() {
