@@ -21,6 +21,8 @@ public class Game_Controller extends StateBasedGame {
 	public static final int LibraryID = 7;
 	public static final int MathID = 8;
 	
+	public static final int LoadSavesID = 69;
+	
 	public static Character player;
 	
 	public Game_Controller(String name) {
@@ -35,6 +37,7 @@ public class Game_Controller extends StateBasedGame {
 		this.addState(new Title_Menu());
 		this.addState(new Character_Creation());
 		this.addState(new Map());
+<<<<<<< HEAD
 		
 		// adds each room to the game
 
@@ -47,6 +50,19 @@ public class Game_Controller extends StateBasedGame {
 		this.addState(new Room("/assets/Bussiness.png",BussinessID,""));
 		this.addState(new Room("/assets/Library.png",LibraryID,"library_adventure"));
 
+=======
+		this.addState(new LoadSaves());
+
+		
+		// adds each room to the game
+		this.addState(new LoadSaves());
+
+		this.addState(new Room("/assets/ClassroomLounge.png",ClassID,"button_smash"));
+		this.addState(new Room("/assets/ClassroomLounge.png",LoungeID,""));
+		this.addState(new Room("/assets/Pub.png",PubID,""));
+		this.addState(new Room("/assets/Bussiness.png",BussinessID,""));
+		this.addState(new Room("/assets/Library.png",LibraryID,""));
+>>>>>>> 50af44878c60338829670213aec32ac829c4a347
 		this.addState(new Room("/assets/Math.png",MathID,"mathGame"));
 
 		this.addState(new Highscores());
