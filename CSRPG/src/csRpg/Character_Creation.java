@@ -18,46 +18,57 @@ import org.newdawn.slick.state.transition.FadeOutTransition;
 
 public class Character_Creation extends BasicGameState {
 
+	// variables to be used in the menu scene of the game
 	private StateBasedGame game;
-	
-	// buttons
-	private Button gender;
-	private Button submit;
-	private Button back;
-	
-	// text fields
+
+	// Text Fields
 	private TextField name;
 	private TextField intelligence;
 	private TextField endurance;
 	private TextField alcohol_tolerance;
 	
+	// Buttons
+	private Button gender;
+	private Button submit;
+	private Button back;
+	
+	// Window Dimensions
 	private int windowWidth;
 	private int windowHeight;
 	
+	//  Image's
 	private Image background;
-	private Image character;
+	private Image char_sprite_1;
+	private Image char_sprite_2;
 	
 	private Rectangle menu;
+	private Rectangle sprite_container;
 	
-	int sprite_state;
-	
-	// Fonts
 	private Font font;
 	private UnicodeFont uni_font;
 	
 	// Colors
-	private Color black;
-	private Color white;
+	private Color color;
+	private Color white;	
+	
+	private int sprite_state;
+	
+	// Stats
+	private int char_int;
+	private int char_end;
+	private int char_alc;
+	
+	// String references
+	private String int_ref;
+	private String end_ref;
+	private String alc_ref;
 	
 	public Character_Creation() {
 		// TODO Auto-generated constructor stub
-		sprite_state = 1;
 		font = new Font("Time New Roman", Font.BOLD, 20);
-		uni_font = new UnicodeFont(font);
-		uni_font.addGlyphs("@");
-        uni_font.getEffects().add(new ColorEffect(java.awt.Color.black));
-		black = new Color(0, 0, 0);
+		color = new Color(0, 0, 0);
 		white = new Color(255, 255, 255);
+		sprite_state = 1;
 	}
 
 	/**
@@ -77,22 +88,43 @@ public class Character_Creation extends BasicGameState {
 		this.windowWidth = container.getWidth();
 		this.windowHeight= container.getHeight();
 		
+		// Initializes the Menu and Font
 		this.menu = new Rectangle(0,0,250,container.getHeight());
-	
+		this.uni_font = new UnicodeFont(font);
+		this.uni_font.addGlyphs("@");
+        this.uni_font.getEffects().add(new ColorEffect(java.awt.Color.black));
+		
+        // Initializes the Background
 		this.background = new Image("/assets/Background.jpeg");
 		
-		this.name = new TextField(container, uni_font, 50, 100, 75, 25);
+		// Adds Name Text Field
+		this.name = new TextField(container, uni_font, 50, 100, 250, 50);
 		this.name.setText("Name");
-		this.name.setMaxLength(10);
+		this.name.setBackgroundColor(white);
+		this.name.setBorderColor(color);
 		
-		this.intelligence = new TextField(container, uni_font, 50, 150, 75, 25);
+		// Adds the Intelligence Text Field
+		this.intelligence = new TextField(container, uni_font, 50, 150, 250, 50);
 		this.intelligence.setText("Intelligence");
+		this.intelligence.setBackgroundColor(white);
+		this.intelligence.setBorderColor(color);
 		
-		this.endurance = new TextField(container, uni_font, 50, 200, 75, 25);
+		// Adds the Endurance Text Field
+		this.endurance = new TextField(container, uni_font, 50, 200, 250, 50);
 		this.endurance.setText("Endurance");
+		this.endurance.setBackgroundColor(white);
+		this.endurance.setBorderColor(color);
 		
-		this.alcohol_tolerance = new TextField(container, uni_font, 50, 250, 75, 25);
-		this.endurance.setText("Alcohol Tolerance");
+		// Add the Alcohol Tolerance Text Field
+		this.alcohol_tolerance = new TextField(container, uni_font, 50, 250, 250, 50);
+		this.alcohol_tolerance.setText("Alcohol Tolerance");
+		this.alcohol_tolerance.setBackgroundColor(white);
+		this.alcohol_tolerance.setBorderColor(color);
+		
+		// Make Character Sprite Area
+		this.sprite_container = new Rectangle(300, 50, 250, container.getHeight());
+		this.char_sprite_1 = new Image("/assets/male_playable_character_sprite.png");
+		this.char_sprite_2 = new Image("/assets/female_playable_character_sprite.png");
 		
 		this.gender = new Button(container, "Change Sprite", Color.white, false);
 		this.gender.setLocation(50, 300);
@@ -105,18 +137,23 @@ public class Character_Creation extends BasicGameState {
 	public void render(GameContainer container, StateBasedGame game, Graphics g)
 			throws SlickException {
 		
-		g.setFont(uni_font);
 		this.background.draw(0,0,this.windowWidth,this.windowHeight);
 		
+		if (sprite_state == 1) {
+			this.char_sprite_1.draw(300, 50, 500, this.windowHeight);
+		} else {
+			this.char_sprite_2.draw(300, 50, 500, this.windowHeight);
+		}
+
+		
 		this.name.render(container, g);
-		this.gender.render(container, g);
 		this.intelligence.render(container, g);
 		this.endurance.render(container, g);
 		this.alcohol_tolerance.render(container, g);
+		g.setFont(uni_font);
+		
+		this.gender.render(container, g);	
 		this.submit.render(container, g);
-		
-		
-		
 	}
 
 	@Override
@@ -126,7 +163,7 @@ public class Character_Creation extends BasicGameState {
 		uni_font.loadGlyphs();
 		
 	}
-
+	
 	public void mousePressed(int button, int x, int y) {
 		if (button == 0) { // if the left mouse button is pressed
 			if (gender.ButtonPressed(x, y)) {
@@ -145,11 +182,37 @@ public class Character_Creation extends BasicGameState {
 			} else if (submit.ButtonPressed(x, y)) {
 				// Check to see if stats are aight
 				// Make sure all stats are numeric.
+				int_ref = this.intelligence.getText();
+				end_ref = this.endurance.getText();
+				alc_ref = this.alcohol_tolerance.getText();
+				
+				if (isNumeric(int_ref) && isNumeric(end_ref) && isNumeric(alc_ref)) {
+					char_int = Integer.parseInt(int_ref);
+					char_end = Integer.parseInt(end_ref);
+					char_alc = Integer.parseInt(alc_ref);
+					
+					if (sprite_state == 1)
+						try {
+							Game_Controller.player = new Character(this.name.getText(), char_int, char_end, char_alc, 1, "/assets/male_playable_character_sprite.png");
+						} catch (SlickException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						}
+					else
+						try {
+							Game_Controller.player = new Character(this.name.getText(), char_int, char_end, char_alc, 1, "/assets/female_playable_character_sprite.png");
+						} catch (SlickException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						}
+					game.enterState(0, new FadeOutTransition(Color.black), new FadeInTransition(Color.black));
+				}
 				
 				
 			} 
 		}
 	}
+
 	
 	
 	// Source: http://stackoverflow.com/questions/14206768/how-to-check-if-a-string-is-numeric

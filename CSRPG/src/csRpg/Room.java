@@ -17,10 +17,16 @@ public class Room extends BasicGameState{
 	// play minigame button
 	private int[] mini_button = new int[4];
 	
-	private MainWindow inventory = new MainWindow();
+	// Hud on right side 
+	private MainWindow hud = new MainWindow();
 	
 	private Button_Smash button_smash = new Button_Smash();
+	private mathMiniGame mathMnGm = new mathMiniGame();
 	private String miniGame;
+	private GameContainer container;
+	private StateBasedGame game;
+	
+	private Image minigamebutton;
 	
 	public Room(String image, int ID, String miniGame) throws SlickException {
 		// TODO Auto-generated constructor stub
@@ -43,15 +49,19 @@ public class Room extends BasicGameState{
 			throws SlickException {
 		// TODO Auto-generated method stub
 		
-		inventory.init(container, game);
-		button_smash.init(container, game);
+		this.container = container;
+		this.game = game;
+		
+		this.minigamebutton = new Image("assets/MiniGameButton.png");
+		
+		hud.init(container, game);
 		
 		playing = false;
 		
 		mini_button[0] = 10; // x
 		mini_button[1] = 10; // y
-		mini_button[2] = 30; // width
-		mini_button[3] = 30; // height
+		mini_button[2] = 200; // width
+		mini_button[3] = 50; // height
 		
 	}
 
@@ -62,9 +72,9 @@ public class Room extends BasicGameState{
 		
 		this.background.draw(0,0,container.getWidth()-215,container.getHeight());
 		
-		g.fillRect(mini_button[0], mini_button[1], mini_button[2], mini_button[3]);
+		minigamebutton.draw(mini_button[0], mini_button[1], mini_button[2], mini_button[3]);
 		
-		inventory.render(container,game,g);
+		hud.render(container,game,g);
 		
 		if (playing) {
 			showMiniGame(container,game,g);
@@ -85,11 +95,42 @@ public class Room extends BasicGameState{
 	public void mousePressed(int button, int x, int y) {
 		if (button == 0) { //left mouse was pressed
 			if (playing) {
-				button_smash.buttonPressed(x, y);
+				clickMiniGame(x,  y);
 			}
 			if (x > mini_button[0] && x < mini_button[0] + mini_button[2] && y > mini_button[1] && y < mini_button[1] + mini_button[3]) {
 				playing = !playing;
+				try {
+					initMiniGame();
+				} catch (SlickException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 			}
+			hud.wPressed(x, y);
+		}
+	}
+	
+	private void initMiniGame() throws SlickException {
+		switch(this.miniGame) {
+		case "button_smash":
+			button_smash.init(container, game);
+			break;
+		case "mathGame":
+			mathMnGm.init(container, game);
+			break;
+			
+		}
+	}
+	
+	private void clickMiniGame(int x, int y) {
+		switch(this.miniGame) {
+		case "button_smash":
+			button_smash.buttonPressed(x, y);
+			break;
+		case "mathGame":
+			mathMnGm.buttonPressed(x, y);
+			break;
+			
 		}
 	}
 	
@@ -98,6 +139,10 @@ public class Room extends BasicGameState{
 		case "button_smash":
 			button_smash.render(container, game, g);
 			break;
+		case "mathGame":
+			mathMnGm.render(container, game, g);
+			break;
+			
 		}
 	}
 	
@@ -105,6 +150,9 @@ public class Room extends BasicGameState{
 		switch(this.miniGame) {
 		case "button_smash":
 			button_smash.update(container, game, delta);
+			break;
+		case "mathGame":
+			mathMnGm.update(container, game, delta);
 			break;
 		}
 	}

@@ -3,6 +3,7 @@ package csRpg;
 import org.newdawn.slick.Color;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
+import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
@@ -13,6 +14,10 @@ public class Button_Smash extends BasicGameState{
 	private int score;
 	
 	private float timer;
+	
+	private Image down;
+	private Image up;
+	private boolean pressed;
 	
 	public Button_Smash() {
 		// TODO Auto-generated constructor stub
@@ -30,12 +35,17 @@ public class Button_Smash extends BasicGameState{
 	public void init(GameContainer container, StateBasedGame game)
 			throws SlickException {
 		// TODO Auto-generated method stub
-		this.width = 100;
-		this.height = 100;
+		this.width = 200;
+		this.height = 200;
 		this.x = (container.getWidth() - 215 - this.width)/2;
 		this.y = (container.getHeight() - this.height)/2;
 		this.score = 0;
 		this.timer = 10;
+		
+		this.up = new Image("assets/Button_Up.png");
+		this.down = new Image("assets/Button_Down.png");
+		
+		this.pressed = false;
 	}
 
 	@Override
@@ -48,8 +58,12 @@ public class Button_Smash extends BasicGameState{
 		g.setColor(Color.gray);
 		g.fillRect(75,75,container.getWidth()-365,container.getHeight()-150);
 		
-		g.setColor(Color.red);
-		g.fillRect(this.x,this.y,this.width,this.height);
+		if (pressed) {
+			down.draw(this.x,this.y,this.width,this.height);
+			pressed = false;
+		} else {
+			up.draw(this.x,this.y,this.width,this.height);
+		}
 		
 		g.setColor(Color.white);
 		g.drawString(String.valueOf("Score: "+this.score),80,80);
@@ -73,6 +87,7 @@ public class Button_Smash extends BasicGameState{
 	public void buttonPressed(int x, int y) {
 		if (x > this.x && x < this.x + this.width && y > this.y && y < this.y + this.height && timer > 0) {
 			this.score++;
+			this.pressed = true;
 		}
 	}
 	
