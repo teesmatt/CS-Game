@@ -12,7 +12,7 @@ public class Button_Smash extends BasicGameState{
 	private int x,y,width,height;
 	private int score;
 	
-	private int timer;
+	private float timer;
 	
 	public Button_Smash() {
 		// TODO Auto-generated constructor stub
@@ -52,7 +52,8 @@ public class Button_Smash extends BasicGameState{
 		g.fillRect(this.x,this.y,this.width,this.height);
 		
 		g.setColor(Color.white);
-		g.drawString(String.valueOf(this.score),80,80);
+		g.drawString(String.valueOf("Score: "+this.score),80,80);
+		g.drawString(String.valueOf("Time: "+this.timer),200,100);
 		
 	}
 
@@ -61,12 +62,16 @@ public class Button_Smash extends BasicGameState{
 			throws SlickException {
 		// TODO Auto-generated method stub
 		
-		timer -= delta;
+		timer -= delta/1000.0;
+		
+		if (timer <= 0) {
+			timer = 0;
+		}
 		
 	}
 
 	public void buttonPressed(int x, int y) {
-		if (x > this.x && x < this.x + this.width && y > this.y && y < this.y + this.height) {
+		if (x > this.x && x < this.x + this.width && y > this.y && y < this.y + this.height && timer > 0) {
 			this.score++;
 		}
 	}
