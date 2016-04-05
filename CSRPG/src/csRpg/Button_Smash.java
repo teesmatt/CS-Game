@@ -1,10 +1,13 @@
 package csRpg;
 
+import java.awt.Font;
+
 import org.newdawn.slick.Color;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
+import org.newdawn.slick.TrueTypeFont;
 import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
 
@@ -18,6 +21,9 @@ public class Button_Smash extends BasicGameState{
 	private Image down;
 	private Image up;
 	private boolean pressed;
+	
+	private Font awtFont = new Font("", 1, 35);
+    private TrueTypeFont font = new TrueTypeFont(awtFont, false);
 	
 	public Button_Smash() {
 		// TODO Auto-generated constructor stub
@@ -66,8 +72,8 @@ public class Button_Smash extends BasicGameState{
 		}
 		
 		g.setColor(Color.white);
-		g.drawString(String.valueOf("Score: "+this.score),80,80);
-		g.drawString(String.valueOf("Time: "+this.timer),200,100);
+		font.drawString(80,120,String.valueOf("Score: "+this.score));
+		font.drawString(80,80,String.format("Time: %.1f", this.timer));
 		
 	}
 

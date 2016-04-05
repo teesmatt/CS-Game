@@ -41,11 +41,15 @@ public class BeerMinigame extends BasicGameState {
 	private StateBasedGame game;
 	
 	private float timer;
+	private int beersClicked;
+	private Boolean started;
 	
 	private Image beerImg;
 	private ArrayList<XY> beer_points;
 	// test image
 	private Image background;
+	
+
 	
 	private final int beerSizeX = 66;
 	private final int beerSizeY = 118;
@@ -88,6 +92,10 @@ public class BeerMinigame extends BasicGameState {
 	public void init(GameContainer container, StateBasedGame game) throws SlickException {
 		this.game = game;
 		
+		this.beersClicked = 0;
+		this.timer = 20;
+		this.started = false;
+		
 		this.miniGameTopX = 75;
 		this.miniGameTopY = 75;
 		this.miniGameBotX = container.getWidth() - 365;
@@ -105,11 +113,6 @@ public class BeerMinigame extends BasicGameState {
 	@Override
 	public void render(GameContainer container, StateBasedGame game, Graphics g) throws SlickException {
 		
-		// Debug to see frame
-		this.background.draw(0,0, container.getWidth(), container.getHeight());
-		// --------------------------
-		
-		
 		// TODO Auto-generated method stub
 		g.setColor(Color.black);
 		g.fillRect(miniGameTopX - 25, miniGameTopY - 25, miniGameBotX + 50, miniGameBotY + 50);
@@ -121,18 +124,32 @@ public class BeerMinigame extends BasicGameState {
 			this.beerImg.draw(bp.getX(), bp.getY(), this.beerSizeX, this.beerSizeY);
 		}
 		
+		g.setColor(Color.white);
+		g.drawString(String.valueOf("Score: "+this.beersClicked),80,60);
+		g.drawString(String.valueOf("Time: "+this.timer),200,60);
+		
 	}
 	
 	@Override
-	public void update(GameContainer container, StateBasedGame game, int arg2) throws SlickException {
+	public void update(GameContainer container, StateBasedGame game, int delta) throws SlickException {
 		// TODO Auto-generated method stub
+		if (started == true)
+		{
+			timer -= delta/1000.0;
+			
+			if (timer <= 0) {
+				timer = 0;
+			}
+		}
 		
 	}
-	public void mousePressed(int button, int x, int y) {
+	public void buttonPressed(int x, int y) {
 		for (XY bp: beer_points) {
 			// x > Pub[0] && x < Pub[0] + Pub[2] && y > Pub[1] && y < Pub[1] + Pub[3]) 
 			if (x > bp.getX() && x < bp.getX() + beerSizeX && y > bp.getY() && y < bp.getY() + beerSizeY){
+				started = true;
 				beer_points.remove(bp);
+				beersClicked++;
 				break;
 			}
 		}
