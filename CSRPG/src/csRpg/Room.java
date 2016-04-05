@@ -40,7 +40,7 @@ public class Room extends BasicGameState{
 			throws SlickException {
 		// TODO Auto-generated method stub
 		
-		
+		this.background.draw(0,0,container.getWidth()-215,container.getHeight());
 		
 	}
 
@@ -54,6 +54,7 @@ public class Room extends BasicGameState{
 	@Override
 	public int getID() {
 		// TODO Auto-generated method stub
+
 		return this.roomID;
 
 	}

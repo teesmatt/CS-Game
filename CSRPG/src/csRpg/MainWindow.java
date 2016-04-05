@@ -43,9 +43,6 @@ public class MainWindow extends BasicGameState {
 		
 		this.game = game;
 		
-		this.windowWidth = container.getWidth();
-		this.windowHeight= container.getHeight();
-		
 		this.menu = new Rectangle(container.getWidth() - 225, 0, container.getWidth() - 225, container.getHeight());
 		
 		// font to be used in the menu
@@ -89,7 +86,7 @@ public class MainWindow extends BasicGameState {
 	@Override
 	public void render(GameContainer container, StateBasedGame game, Graphics g) throws SlickException {
 		// draws the background image
-		this.background.draw(0,0,this.windowWidth,this.windowHeight);
+		this.background.draw(0,0,container.getWidth(),container.getHeight());
 		
 		int menu_right_margin = container.getWidth() - 215;
 		
