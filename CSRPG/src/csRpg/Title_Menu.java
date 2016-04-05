@@ -145,7 +145,11 @@ public class Title_Menu extends BasicGameState {
 				game.enterState(20, new FadeOutTransition(Color.black), new FadeInTransition(Color.black));
 
 			} else if (load.ButtonPressed(x, y)) {
+<<<<<<< HEAD
+				game.enterState(2, new FadeOutTransition(Color.black), new FadeInTransition(Color.black));
+=======
 				game.enterState(69, new FadeOutTransition(Color.black), new FadeInTransition(Color.black));
+>>>>>>> cf77353b8efe4e0201b7199d65ef6efdec22e464
 			} else if (options.ButtonPressed(x, y)) {
 				
 				optionsDisplay = true;
