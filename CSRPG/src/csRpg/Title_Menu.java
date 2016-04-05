@@ -149,7 +149,7 @@ public class Title_Menu extends BasicGameState {
 		if (button == 0) { // if the left mouse button is pressed
 			if (play.ButtonPressed(x, y)) {
 				
-				game.enterState(2, new FadeOutTransition(Color.black), new FadeInTransition(Color.black));
+				game.enterState(20, new FadeOutTransition(Color.black), new FadeInTransition(Color.black));
 
 			} else if (load.ButtonPressed(x, y)) {
 				game.enterState(10, new FadeOutTransition(Color.black), new FadeInTransition(Color.black));

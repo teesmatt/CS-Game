@@ -1,6 +1,8 @@
 package csRpg;
 
-public class Character {
+import org.newdawn.slick.SlickException;
+
+public class Character extends Entity {
 	
 	private String name;
 	private int intelligence;
@@ -15,7 +17,8 @@ public class Character {
 	private String location;
 
 	
-	public Character(String name, int intelligence, int endurance, int alcohol_tolerance, int alignment) {
+	public Character(String name, int intelligence, int endurance, int alcohol_tolerance, int alignment, String image) throws SlickException {	
+		super(image);
 		this.name = name;
 		this.intelligence = intelligence;
 		this.endurance = endurance;
