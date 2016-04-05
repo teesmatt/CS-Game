@@ -21,6 +21,7 @@ public class Room extends BasicGameState{
 	private MainWindow hud = new MainWindow();
 	
 	private Button_Smash button_smash = new Button_Smash();
+	private mathMiniGame mathMnGm = new mathMiniGame();
 	private String miniGame;
 	private GameContainer container;
 	private StateBasedGame game;
@@ -91,11 +92,13 @@ public class Room extends BasicGameState{
 		if (button == 0) { //left mouse was pressed
 			if (playing) {
 				button_smash.buttonPressed(x, y);
+				mathMnGm.buttonPressed(x, y);
 			}
 			if (x > mini_button[0] && x < mini_button[0] + mini_button[2] && y > mini_button[1] && y < mini_button[1] + mini_button[3]) {
 				playing = !playing;
 				try {
 					button_smash.init(container, game);
+					mathMnGm.init(container, game);
 				} catch (SlickException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
@@ -110,6 +113,10 @@ public class Room extends BasicGameState{
 		case "button_smash":
 			button_smash.render(container, game, g);
 			break;
+		case "mathGame":
+			mathMnGm.render(container, game, g);
+			break;
+			
 		}
 	}
 	
@@ -117,6 +124,9 @@ public class Room extends BasicGameState{
 		switch(this.miniGame) {
 		case "button_smash":
 			button_smash.update(container, game, delta);
+			break;
+		case "mathGame":
+			mathMnGm.update(container, game, delta);
 			break;
 		}
 	}
