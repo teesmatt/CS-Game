@@ -122,6 +122,8 @@ public class Room extends BasicGameState{
 		// TODO Auto-generated method stub
 		if (playing) {
 			updateMiniGame(container,game,delta);
+			if (minigame.isfinished())
+				getscore
 		}
 		
 	}
@@ -158,6 +160,7 @@ public class Room extends BasicGameState{
 			button_smash.init(container, game);
 			break;
 		case "mathGame":
+			Game_Controller.
 			mathMnGm.init(container, game);
 			break;
 
