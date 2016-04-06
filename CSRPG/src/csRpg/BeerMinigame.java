@@ -104,7 +104,7 @@ public class BeerMinigame extends BasicGameState {
 		this.miniGameBotY = container.getHeight() - 150;
 		
 		this.beerImg = new Image("/assets/beer.gif");
-		this.background = new Image("/assets/background.jpeg");
+		this.background = new Image("/assets/Background.jpeg");
 		
 		this.beer_points = genBeerPoints(num_beers,
 				new XY(miniGameTopX, miniGameTopY), 

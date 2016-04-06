@@ -1,10 +1,13 @@
 package csRpg;
 
+import java.awt.Font;
+
 import org.newdawn.slick.Color;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
+import org.newdawn.slick.TrueTypeFont;
 import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
 
@@ -14,6 +17,9 @@ public class mathMiniGame extends BasicGameState {
 	private int score;
 	private int currentProb;
 	private Image prob4;
+	private boolean isFinished;
+	private Font awtFont = new Font("", 1, 20);
+    private TrueTypeFont font = new TrueTypeFont(awtFont, false);
 	
 	private void drawMultipleChoices(String question, String answerA, 
 			     String answerB, String answerC, String answerD, Graphics g)
@@ -27,6 +33,29 @@ public class mathMiniGame extends BasicGameState {
 		g.drawString(String.valueOf("D. " + answerD), 350, 250);
 	}
 	
+	private boolean isAnswerCorrect(int x, int y, char choice)
+	{
+		switch (choice)
+		{
+		case 'A':
+			if (y < 210 && y > 190 && this.timer > 0)
+				return true;
+			break;
+		case 'B':
+			if (y < 230 && y > 210 && this.timer > 0)
+				return true;
+			break;
+		case 'C':
+			if (y < 250 && y > 230 && this.timer > 0)
+				return true;
+			break;
+		case 'D': 
+			if (y < 270 && y > 250 && this.timer > 0)
+				return true;
+			break;
+		}
+		return false;
+	}
 	@Override
 	public void init(GameContainer arg0, StateBasedGame arg1) throws SlickException {
 		// TODO Auto-generated method stub
@@ -34,6 +63,14 @@ public class mathMiniGame extends BasicGameState {
 		this.score = 0;
 		this.currentProb = 1;
 		this.prob4 = new Image("/assets/mathMinigameProb4.png");
+		this.isFinished = false;
+	}
+	
+	public void init(GameContainer arg0, StateBasedGame arg1, int savedScore) throws SlickException {
+		this.timer = 0;
+		this.score = savedScore;
+		this.currentProb = 5;
+		this.isFinished = true;
 	}
 
 	@Override
@@ -45,8 +82,8 @@ public class mathMiniGame extends BasicGameState {
 		g.fillRect(75,75,container.getWidth()-365,container.getHeight()-150);
 		
 		g.setColor(Color.white);
-		g.drawString(String.valueOf("Score: "+this.score),80,80);
-		g.drawString(String.valueOf("Time: "+this.timer),80,100);
+		font.drawString(80, 80, String.valueOf("Score: "+this.score));
+		font.drawString(80,100, String.valueOf("Time: "+this.timer));
 		
 		switch (this.currentProb)
 		{
@@ -72,8 +109,13 @@ public class mathMiniGame extends BasicGameState {
 	@Override
 	public void update(GameContainer arg0, StateBasedGame arg1, int delta) throws SlickException {
 		// TODO Auto-generated method stub
-		timer -= delta/1000.0;
 		
+		if (this.currentProb < 5)
+		{
+			timer -= delta/1000.0;
+		}
+		
+		//timer -= delta/1000.0;
 		if (timer <= 0) {
 			timer = 0;
 		}
@@ -87,30 +129,41 @@ public class mathMiniGame extends BasicGameState {
 	public void buttonPressed(int x, int y) {
 		switch (currentProb) {
 		case 1:
-			if (y < 210 && y > 190 && timer > 0)
-				this.score += 10;
+			if (this.isAnswerCorrect(x, y, 'A'))
+				this.score += 20;
 			this.currentProb++;
 			break;
 			
 		case 2:
-			if (y < 250 && y > 230 && timer > 0)
-				this.score += 10;
+			if (this.isAnswerCorrect(x, y, 'C'))
+				this.score += 20;
 			this.currentProb++;
 			break;
 		
 		case 3:
-			if (y < 210 && y > 190 && timer > 0)
-				this.score += 10;
+			if (this.isAnswerCorrect(x, y, 'A'))
+				this.score += 20;
 			this.currentProb++;
 			break;
 			
 		case 4:
-			if (y < 230 && y > 210 && timer > 0)
-				this.score += 10;
+			if (this.isAnswerCorrect(x, y, 'B'))
+				this.score += 40;
 			this.currentProb++;
+			this.isFinished = true;
 			break;
 			
 		}
+	}
+	
+	public int getScore()
+	{
+		return this.score;
+	}
+	
+	public boolean isFinished()
+	{
+		return this.isFinished ? true : false;
 	}
 
 }

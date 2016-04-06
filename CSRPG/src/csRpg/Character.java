@@ -16,6 +16,7 @@ public class Character extends Entity implements java.io.Serializable {
 	private int alignment;
 	private String location;
 	private boolean isBuis;
+	private int[] miniGameScore;
 	
 	
 	public Character(String name, int intelligence, int endurance, int alcohol_tolerance, int alignment, String image) throws SlickException {	
@@ -29,6 +30,8 @@ public class Character extends Entity implements java.io.Serializable {
 		this.health = 100;
 		this.sanity = 100;
 		this.gpa = 0;
+		this.credits = new int[5];
+		this.miniGameScore = new int[5];
 		
 		this.isBuis = false;
 		
@@ -75,12 +78,19 @@ public class Character extends Entity implements java.io.Serializable {
 		this.alignment = alignment;
 	}
 
-	public int[] getCredits() {
-		return credits;
+	public int getCredits(int index) {
+		return credits[index];
 	}
 
 	public void setCredits(int[] credits) {
 		this.credits = credits;
+	}
+	
+	public void addCredit(int credit) {
+		if (credit < 5)
+		{
+			this.credits[credit] = 1;
+		}
 	}
 
 	public int getSanity() {
@@ -92,7 +102,7 @@ public class Character extends Entity implements java.io.Serializable {
 	}
 	
 	public int calcSanity(int sanity) {
-		this.sanity += sanity;
+		this.sanity += sanity + this.intelligence;
 		return this.sanity;
 	}
 
@@ -105,7 +115,7 @@ public class Character extends Entity implements java.io.Serializable {
 	}
 	
 	public int calcHealth(int health) {
-		this.health += health;
+		this.health += health + this.endurance;
 		return this.health;
 	}
 
@@ -149,10 +159,10 @@ public class Character extends Entity implements java.io.Serializable {
 		// Add effect for each effect. See documentation.
 		switch(effect) {
 		// Effect 1 = Food Health Increase
-		case 1: this.calcHealth(25);
+		case 1: this.calcHealth(20);
 				break;
 		// Effect 2 = Beer Sanity Increase
-		case 2: this.calcSanity(25);
+		case 2: this.calcSanity(20 + this.alcohol_tolerance);
 				break;
 		
 		}
@@ -166,5 +176,15 @@ public class Character extends Entity implements java.io.Serializable {
 	
 	public void setBuis(boolean buis) {
 		this.isBuis = buis;
+	}
+	
+	public void setMiniGameScore(int index, int score)
+	{
+		this.miniGameScore[index] = score;
+	}
+	
+	public int getMiniGameScore(int index)
+	{
+		return this.miniGameScore[index];
 	}
 }

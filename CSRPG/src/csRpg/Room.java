@@ -43,12 +43,17 @@ public class Room extends BasicGameState{
 	private Image buisnessstuff;
 	private Image closebutton;
 	
-	public Room(String image, int ID, String miniGame) throws SlickException {
+	private int[] player_pos = new int[2];
+	
+	public Room(String image, int ID, String miniGame, int player_x, int player_y) throws SlickException {
 		// TODO Auto-generated constructor stub
 		
 		this.background = new Image(image);
 		this.roomID = ID;
 		this.miniGame = miniGame;
+		
+		this.player_pos[0] = player_x;
+		this.player_pos[1] = player_y;
 	}
 
 	/**
@@ -98,7 +103,11 @@ public class Room extends BasicGameState{
 		
 		this.background.draw(0,0,container.getWidth()-215,container.getHeight());
 		
-		minigamebutton.draw(mini_button[0], mini_button[1], button_size[0], button_size[1]);
+		Game_Controller.player.getSprite().draw(this.player_pos[0]-50,this.player_pos[1]-50,100,100);
+		
+		if (this.roomID != 4) {
+			minigamebutton.draw(mini_button[0], mini_button[1], button_size[0], button_size[1]);
+		}
 		if (Game_Controller.player.getBuis()) {
 			buisnessstuff.draw(buis_button[0], buis_button[1], button_size[0], button_size[1]);
 		}
@@ -122,6 +131,8 @@ public class Room extends BasicGameState{
 		// TODO Auto-generated method stub
 		if (playing) {
 			updateMiniGame(container,game,delta);
+			//if (minigame.isfinished())
+			//	getscore
 		}
 		
 	}
@@ -131,13 +142,15 @@ public class Room extends BasicGameState{
 			if (playing) {
 				clickMiniGame(x,  y);
 			}
-			if (x > mini_button[0] && x < mini_button[0] + button_size[0] && y > mini_button[1] && y < mini_button[1] + button_size[1]) {
-				playing = !playing;
-				try {
-					initMiniGame();
-				} catch (SlickException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
+			if (this.roomID != 4) {
+				if (x > mini_button[0] && x < mini_button[0] + button_size[0] && y > mini_button[1] && y < mini_button[1] + button_size[1]) {
+					playing = !playing;
+					try {
+						initMiniGame();
+					} catch (SlickException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
 				}
 			}
 			if (Game_Controller.player.getBuis() && x > buis_button[0] && x < buis_button[0] + button_size[1] && y > buis_button[1] && y < buis_button[1] + button_size[1]) {
@@ -158,6 +171,10 @@ public class Room extends BasicGameState{
 			button_smash.init(container, game);
 			break;
 		case "mathGame":
+			if (Game_Controller.player.getCredits(1) == 1) { 
+				mathMnGm.init(container, game, Game_Controller.player.getMiniGameScore(1));
+				break;
+			}
 			mathMnGm.init(container, game);
 			break;
 
@@ -230,6 +247,11 @@ public class Room extends BasicGameState{
 			button_smash.update(container, game, delta);
 			break;
 		case "mathGame":
+			if (mathMnGm.isFinished())
+			{
+				Game_Controller.player.addCredit(1);
+				Game_Controller.player.setMiniGameScore(1, mathMnGm.getScore());
+			}
 			mathMnGm.update(container, game, delta);
 			break;
 		case "Beer_Minigame":
