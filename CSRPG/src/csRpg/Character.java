@@ -100,7 +100,7 @@ public class Character extends Entity {
 	}
 	
 	public int calcSanity(int sanity) {
-		this.sanity += sanity;
+		this.sanity += sanity + this.intelligence;
 		return this.sanity;
 	}
 
@@ -113,7 +113,7 @@ public class Character extends Entity {
 	}
 	
 	public int calcHealth(int health) {
-		this.health += health;
+		this.health += health + this.endurance;
 		return this.health;
 	}
 
@@ -157,10 +157,10 @@ public class Character extends Entity {
 		// Add effect for each effect. See documentation.
 		switch(effect) {
 		// Effect 1 = Food Health Increase
-		case 1: this.calcHealth(25);
+		case 1: this.calcHealth(20);
 				break;
 		// Effect 2 = Beer Sanity Increase
-		case 2: this.calcSanity(25);
+		case 2: this.calcSanity(20 + this.alcohol_tolerance);
 				break;
 		
 		}
