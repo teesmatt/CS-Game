@@ -29,6 +29,7 @@ public class Character extends Entity {
 		this.health = 100;
 		this.sanity = 100;
 		this.gpa = 0;
+		this.credits = new int[5];
 		
 		this.isBuis = false;
 		
@@ -81,6 +82,13 @@ public class Character extends Entity {
 
 	public void setCredits(int[] credits) {
 		this.credits = credits;
+	}
+	
+	public void addCredit(int credit) {
+		if (credit < 5)
+		{
+			this.credits[credit] = 1;
+		}
 	}
 
 	public int getSanity() {

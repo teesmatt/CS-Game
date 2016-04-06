@@ -107,7 +107,28 @@ public class Library_Adventure extends BasicGameState {
 		if (this.books_count != 3)
 		{
 			timer += delta/1000.0;
-			// Calculate Score
+			//
+			
+		}
+		else {
+			//A+ = 10 seconds
+			if (timer < 10)
+				Game_Controller.player.calcGpa(1);
+			
+			//B = 20 seconds
+			else if (timer < 10)
+				Game_Controller.player.calcGpa(0.75);
+			
+			//C = 30 seconds
+			else if (timer < 10)
+				Game_Controller.player.calcGpa(0.60);
+			
+			//F = 40 seconds
+			else if (timer < 10)
+				Game_Controller.player.calcGpa(0);
+			
+			Game_Controller.player.addCredit(0);
+			
 		}
 	}
 	
