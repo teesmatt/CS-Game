@@ -2,7 +2,7 @@ package csRpg;
 
 import org.newdawn.slick.SlickException;
 
-public class Character extends Entity {
+public class Character extends Entity implements java.io.Serializable {
 	
 	private String name;
 	private int intelligence;

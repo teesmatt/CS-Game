@@ -24,6 +24,8 @@ public class GameList extends AbstractComponent {
 	private Inventory inventory;
 	private ArrayList<Button> invenButtons;
 	
+	// Specific to selecting a game to load
+	
 	
 	private Boolean isHighscore = false;
 	
