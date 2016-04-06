@@ -309,6 +309,11 @@ public class Room extends BasicGameState{
 			
 		case "buis_visit":
 			buisGame.update(container, game, delta);
+			if (buisGame.isFinished)
+			{
+				Game_Controller.player.addCredit(4);
+				Game_Controller.player.setMiniGameScore(4, 4);
+			}
 			break;
 		}
 	}

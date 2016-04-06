@@ -37,7 +37,7 @@ public class Character extends Entity implements java.io.Serializable {
 		this.alcohol_tolerance = alcohol_tolerance;
 		this.alignment = alignment;
 		
-		this.timer = 600;
+		this.timer = 600; // 10 minutes
 		
 		this.health = 100;
 		this.sanity = 100;
@@ -90,7 +90,7 @@ public class Character extends Entity implements java.io.Serializable {
 	
 	public boolean hasBuisnessed(int roomID) {
 		
-		if (buisnessed[roomID - 3] == 1) {
+		if (this.buisnessed[roomID - 3] == 1) {
 			return true;
 		}
 		return false;
@@ -99,7 +99,8 @@ public class Character extends Entity implements java.io.Serializable {
 
 	public void doBuisnessed(int roomID) {
 		
-		buisnessed[roomID - 3] = 1;
+		this.buisnessed[roomID - 3] = 1;
+		this.timer -= 15;
 		
 	}
 	

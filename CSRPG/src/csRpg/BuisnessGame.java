@@ -12,7 +12,7 @@ import org.newdawn.slick.state.StateBasedGame;
 
 public class BuisnessGame extends BasicGameState {
 
-	private boolean completed;
+	public boolean isFinished;
 	
 	private Font awtFont = new Font("", 1, 35);
     private TrueTypeFont font = new TrueTypeFont(awtFont, false);
@@ -34,7 +34,7 @@ public class BuisnessGame extends BasicGameState {
 			throws SlickException {
 		// TODO Auto-generated method stub
 		Game_Controller.player.setBuis(true);
-		completed = Game_Controller.player.doneBuisnessed();
+		this.isFinished = Game_Controller.player.doneBuisnessed();
 	}
 
 	@Override
@@ -42,8 +42,8 @@ public class BuisnessGame extends BasicGameState {
 			throws SlickException {
 		// TODO Auto-generated method stub
 		g.setColor(Color.white);
-		if (completed) {
-			font.drawString(100,300,"Congratulations to are a true business person");
+		if (this.isFinished) {
+			font.drawString(100,300,"Congratulations you are a true business person");
 		} else {
 			font.drawString(100,300,"Go and do business in all the other buildings");
 		}
