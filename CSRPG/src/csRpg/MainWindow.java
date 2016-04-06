@@ -48,7 +48,6 @@ public class MainWindow extends BasicGameState {
 		// font to be used in the menu
 		this.font = new Font("Time New Roman", Font.BOLD, 14);
 		
-				
 		
 		// back to maain menu
 		this.back = new Button(container, "./Save", Color.white, false);
@@ -113,9 +112,9 @@ public class MainWindow extends BasicGameState {
 		
 				
 		g.drawString("Vitals", menu_right_margin, 195);
-		g.drawString("Health:", menu_right_margin + 10, 220);
-		g.drawString("Sanity:", menu_right_margin + 10, 245);
-		
+		g.drawString("Health: " + p.getHealth(), menu_right_margin + 10, 220);
+		g.drawString("Sanity: " + p.getSanity(), menu_right_margin + 10, 245);
+		g.drawString("GPA: " + p.getGpa(), menu_right_margin + 10, 270);
 		g.drawString("Inventory:", menu_right_margin , 305);
 		
 		this.save.render(container, g);
@@ -127,7 +126,8 @@ public class MainWindow extends BasicGameState {
 	}
 	public void wPressed(int x, int y) {
 		if (this.save.ButtonPressed(x, y)) {
-			
+			Data d = new Data();
+			d.saveChar(Game_Controller.player);
 		} else if (this.options.ButtonPressed(x, y)) {
 			
 		} else if (this.quit.ButtonPressed(x, y)) {

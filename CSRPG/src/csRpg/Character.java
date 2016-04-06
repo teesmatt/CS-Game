@@ -2,7 +2,7 @@ package csRpg;
 
 import org.newdawn.slick.SlickException;
 
-public class Character extends Entity {
+public class Character extends Entity implements java.io.Serializable {
 	
 	private String name;
 	private int intelligence;
@@ -16,7 +16,7 @@ public class Character extends Entity {
 	private int alignment;
 	private String location;
 	private boolean isBuis;
-	private int mathMiniGameScore;
+	private int[] miniGameScore;
 	
 	
 	// records where the player has gone once they have started the business game
@@ -34,6 +34,7 @@ public class Character extends Entity {
 		this.sanity = 100;
 		this.gpa = 0;
 		this.credits = new int[5];
+		this.miniGameScore = new int[5];
 		
 		this.isBuis = false;
 		
@@ -135,7 +136,7 @@ public class Character extends Entity {
 	}
 	
 	public int calcSanity(int sanity) {
-		this.sanity += sanity;
+		this.sanity += sanity + this.intelligence;
 		return this.sanity;
 	}
 
@@ -148,7 +149,7 @@ public class Character extends Entity {
 	}
 	
 	public int calcHealth(int health) {
-		this.health += health;
+		this.health += health + this.endurance;
 		return this.health;
 	}
 
@@ -192,10 +193,10 @@ public class Character extends Entity {
 		// Add effect for each effect. See documentation.
 		switch(effect) {
 		// Effect 1 = Food Health Increase
-		case 1: this.calcHealth(25);
+		case 1: this.calcHealth(20);
 				break;
 		// Effect 2 = Beer Sanity Increase
-		case 2: this.calcSanity(25);
+		case 2: this.calcSanity(20 + this.alcohol_tolerance);
 				break;
 		
 		}
@@ -211,13 +212,13 @@ public class Character extends Entity {
 		this.isBuis = buis;
 	}
 	
-	public void setMathMiniGameScore(int score)
+	public void setMiniGameScore(int index, int score)
 	{
-		this.mathMiniGameScore = score;
+		this.miniGameScore[index] = score;
 	}
 	
-	public int getMathMiniGameScore()
+	public int getMiniGameScore(int index)
 	{
-		return this.mathMiniGameScore;
+		return this.miniGameScore[index];
 	}
 }

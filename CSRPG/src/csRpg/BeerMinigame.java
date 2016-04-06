@@ -139,6 +139,36 @@ public class BeerMinigame extends BasicGameState {
 		{
 			if (!(beersClicked == num_beers))
 				timer -= delta/1000.0;
+			else {
+				
+				//A+ = 10 seconds
+				if (timer > 10)
+					Game_Controller.player.calcGpa(1);
+				
+				//B = 20 seconds
+				else if (timer > 7)
+				{
+					Game_Controller.player.calcGpa(0.75);
+					Game_Controller.player.calcSanity(-10);
+				}
+				//C = 30 seconds
+				else if (timer > 5)
+				{
+					Game_Controller.player.calcGpa(0.60);
+					Game_Controller.player.calcSanity(-20);
+				}
+				//F = 40 seconds
+				else
+				{
+					Game_Controller.player.calcGpa(0);
+					Game_Controller.player.calcSanity(-30);
+				}
+					
+				Game_Controller.player.addCredit(2);
+				Game_Controller.player.calcHealth(-10);
+				
+			
+			}
 			
 			if (timer <= 0) {
 				timer = 0;
