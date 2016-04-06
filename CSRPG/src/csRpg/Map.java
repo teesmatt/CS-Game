@@ -70,6 +70,8 @@ public class Map extends BasicGameState{
 		
 		this.background.draw(0,0,container.getWidth()-215,container.getHeight());
 		
+		Game_Controller.player.getSprite().draw(container.getWidth()/2,container.getHeight()/2+25,75,75);
+		
 		hud.render(container,game,g);
 		
 	}
