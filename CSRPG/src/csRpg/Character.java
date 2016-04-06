@@ -124,6 +124,15 @@ public class Character extends Entity implements java.io.Serializable {
 		this.alignment = alignment;
 	}
 
+	public boolean hasCompleted() {
+		for(int u : credits) {
+			if (u == 0) {
+				return false;
+			}
+		}
+		return true;
+	}
+	
 	public int getCredits(int index) {
 		return credits[index];
 	}

@@ -147,6 +147,10 @@ public class Room extends BasicGameState{
 			game.enterState(666, new FadeOutTransition(Color.black), new FadeInTransition(Color.black));
 		}
 		
+		if (Game_Controller.player.hasCompleted()) {
+			game.enterState(666, new FadeOutTransition(Color.black), new FadeInTransition(Color.black));
+		}
+		
 		if (playing) {
 			updateMiniGame(container,game,delta);
 			//if (minigame.isfinished())
