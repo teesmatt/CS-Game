@@ -14,7 +14,7 @@ public class mathMiniGame extends BasicGameState {
 	private int score;
 	private int currentProb;
 	private Image prob4;
-	private boolean isFineshed;
+	private boolean isFinished;
 	
 	private void drawMultipleChoices(String question, String answerA, 
 			     String answerB, String answerC, String answerD, Graphics g)
@@ -58,7 +58,14 @@ public class mathMiniGame extends BasicGameState {
 		this.score = 0;
 		this.currentProb = 1;
 		this.prob4 = new Image("/assets/mathMinigameProb4.png");
-		this.isFineshed = false;
+		this.isFinished = false;
+	}
+	
+	public void init(GameContainer arg0, StateBasedGame arg1, int savedScore) throws SlickException {
+		this.timer = 0;
+		this.score = savedScore;
+		this.currentProb = 5;
+		this.isFinished = true;
 	}
 
 	@Override
@@ -103,7 +110,7 @@ public class mathMiniGame extends BasicGameState {
 			timer -= delta/1000.0;
 		}
 		
-		timer -= delta/1000.0;
+		//timer -= delta/1000.0;
 		if (timer <= 0) {
 			timer = 0;
 		}
@@ -138,7 +145,7 @@ public class mathMiniGame extends BasicGameState {
 			if (this.isAnswerCorrect(x, y, 'B'))
 				this.score += 40;
 			this.currentProb++;
-			this.isFineshed = true;
+			this.isFinished = true;
 			break;
 			
 		}
@@ -147,6 +154,11 @@ public class mathMiniGame extends BasicGameState {
 	public int getScore()
 	{
 		return this.score;
+	}
+	
+	public boolean isFinished()
+	{
+		return this.isFinished ? true : false;
 	}
 
 }
