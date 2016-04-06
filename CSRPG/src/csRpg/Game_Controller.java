@@ -51,6 +51,8 @@ public class Game_Controller extends StateBasedGame {
 
 		this.addState(new Highscores());
 		
+		this.addState(new GameOver());
+		
 		
 	}
 	

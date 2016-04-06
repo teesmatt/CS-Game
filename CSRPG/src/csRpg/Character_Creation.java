@@ -140,7 +140,7 @@ public class Character_Creation extends BasicGameState {
 		this.background.draw(0,0,this.windowWidth,this.windowHeight);
 		
 		// sets the color for the rectangles behind the buttons
-		g.setColor(new Color(0,0,0,0.2f));
+		g.setColor(new Color(0,0,0,0.4f));
 		
 		// fills the rectangle behind the menu options
 		g.fill(this.menu);
