@@ -175,7 +175,6 @@ public class BeerMinigame extends BasicGameState {
 					Game_Controller.player.setMiniGameScore(2, 100);
 				}
 
-				
 				//B = 20 seconds
 				else if (timer > 7)
 				{
