@@ -1,6 +1,6 @@
 package csRpg;
 
-public class Item {
+public class Item implements java.io.Serializable {
 	private String name;
 	private int effect;
 	

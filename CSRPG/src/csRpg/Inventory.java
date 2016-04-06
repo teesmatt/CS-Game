@@ -2,7 +2,7 @@ package csRpg;
 
 import java.util.ArrayList;
 
-public class Inventory {
+public class Inventory implements java.io.Serializable {
 	private ArrayList<Item> items;
 
 	public Inventory()
@@ -42,6 +42,18 @@ public class Inventory {
 	public void setItems(ArrayList<Item> items) {
 		this.items = items;
 	}
-	
+	public void defaultInventory(){
+		// ------------------------------------
+		Item i1 = new Item("Food", 0);
+		Item i2 = new Item("Food", 0);
+		Item i3 = new Item("Beer", 1);
+		Item i4 = new Item("Beer", 1);
+		
+		items.add(i1);
+		items.add(i2);
+		items.add(i3);
+		items.add(i4);
+		// -------------------------------------------------------------
+	}
 	
 }
