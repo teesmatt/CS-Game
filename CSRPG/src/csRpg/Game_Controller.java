@@ -82,8 +82,7 @@ public class Game_Controller extends StateBasedGame {
 		} catch (SlickException e) {
 			
 			e.printStackTrace();
-			
-		}
 		
+		}	
 	}
 }
