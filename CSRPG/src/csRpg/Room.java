@@ -45,6 +45,8 @@ public class Room extends BasicGameState{
 	private Image buisnessstuff;
 	private Image closebutton;
 	
+	private Image prof;
+	
 	private int[] player_pos = new int[2];
 	
 	public Room(String image, int ID, String miniGame, int player_x, int player_y) throws SlickException {
@@ -70,6 +72,8 @@ public class Room extends BasicGameState{
 	public void init(GameContainer container, StateBasedGame game)
 			throws SlickException {
 		// TODO Auto-generated method stub
+		
+		this.prof = new Image("assets/prof.png");
 		
 		this.container = container;
 		this.game = game;
@@ -105,6 +109,8 @@ public class Room extends BasicGameState{
 		
 		this.background.draw(0,0,container.getWidth()-225,container.getHeight());
 		
+		this.prof.draw(this.player_pos[0]-50,this.player_pos[1]-150,120,120);
+		
 		Game_Controller.player.getSprite().draw(this.player_pos[0]-50,this.player_pos[1]-50,100,100);
 		
 		if (this.roomID != 4) {
@@ -138,6 +144,10 @@ public class Room extends BasicGameState{
 		
 		if (Game_Controller.player.timer <= 0) {
 			Game_Controller.player.timer = 0;
+			game.enterState(666, new FadeOutTransition(Color.black), new FadeInTransition(Color.black));
+		}
+		
+		if (Game_Controller.player.hasCompleted()) {
 			game.enterState(666, new FadeOutTransition(Color.black), new FadeInTransition(Color.black));
 		}
 		

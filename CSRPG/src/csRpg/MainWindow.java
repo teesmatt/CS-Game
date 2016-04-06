@@ -8,6 +8,7 @@ import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
+import org.newdawn.slick.TrueTypeFont;
 import org.newdawn.slick.geom.Rectangle;
 import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
@@ -30,7 +31,8 @@ public class MainWindow extends BasicGameState {
 	private Rectangle menu;
 	private Rectangle optionWindow;
 	
-	private Font font;
+	private Font awtFont = new Font("Times New Roman", Font.BOLD, 24);
+    private TrueTypeFont font = new TrueTypeFont(awtFont, false);
 	
 	
 	public MainWindow() {
@@ -45,9 +47,6 @@ public class MainWindow extends BasicGameState {
 		this.game = game;
 		
 		this.menu = new Rectangle(container.getWidth() - 225, 0, container.getWidth() - 225, container.getHeight());
-		
-		// font to be used in the menu
-		this.font = new Font("Time New Roman", Font.BOLD, 14);
 		
 		
 		// back to maain menu
@@ -87,12 +86,8 @@ public class MainWindow extends BasicGameState {
 			this.list.setInventoryList(Game_Controller.player.getInventory());
 		}
 		// -------------------------------------------------------------
-		
-		
-		
-		this.list.setLocation(menu_right_margin + 10, 325);
-		
-//		this.list.setLocation(0, 0);
+		this.list.setLocation(menu_right_margin + 10, 360);
+		//		this.list.setLocation(0, 0);
 	}
 
 	@Override
@@ -108,13 +103,13 @@ public class MainWindow extends BasicGameState {
 		
 		// sets the color to white and renders all the buttons on the screen
 		g.setColor(Color.white);
-		g.drawString("CS_RPG", menu_right_margin , 25);
+		font.drawString(menu_right_margin, 25 , "CS_RPG");
 
 		Character p = Game_Controller.player;
 
-		g.drawString("Name: " + p.getName(), menu_right_margin, 50);
+		g.drawString("Name: " + p.getName(), menu_right_margin, 55);
 		
-		g.drawString(String.format("Time: %.1f", p.timer), menu_right_margin, 340);
+		g.drawString(String.format("Time: %.1f", p.timer), menu_right_margin, 500);
 		g.drawString("Attributes:", menu_right_margin, 75);
 		g.drawString("Intelligence: " + p.getIntelligence(), menu_right_margin + 10, 95);
 		g.drawString("Endurance: " + p.getEndurance(), menu_right_margin + 10, 115);
@@ -125,7 +120,7 @@ public class MainWindow extends BasicGameState {
 		g.drawString("Health: " + p.getHealth(), menu_right_margin + 10, 220);
 		g.drawString("Sanity: " + p.getSanity(), menu_right_margin + 10, 245);
 		g.drawString("GPA: " + p.getGpa(), menu_right_margin + 10, 270);
-		g.drawString("Inventory:", menu_right_margin , 305);
+		g.drawString("Inventory:", menu_right_margin , 300);
 		
 		this.save.render(container, g);
 		this.options.render(container, g);

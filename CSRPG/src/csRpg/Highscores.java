@@ -19,8 +19,6 @@ public class Highscores extends BasicGameState {
 	private GameList hscores;
 	private Rectangle menu;
 	
-	private Font font;
-	
 	private Button back;
 	
 	private int windowWidth;
@@ -37,9 +35,6 @@ public class Highscores extends BasicGameState {
 		this.windowHeight = container.getHeight();
 		
 		this.menu = new Rectangle(0,0, this.windowWidth, this.windowHeight);
-		
-		// font to be used in the menu
-		this.font = new Font("Time New Roman", Font.BOLD, 14);
 		
 		// loads the image for the background of the menu
 		this.background = new Image("/assets/Background.jpeg");
