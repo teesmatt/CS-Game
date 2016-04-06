@@ -17,6 +17,9 @@ public class Character extends Entity implements java.io.Serializable {
 	private String location;
 	private boolean isBuis;
 	private int[] miniGameScore;
+
+	// the time left in the game
+	public float timer;
 	
 	
 	// records where the player has gone once they have started the business game
@@ -29,6 +32,8 @@ public class Character extends Entity implements java.io.Serializable {
 		this.endurance = endurance;
 		this.alcohol_tolerance = alcohol_tolerance;
 		this.alignment = alignment;
+		
+		this.timer = 5;
 		
 		this.health = 100;
 		this.sanity = 100;

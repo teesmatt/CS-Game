@@ -105,6 +105,7 @@ public class MainWindow extends BasicGameState {
 
 		Character p = Game_Controller.player;
 		
+		g.drawString(String.format("Time: %.1f", p.timer), menu_right_margin, 50);
 		g.drawString("Attributes:", menu_right_margin, 75);
 		g.drawString("Intelligence: " + p.getIntelligence(), menu_right_margin + 10, 95);
 		g.drawString("Endurance: " + p.getEndurance(), menu_right_margin + 10, 115);

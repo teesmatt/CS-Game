@@ -68,7 +68,7 @@ public class Map extends BasicGameState{
 			throws SlickException {
 		// TODO Auto-generated method stub
 		
-		this.background.draw(0,0,container.getWidth()-215,container.getHeight());
+		this.background.draw(0,0,container.getWidth()-225,container.getHeight());
 		
 		Game_Controller.player.getSprite().draw(container.getWidth()/2,container.getHeight()/2+25,75,75);
 		
@@ -80,6 +80,13 @@ public class Map extends BasicGameState{
 	public void update(GameContainer container, StateBasedGame game, int delta)
 			throws SlickException {
 		// TODO Auto-generated method stub
+		
+		Game_Controller.player.timer -= delta/1000.0;
+		
+		if (Game_Controller.player.timer <= 0) {
+			Game_Controller.player.timer = 0;
+			game.enterState(666, new FadeOutTransition(Color.black), new FadeInTransition(Color.black));
+		}
 		
 	}
 
