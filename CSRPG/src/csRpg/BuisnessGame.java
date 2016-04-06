@@ -1,14 +1,22 @@
 package csRpg;
 
+import java.awt.Font;
+
 import org.newdawn.slick.Color;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.SlickException;
+import org.newdawn.slick.TrueTypeFont;
 import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
 
 public class BuisnessGame extends BasicGameState {
 
+	private boolean completed;
+	
+	private Font awtFont = new Font("", 1, 35);
+    private TrueTypeFont font = new TrueTypeFont(awtFont, false);
+	
 	public BuisnessGame() {
 		// TODO Auto-generated constructor stub
 	}
@@ -26,13 +34,19 @@ public class BuisnessGame extends BasicGameState {
 			throws SlickException {
 		// TODO Auto-generated method stub
 		Game_Controller.player.setBuis(true);
+		completed = Game_Controller.player.doneBuisnessed();
 	}
 
 	@Override
 	public void render(GameContainer container, StateBasedGame game, Graphics g)
 			throws SlickException {
 		// TODO Auto-generated method stub
-		
+		g.setColor(Color.white);
+		if (completed) {
+			font.drawString(100,300,"Congratulations to are a true business person");
+		} else {
+			font.drawString(100,300,"Go and do business in all the other buildings");
+		}
 	}
 
 	@Override

@@ -88,17 +88,35 @@ public class Map extends BasicGameState{
 		if (button == 0) { //left mouse was pressed
 			
 			if (x > Pub[0] && x < Pub[0] + Pub[2] && y > Pub[1] && y < Pub[1] + Pub[3]) {
+				
+				Game_Controller.player.setLocation("Pub");
 				game.enterState(5, new FadeOutTransition(Color.black), new FadeInTransition(Color.black));
+				
 			} else if (x > Library[0] && x < Library[0] + Library[2] && y > Library[1] && y < Library[1] + Library[3]) {
+				
+				Game_Controller.player.setLocation("Library");
 				game.enterState(7, new FadeOutTransition(Color.black), new FadeInTransition(Color.black));
+			
 			} else if (x > Math[0] && x < Math[0] + Math[2] && y > Math[1] && y < Math[1] + Math[3]) {
-				game.enterState(8, new FadeOutTransition(Color.black), new FadeInTransition(Color.black));
-			} else if (x > Bussiness[0] && x < Bussiness[0] + Bussiness[2] && y > Bussiness[1] && y < Bussiness[1] + Bussiness[3]) {
+				
+				Game_Controller.player.setLocation("Math");
 				game.enterState(6, new FadeOutTransition(Color.black), new FadeInTransition(Color.black));
+			
+			} else if (x > Bussiness[0] && x < Bussiness[0] + Bussiness[2] && y > Bussiness[1] && y < Bussiness[1] + Bussiness[3]) {
+				
+				Game_Controller.player.setLocation("Business");
+				game.enterState(8, new FadeOutTransition(Color.black), new FadeInTransition(Color.black));
+			
 			} else if (x > Classroom[0] && x < Classroom[0] + Classroom[2] && y > Classroom[1] && y < Classroom[1] + Classroom[3]) {
+				
+				Game_Controller.player.setLocation("Classroom");
 				game.enterState(3, new FadeOutTransition(Color.black), new FadeInTransition(Color.black));
+			
 			} else if (x > Lounge[0] && x < Lounge[0] + Lounge[2] && y > Lounge[1] && y < Lounge[1] + Lounge[3]) {
+				
+				Game_Controller.player.setLocation("Lounge");
 				game.enterState(4, new FadeOutTransition(Color.black), new FadeInTransition(Color.black));
+			
 			}
 			
 			hud.wPressed(x, y);
