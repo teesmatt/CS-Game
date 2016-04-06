@@ -9,7 +9,6 @@ public class Game_Controller extends StateBasedGame {
 	public static Data gameData = new Data();
 	public static final int windowWidth = 1366;
 	public static final int windowHeight = 768;
-	public static boolean fullScreen = false;
 	
 	public static final int TitleId = 0;
 	public static final int Character_CreationId = 1;
@@ -74,7 +73,7 @@ public class Game_Controller extends StateBasedGame {
 		try {
 			
 			AppGameContainer mainWindow = new AppGameContainer(new Game_Controller("CSRPG"));
-			mainWindow.setDisplayMode(windowWidth, windowHeight, fullScreen);
+			mainWindow.setDisplayMode(windowWidth, windowHeight, false);
 			mainWindow.setTargetFrameRate(60);
 			mainWindow.setShowFPS(false);
 			mainWindow.start();
