@@ -21,6 +21,8 @@ public class Library_Adventure extends BasicGameState {
 	
 	private Random gen;
 	
+	private float timer;
+	
 	public Library_Adventure() {
 		
 	}
@@ -30,6 +32,7 @@ public class Library_Adventure extends BasicGameState {
 		this.gen = new Random();
 		this.books = new int[3];
 		this.books_count = 0;
+		this.timer = 0;
 		
 		this.library = new int[10][10];
 		for (int i = 0; i < 9; i++)
@@ -94,12 +97,39 @@ public class Library_Adventure extends BasicGameState {
 			}
 			
 		}
+		
+		g.drawString(Float.toString(timer), 900, 50);
 	}
 
 	@Override
 	public void update(GameContainer container, StateBasedGame game, int delta) throws SlickException {
 		// TODO Auto-generated method stub
-		
+		if (this.books_count != 3)
+		{
+			timer += delta/1000.0;
+			//
+			
+		}
+		else {
+			//A+ = 10 seconds
+			if (timer < 10)
+				Game_Controller.player.calcGpa(1);
+			
+			//B = 20 seconds
+			else if (timer < 10)
+				Game_Controller.player.calcGpa(0.75);
+			
+			//C = 30 seconds
+			else if (timer < 10)
+				Game_Controller.player.calcGpa(0.60);
+			
+			//F = 40 seconds
+			else if (timer < 10)
+				Game_Controller.player.calcGpa(0);
+			
+			Game_Controller.player.addCredit(0);
+			
+		}
 	}
 	
 	public void buttonPressed(int x, int y) {

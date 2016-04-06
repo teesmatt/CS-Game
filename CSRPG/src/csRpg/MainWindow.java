@@ -18,7 +18,6 @@ public class MainWindow extends BasicGameState {
 	// variables to be used in the menu scene of the game
 	private StateBasedGame game;
 	// buttons
-	
 	private Button quit;
 	private Button save;
 	private Button options;
@@ -105,16 +104,17 @@ public class MainWindow extends BasicGameState {
 		g.setColor(Color.white);
 		g.drawString("CS_RPG", menu_right_margin , 25);
 
+		Character p = Game_Controller.player;
 		
 		g.drawString("Attributes:", menu_right_margin, 75);
-		g.drawString("HP:", menu_right_margin + 10, 95);
-		g.drawString("Programming:", menu_right_margin + 10, 115);
-		g.drawString("Business:", menu_right_margin + 10, 135);
-		g.drawString("Beer-tolerance:", menu_right_margin + 10, 155);
+		g.drawString("Intelligence: " + p.getIntelligence(), menu_right_margin + 10, 95);
+		g.drawString("Endurance: " + p.getEndurance(), menu_right_margin + 10, 115);
+		g.drawString("Alcohol Tolerance: " + p.getAlcohol_tolerance(), menu_right_margin + 10, 135);
+		
 				
 		g.drawString("Vitals", menu_right_margin, 195);
 		g.drawString("Health:", menu_right_margin + 10, 220);
-		g.drawString("Sanity", menu_right_margin + 10, 245);
+		g.drawString("Sanity:", menu_right_margin + 10, 245);
 		
 		g.drawString("Inventory:", menu_right_margin , 305);
 		

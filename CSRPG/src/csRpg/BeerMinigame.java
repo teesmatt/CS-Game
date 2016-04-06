@@ -42,6 +42,7 @@ public class BeerMinigame extends BasicGameState {
 	
 	private float timer;
 	private int beersClicked;
+	private int num_beers;
 	private Boolean started;
 	
 	private Image beerImg;
@@ -93,7 +94,8 @@ public class BeerMinigame extends BasicGameState {
 		this.game = game;
 		
 		this.beersClicked = 0;
-		this.timer = 20;
+		this.num_beers = 25;
+		this.timer = 15;
 		this.started = false;
 		
 		this.miniGameTopX = 75;
@@ -104,7 +106,7 @@ public class BeerMinigame extends BasicGameState {
 		this.beerImg = new Image("/assets/beer.gif");
 		this.background = new Image("/assets/Background.jpeg");
 		
-		this.beer_points = genBeerPoints(20,
+		this.beer_points = genBeerPoints(num_beers,
 				new XY(miniGameTopX, miniGameTopY), 
 				new XY(miniGameBotX - 20, miniGameBotY - 40));
 			
@@ -135,7 +137,8 @@ public class BeerMinigame extends BasicGameState {
 		// TODO Auto-generated method stub
 		if (started == true)
 		{
-			timer -= delta/1000.0;
+			if (!(beersClicked == num_beers))
+				timer -= delta/1000.0;
 			
 			if (timer <= 0) {
 				timer = 0;
@@ -144,13 +147,15 @@ public class BeerMinigame extends BasicGameState {
 		
 	}
 	public void buttonPressed(int x, int y) {
-		for (XY bp: beer_points) {
-			// x > Pub[0] && x < Pub[0] + Pub[2] && y > Pub[1] && y < Pub[1] + Pub[3]) 
-			if (x > bp.getX() && x < bp.getX() + beerSizeX && y > bp.getY() && y < bp.getY() + beerSizeY){
-				started = true;
-				beer_points.remove(bp);
-				beersClicked++;
-				break;
+		if (timer != 0) {
+			for (XY bp: beer_points) {
+				// x > Pub[0] && x < Pub[0] + Pub[2] && y > Pub[1] && y < Pub[1] + Pub[3]) 
+				if (x > bp.getX() && x < bp.getX() + beerSizeX && y > bp.getY() && y < bp.getY() + beerSizeY){
+					started = true;
+					beer_points.remove(bp);
+					beersClicked++;
+					break;
+				}
 			}
 		}
 	}
