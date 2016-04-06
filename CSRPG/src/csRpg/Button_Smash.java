@@ -81,6 +81,28 @@ public class Button_Smash extends BasicGameState{
 		
 		if (timer <= 0) {
 			timer = 0;
+			
+			//A+ = 60
+			if (score >= 60)
+				Game_Controller.player.calcGpa(1);
+			
+			//B = 50
+			else if (score >= 50) {
+				Game_Controller.player.calcGpa(0.75);
+				Game_Controller.player.calcSanity(-10);
+			}
+			
+			//C = 40
+			else if (score >= 40) {
+				Game_Controller.player.calcGpa(0.60);
+				Game_Controller.player.calcSanity(-20);
+			}
+			
+			//F = 30
+			else {
+				Game_Controller.player.calcGpa(0);
+				Game_Controller.player.calcSanity(-30);
+			}
 		}
 		
 	}

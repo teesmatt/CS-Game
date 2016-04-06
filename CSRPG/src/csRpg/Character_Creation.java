@@ -106,19 +106,19 @@ public class Character_Creation extends BasicGameState {
 		
 		// Adds the Intelligence Text Field
 		this.intelligence = new TextField(container, uni_font, 25, 150, 200, 25);
-		//this.intelligence.setText("Intelligence");
+		this.intelligence.setMaxLength(1);;
 		this.intelligence.setBackgroundColor(white);
 		this.intelligence.setBorderColor(black);
 		
 		// Adds the Endurance Text Field
 		this.endurance = new TextField(container, uni_font, 25, 200, 200, 25);
-		//this.endurance.setText("Endurance");
+		this.endurance.setMaxLength(1);
 		this.endurance.setBackgroundColor(white);
 		this.endurance.setBorderColor(black);
 		
 		// Add the Alcohol Tolerance Text Field
 		this.alcohol_tolerance = new TextField(container, uni_font, 25, 250, 200, 25);
-		//this.alcohol_tolerance.setText("Alcohol Tolerance");
+		this.alcohol_tolerance.setMaxLength(1);
 		this.alcohol_tolerance.setBackgroundColor(white);
 		this.alcohol_tolerance.setBorderColor(black);
 		
