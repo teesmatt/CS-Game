@@ -118,6 +118,8 @@ public class mathMiniGame extends BasicGameState {
 		//timer -= delta/1000.0;
 		if (timer <= 0) {
 			timer = 0;
+			this.isFinished = true;
+			this.currentProb = 5;
 		}
 	}
 
@@ -163,7 +165,7 @@ public class mathMiniGame extends BasicGameState {
 	
 	public boolean isFinished()
 	{
-		return this.isFinished ? true : false;
+		return this.isFinished;
 	}
 
 }
