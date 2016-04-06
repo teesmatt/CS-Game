@@ -165,6 +165,10 @@ public class Character extends Entity implements java.io.Serializable {
 		this.gpa += gpa;
 		return this.gpa + gpa;
 	}
+	
+	public double finalGpa() {
+		return this.gpa/5;
+	}
 
 	public Inventory getInventory() {
 		return inventory;

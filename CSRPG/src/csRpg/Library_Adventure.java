@@ -115,18 +115,18 @@ public class Library_Adventure extends BasicGameState {
 		else {
 			//A+ = 10 seconds
 			if (timer < 30)
-				Game_Controller.player.calcGpa(1);
+				Game_Controller.player.calcGpa(4);
 			
 			//B = 20 seconds
 			else if (timer < 40)
 			{
-				Game_Controller.player.calcGpa(0.75);
+				Game_Controller.player.calcGpa(3);
 				Game_Controller.player.calcSanity(-10);
 			}
 			//C = 30 seconds
 			else if (timer < 50)
 			{
-				Game_Controller.player.calcGpa(0.60);
+				Game_Controller.player.calcGpa(2);
 				Game_Controller.player.calcSanity(-20);
 			}
 			//F = 40 seconds
@@ -138,7 +138,6 @@ public class Library_Adventure extends BasicGameState {
 				
 			Game_Controller.player.addCredit(3);
 			Game_Controller.player.calcHealth(-10);
-			game.enterState(2, new FadeOutTransition(Color.black), new FadeInTransition(Color.black));
 		}
 	}
 	
