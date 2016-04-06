@@ -49,7 +49,8 @@ public class BeerMinigame extends BasicGameState {
 	private ArrayList<XY> beer_points;
 	// test image
 	private Image background;
-	
+	private int score;
+	private boolean isFinished;
 
 	
 	private final int beerSizeX = 66;
@@ -97,6 +98,7 @@ public class BeerMinigame extends BasicGameState {
 		this.num_beers = 25;
 		this.timer = 15;
 		this.started = false;
+		this.isFinished = false;
 		
 		this.miniGameTopX = 75;
 		this.miniGameTopY = 75;
@@ -111,6 +113,32 @@ public class BeerMinigame extends BasicGameState {
 				new XY(miniGameBotX - 20, miniGameBotY - 40));
 			
 	}
+	
+	public void init(GameContainer container, StateBasedGame game, boolean isFinished) throws SlickException {
+		this.game = game;
+		
+		this.beersClicked = 25;
+		this.num_beers = 25;
+		this.timer = 0;
+		this.started = false;
+		this.isFinished = true;
+		
+		/*
+		this.miniGameTopX = 75;
+		this.miniGameTopY = 75;
+		this.miniGameBotX = container.getWidth() - 365;
+		this.miniGameBotY = container.getHeight() - 150;
+		
+		this.beerImg = new Image("/assets/beer.gif");
+		this.background = new Image("/assets/Background.jpeg");
+		
+		this.beer_points = genBeerPoints(num_beers,
+				new XY(miniGameTopX, miniGameTopY), 
+				new XY(miniGameBotX - 20, miniGameBotY - 40));
+		*/
+	}
+	
+	
 
 	@Override
 	public void render(GameContainer container, StateBasedGame game, Graphics g) throws SlickException {
@@ -139,6 +167,47 @@ public class BeerMinigame extends BasicGameState {
 		{
 			if (!(beersClicked == num_beers))
 				timer -= delta/1000.0;
+			else {
+				
+				//A+ = 10 seconds
+<<<<<<< HEAD
+				if (timer > 10)
+					Game_Controller.player.calcGpa(4);
+=======
+				if (timer > 10) {
+					Game_Controller.player.calcGpa(1);
+					Game_Controller.player.setMiniGameScore(2, 100);
+				}
+>>>>>>> 12df546aa74bf9f5ae530061c4dc7e696f94d5d2
+				
+				//B = 20 seconds
+				else if (timer > 7)
+				{
+					Game_Controller.player.calcGpa(3);
+					Game_Controller.player.calcSanity(-10);
+					Game_Controller.player.setMiniGameScore(2, 75);
+				}
+				//C = 30 seconds
+				else if (timer > 5)
+				{
+					Game_Controller.player.calcGpa(2);
+					Game_Controller.player.calcSanity(-20);
+					Game_Controller.player.setMiniGameScore(2, 60);
+				}
+				//F = 40 seconds
+				else
+				{
+					Game_Controller.player.calcGpa(0);
+					Game_Controller.player.calcSanity(-30);
+					Game_Controller.player.setMiniGameScore(2, 50);
+				}
+					
+				Game_Controller.player.addCredit(2);
+				Game_Controller.player.calcHealth(-10);
+				this.isFinished = true;
+				
+			
+			}
 			
 			if (timer <= 0) {
 				timer = 0;
@@ -164,6 +233,11 @@ public class BeerMinigame extends BasicGameState {
 	public int getID() {
 		// TODO Auto-generated method stub
 		return 420;
+	}
+	
+	public boolean isFinished()
+	{
+		return isFinished;
 	}
 	
 }

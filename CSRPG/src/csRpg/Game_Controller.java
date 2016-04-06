@@ -19,9 +19,9 @@ public class Game_Controller extends StateBasedGame {
 	public static final int ClassID = 3;
 	public static final int LoungeID = 4;
 	public static final int PubID = 5;
-	public static final int BussinessID = 6;
+	public static final int MathID = 6;
 	public static final int LibraryID = 7;
-	public static final int MathID = 8;
+	public static final int BussinessID = 8;
 	
 	public static final int LoadSavesID = 69;
 	
@@ -52,6 +52,8 @@ public class Game_Controller extends StateBasedGame {
 		this.addState(new Room("/assets/Math.png",MathID,"mathGame",container.getWidth()/2-100,container.getHeight()/2));
 
 		this.addState(new Highscores());
+		
+		this.addState(new GameOver());
 		
 		
 	}

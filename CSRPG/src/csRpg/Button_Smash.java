@@ -21,6 +21,7 @@ public class Button_Smash extends BasicGameState{
 	private Image down;
 	private Image up;
 	private boolean pressed;
+	private boolean isFinished;
 	
 	private Font awtFont = new Font("", 1, 35);
     private TrueTypeFont font = new TrueTypeFont(awtFont, false);
@@ -47,6 +48,22 @@ public class Button_Smash extends BasicGameState{
 		this.y = (container.getHeight() - this.height)/2;
 		this.score = 0;
 		this.timer = 10;
+		this.isFinished = false;
+		
+		this.up = new Image("assets/Button_Up.png");
+		this.down = new Image("assets/Button_Down.png");
+		
+		this.pressed = false;
+	}
+	
+	public void init(GameContainer container, StateBasedGame game, int savedScore) throws SlickException {
+		this.width = 200;
+		this.height = 200;
+		this.x = (container.getWidth() - 215 - this.width)/2;
+		this.y = (container.getHeight() - this.height)/2;
+		this.score = savedScore;
+		this.timer = 0;
+		this.isFinished = true;
 		
 		this.up = new Image("assets/Button_Up.png");
 		this.down = new Image("assets/Button_Down.png");
@@ -81,6 +98,31 @@ public class Button_Smash extends BasicGameState{
 		
 		if (timer <= 0) {
 			timer = 0;
+			
+			//A+ = 60
+			if (score >= 60)
+				Game_Controller.player.calcGpa(4);
+			
+			//B = 50
+			else if (score >= 50) {
+				Game_Controller.player.calcGpa(3);
+				Game_Controller.player.calcSanity(-10);
+			}
+			
+			//C = 40
+			else if (score >= 40) {
+				Game_Controller.player.calcGpa(2);
+				Game_Controller.player.calcSanity(-20);
+			}
+			
+			//F = 30
+			else {
+				Game_Controller.player.calcGpa(0);
+				Game_Controller.player.calcSanity(-30);
+			}
+
+			isFinished = true;
+
 		}
 		
 	}
@@ -96,6 +138,16 @@ public class Button_Smash extends BasicGameState{
 	public int getID() {
 		// TODO Auto-generated method stub
 		return 100;
+	}
+	
+	public boolean isFinished()
+	{
+		return isFinished;
+	}
+	
+	public int getScore()
+	{
+		return score;
 	}
 
 }

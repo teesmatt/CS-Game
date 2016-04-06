@@ -6,6 +6,8 @@ import org.newdawn.slick.Graphics;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
+import org.newdawn.slick.state.transition.FadeInTransition;
+import org.newdawn.slick.state.transition.FadeOutTransition;
 import org.newdawn.slick.Input;
 
 import java.util.Random;
@@ -22,6 +24,8 @@ public class Library_Adventure extends BasicGameState {
 	private Random gen;
 	
 	private float timer;
+	
+	private boolean isFinished;
 	
 	public Library_Adventure() {
 		
@@ -51,6 +55,14 @@ public class Library_Adventure extends BasicGameState {
 		
 		this.loc_x = 0;
 		this.loc_y = 0;
+		
+	}
+	
+	public void init(GameContainer container, StateBasedGame game, boolean isFinished) throws SlickException {
+		
+		this.books_count = 3;
+		this.timer = 0;
+		
 		
 	}
 
@@ -112,31 +124,41 @@ public class Library_Adventure extends BasicGameState {
 		}
 		else {
 			//A+ = 10 seconds
-			if (timer < 10)
+
+			if (timer < 30) { 
 				Game_Controller.player.calcGpa(1);
+				Game_Controller.player.setMiniGameScore(3, 100);
+			}
+
 			
 			//B = 20 seconds
-			else if (timer < 10)
+			else if (timer < 40)
 			{
-				Game_Controller.player.calcGpa(0.75);
+				Game_Controller.player.calcGpa(3);
 				Game_Controller.player.calcSanity(-10);
+				Game_Controller.player.setMiniGameScore(3, 75);
 			}
 			//C = 30 seconds
-			else if (timer < 10)
+			else if (timer < 50)
 			{
-				Game_Controller.player.calcGpa(0.60);
+				Game_Controller.player.calcGpa(2);
 				Game_Controller.player.calcSanity(-20);
+				Game_Controller.player.setMiniGameScore(3, 60);
 			}
 			//F = 40 seconds
-			else if (timer < 10)
+			else if (timer < 60)
 			{
 				Game_Controller.player.calcGpa(0);
 				Game_Controller.player.calcSanity(-30);
+				Game_Controller.player.setMiniGameScore(3, 50);
 			}
 				
-			Game_Controller.player.addCredit(0);
+			Game_Controller.player.addCredit(3);
 			Game_Controller.player.calcHealth(-10);
-			
+
+			isFinished = true;;
+			game.enterState(2, new FadeOutTransition(Color.black), new FadeInTransition(Color.black));
+
 		}
 	}
 	
@@ -173,6 +195,11 @@ public class Library_Adventure extends BasicGameState {
 	public int getID() {
 		// TODO Auto-generated method stub
 		return 21;
+	}
+	
+	public boolean isFinished()
+	{
+		return isFinished;
 	}
 
 }

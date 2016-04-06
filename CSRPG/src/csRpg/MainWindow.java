@@ -104,7 +104,10 @@ public class MainWindow extends BasicGameState {
 		g.drawString("CS_RPG", menu_right_margin , 25);
 
 		Character p = Game_Controller.player;
+
 		g.drawString("Name: " + p.getName(), menu_right_margin, 50);
+		
+		g.drawString(String.format("Time: %.1f", p.timer), menu_right_margin, 340);
 		g.drawString("Attributes:", menu_right_margin, 75);
 		g.drawString("Intelligence: " + p.getIntelligence(), menu_right_margin + 10, 95);
 		g.drawString("Endurance: " + p.getEndurance(), menu_right_margin + 10, 115);

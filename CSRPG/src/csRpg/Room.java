@@ -8,6 +8,8 @@ import org.newdawn.slick.Input;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
+import org.newdawn.slick.state.transition.FadeInTransition;
+import org.newdawn.slick.state.transition.FadeOutTransition;
 
 public class Room extends BasicGameState{
 
@@ -101,15 +103,17 @@ public class Room extends BasicGameState{
 			throws SlickException {
 		// TODO Auto-generated method stub
 		
-		this.background.draw(0,0,container.getWidth()-215,container.getHeight());
+		this.background.draw(0,0,container.getWidth()-225,container.getHeight());
 		
 		Game_Controller.player.getSprite().draw(this.player_pos[0]-50,this.player_pos[1]-50,100,100);
 		
 		if (this.roomID != 4) {
 			minigamebutton.draw(mini_button[0], mini_button[1], button_size[0], button_size[1]);
 		}
-		if (Game_Controller.player.getBuis()) {
-			buisnessstuff.draw(buis_button[0], buis_button[1], button_size[0], button_size[1]);
+		if (this.roomID != 8) {
+			if (Game_Controller.player.getBuis() && !Game_Controller.player.hasBuisnessed(this.roomID)) {
+				buisnessstuff.draw(buis_button[0], buis_button[1], button_size[0], button_size[1]);
+			}
 		}
 		
 		hud.render(container,game,g);
@@ -129,6 +133,14 @@ public class Room extends BasicGameState{
 	public void update(GameContainer container, StateBasedGame game, int delta)
 			throws SlickException {
 		// TODO Auto-generated method stub
+		
+		Game_Controller.player.timer -= delta/1000.0;
+		
+		if (Game_Controller.player.timer <= 0) {
+			Game_Controller.player.timer = 0;
+			game.enterState(666, new FadeOutTransition(Color.black), new FadeInTransition(Color.black));
+		}
+		
 		if (playing) {
 			updateMiniGame(container,game,delta);
 			//if (minigame.isfinished())
@@ -153,10 +165,15 @@ public class Room extends BasicGameState{
 					}
 				}
 			}
-			if (Game_Controller.player.getBuis() && x > buis_button[0] && x < buis_button[0] + button_size[1] && y > buis_button[1] && y < buis_button[1] + button_size[1]) {
-				
-				
-				
+			if (this.roomID != 8) {
+				if (!Game_Controller.player.hasBuisnessed(this.roomID) && 
+						Game_Controller.player.getBuis() && x > buis_button[0] && 
+						x < buis_button[0] + button_size[0] && y > buis_button[1] && 
+						y < buis_button[1] + button_size[1]) {
+					
+					Game_Controller.player.doBuisnessed(this.roomID);
+					
+				}
 			}
 			if (x > close_button[0] && x < close_button[0] + close_button[2] && y > close_button[1] && y < close_button[1] + close_button[3]) {
 				playing = false;
@@ -173,6 +190,10 @@ public class Room extends BasicGameState{
 	private void initMiniGame() throws SlickException {
 		switch(this.miniGame) {
 		case "button_smash":
+			if (Game_Controller.player.getCredits(0) == 1) { 
+				mathMnGm.init(container, game, Game_Controller.player.getMiniGameScore(0));
+				break;
+			}
 			button_smash.init(container, game);
 			break;
 		case "mathGame":
@@ -184,10 +205,18 @@ public class Room extends BasicGameState{
 			break;
 
 		case "Beer_Minigame":
+			if (Game_Controller.player.getCredits(2) == 1) {
+				beerMG.init(container, game, true);
+				break;
+			}
 			beerMG.init(container, game);
 			break;
 
 		case "library_adventure":
+			if (Game_Controller.player.getCredits(3) == 1) {
+				lib_adv.init(container, game, true);
+				break;
+			}
 			lib_adv.init(container,  game);
 			break;
 		
@@ -249,6 +278,12 @@ public class Room extends BasicGameState{
 	private void updateMiniGame(GameContainer container, StateBasedGame game, int delta) throws SlickException {
 		switch(this.miniGame) {
 		case "button_smash":
+			if (button_smash.isFinished())
+			{
+				Game_Controller.player.addCredit(0);
+				Game_Controller.player.setMiniGameScore(0, button_smash.getScore());
+				break;
+			}
 			button_smash.update(container, game, delta);
 			break;
 		case "mathGame":
@@ -259,11 +294,19 @@ public class Room extends BasicGameState{
 			}
 			mathMnGm.update(container, game, delta);
 			break;
+			
 		case "Beer_Minigame":
+			if (beerMG.isFinished())
+				break;
 			beerMG.update(container, game, delta);
+			break;
+			
 		case "library_adventure":
+			if (lib_adv.isFinished())
+				break;
 			lib_adv.update(container, game, delta);
 			break;
+			
 		case "buis_visit":
 			buisGame.update(container, game, delta);
 			break;

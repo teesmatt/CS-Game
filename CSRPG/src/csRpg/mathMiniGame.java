@@ -59,7 +59,7 @@ public class mathMiniGame extends BasicGameState {
 	@Override
 	public void init(GameContainer arg0, StateBasedGame arg1) throws SlickException {
 		// TODO Auto-generated method stub
-		this.timer = 30;
+		this.timer = 60;
 		this.score = 0;
 		this.currentProb = 1;
 		this.prob4 = new Image("/assets/mathMinigameProb4.png");
@@ -114,10 +114,40 @@ public class mathMiniGame extends BasicGameState {
 		{
 			timer -= delta/1000.0;
 		}
+		else
+		{
+			//A+ = 10 seconds
+			if (timer > 40)
+				Game_Controller.player.calcGpa(1);
+			
+			//B = 20 seconds
+			else if (timer > 30)
+			{
+				Game_Controller.player.calcGpa(0.75);
+				Game_Controller.player.calcSanity(-10);
+			}
+			//C = 30 seconds
+			else if (timer > 20)
+			{
+				Game_Controller.player.calcGpa(0.60);
+				Game_Controller.player.calcSanity(-20);
+			}
+			//F = 40 seconds
+			else if (timer > 0)
+			{
+				Game_Controller.player.calcGpa(0);
+				Game_Controller.player.calcSanity(-30);
+			}
+				
+			Game_Controller.player.addCredit(1);
+			Game_Controller.player.calcHealth(-10);
+		}
 		
 		//timer -= delta/1000.0;
 		if (timer <= 0) {
 			timer = 0;
+			this.isFinished = true;
+			this.currentProb = 5;
 		}
 	}
 
@@ -163,7 +193,7 @@ public class mathMiniGame extends BasicGameState {
 	
 	public boolean isFinished()
 	{
-		return this.isFinished ? true : false;
+		return this.isFinished;
 	}
 
 }

@@ -17,8 +17,16 @@ public class Character extends Entity implements java.io.Serializable {
 	private String location;
 	private boolean isBuis;
 	private int[] miniGameScore;
+
 	private String imgPath;
+
+
+	// the time left in the game
+	public float timer;
 	
+	
+	// records where the player has gone once they have started the business game
+	private int[] buisnessed;
 	
 	public Character(String name, int intelligence, int endurance, int alcohol_tolerance, int alignment, String image) throws SlickException {	
 		super(image);
@@ -29,6 +37,8 @@ public class Character extends Entity implements java.io.Serializable {
 		this.alcohol_tolerance = alcohol_tolerance;
 		this.alignment = alignment;
 		
+		this.timer = 5;
+		
 		this.health = 100;
 		this.sanity = 100;
 		this.gpa = 0;
@@ -37,7 +47,9 @@ public class Character extends Entity implements java.io.Serializable {
 		
 		this.isBuis = false;
 		
-		this.location = "CS_Lounge";
+		this.buisnessed = new int[5];
+		
+		this.location = "Map";
 	}
 	public String getImagePath() {
 		return imgPath;
@@ -71,9 +83,38 @@ public class Character extends Entity implements java.io.Serializable {
 	}
 
 	public void setLocation(String location) {
+		
 		this.location = location;
+		
+	}
+	
+	public boolean hasBuisnessed(int roomID) {
+		
+		if (buisnessed[roomID - 3] == 1) {
+			return true;
+		}
+		return false;
+		
 	}
 
+	public void doBuisnessed(int roomID) {
+		
+		buisnessed[roomID - 3] = 1;
+		
+	}
+	
+	public boolean doneBuisnessed() {
+		
+		for(int u : buisnessed) {
+			if (u == 0) {
+				return false;
+			}
+		}
+		
+		return true;
+		
+	}
+	
 	public int getAlignment() {
 		return alignment;
 	}
@@ -134,6 +175,10 @@ public class Character extends Entity implements java.io.Serializable {
 	public double calcGpa(double gpa) {
 		this.gpa += gpa;
 		return this.gpa + gpa;
+	}
+	
+	public double finalGpa() {
+		return this.gpa/5;
 	}
 
 	public Inventory getInventory() {
