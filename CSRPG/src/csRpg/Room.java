@@ -178,7 +178,12 @@ public class Room extends BasicGameState{
 			if (x > close_button[0] && x < close_button[0] + close_button[2] && y > close_button[1] && y < close_button[1] + close_button[3]) {
 				playing = false;
 			}
-			hud.wPressed(x, y);
+			try {
+				hud.wPressed(x, y);
+			} catch (SlickException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}
 	}
 	

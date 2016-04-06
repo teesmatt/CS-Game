@@ -126,7 +126,12 @@ public class Map extends BasicGameState{
 			
 			}
 			
-			hud.wPressed(x, y);
+			try {
+				hud.wPressed(x, y);
+			} catch (SlickException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 			
 		}
 		

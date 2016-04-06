@@ -11,7 +11,7 @@ import org.newdawn.slick.geom.Rectangle;
 import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
 import org.newdawn.slick.state.transition.*;
-
+import java.util.ArrayList;
 public class LoadSaves extends BasicGameState {
 	
 	private StateBasedGame game;
@@ -27,7 +27,8 @@ public class LoadSaves extends BasicGameState {
 	private Image background;
 	
 	private Rectangle menu;
-	
+	private ArrayList<Character> chars;
+	private GameList loadList; 
 	public LoadSaves(){
 		
 	}
@@ -42,18 +43,31 @@ public class LoadSaves extends BasicGameState {
 		// loads the image for the background of the menu
 		this.background = new Image("/assets/Background.jpeg");
 		
-		hud.init(container, game);
+		Data d = Game_Controller.gameData;
+		this.chars = d.getCharList();
+		
+		this.loadList = new GameList(container, "", Color.white, this.chars.size(), true);
+		this.loadList.setLocation(100, 100);
+		this.loadList.setLoadList(this.chars);
+		
+		
+		
+//		hud.init(container, game);
 				
 	}
 
 	@Override
 	public void render(GameContainer container, StateBasedGame game, Graphics g) throws SlickException {
-		
+	
 		this.background.draw(0,0,container.getWidth(),container.getHeight());
 		
+		g.setColor(Color.white);
+		g.drawString("SELECT_A_GAME_TO_LOAD", 50, 50);
 		
+		this.loadList.render(container, g);
+			
 		// Renders the hud on the right
-		hud.render(container, game, g);
+//		hud.render(container, game, g);
 		
 	}
 
@@ -65,7 +79,15 @@ public class LoadSaves extends BasicGameState {
 	
 	public void mousePressed(int button, int x, int y) {
 		if (button == 0) {
-			hud.wPressed(x, y);
+			try {
+				if (this.loadList.ButtonPressed(x, y)){
+					System.out.println("Player name: " + Game_Controller.player.getName());
+					game.enterState(2, new FadeOutTransition(Color.black), new FadeInTransition(Color.black));
+				}
+			} catch (SlickException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}
 	}
 	

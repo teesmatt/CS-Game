@@ -208,6 +208,7 @@ public class Character_Creation extends BasicGameState {
 					if (sprite_state == 1)
 						try {
 							Game_Controller.player = new Character(this.name.getText(), char_int, char_end, char_alc, 1, "/assets/male_playable_character_sprite.png");
+							Game_Controller.cur_player = Game_Controller.gameData.getNextIndex();
 						} catch (SlickException e) {
 							// TODO Auto-generated catch block
 							e.printStackTrace();
@@ -215,6 +216,7 @@ public class Character_Creation extends BasicGameState {
 					else
 						try {
 							Game_Controller.player = new Character(this.name.getText(), char_int, char_end, char_alc, 1, "/assets/female_playable_character_sprite.png");
+							Game_Controller.cur_player = Game_Controller.gameData.getNextIndex();
 						} catch (SlickException e) {
 							// TODO Auto-generated catch block
 							e.printStackTrace();

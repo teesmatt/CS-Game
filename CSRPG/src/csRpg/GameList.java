@@ -25,6 +25,9 @@ public class GameList extends AbstractComponent {
 	private ArrayList<Button> invenButtons;
 	
 	// Specific to selecting a game to load
+	private Boolean isLoad = false;
+	private ArrayList<Character> chars;
+	private ArrayList<Button> loadButtons;
 	
 	
 	private Boolean isHighscore = false;
@@ -116,6 +119,37 @@ public class GameList extends AbstractComponent {
 					g.drawString(curItem.getName(), this.X, this.Y + 20 * i);
 					
 					}
+			} else if (isLoad) {
+				this.width = 40;
+				this.height = 20 * (this.numItems);
+				
+				
+				g.setColor(Color.black);
+				g.drawRect(this.X,this.Y,this.width,this.height);
+				
+				// Filling
+				g.setColor(this.color);
+				g.fillRect(this.X,this.Y,this.width,this.height);
+				
+				g.setColor(Color.black);
+				
+				// MAKE BUTTON LIST HERE
+				// NOT IN LOOP
+				this.loadButtons = new ArrayList<Button>();
+				
+				
+				for (int i = 0; i < this.numItems; i++){
+					Character curChar = this.chars.get(i);
+					Button curButton = new Button(container, "./Load_Save", Color.red, true);
+					
+					curButton.setLocation(this.X, this.Y + 20*i);
+					curButton.render(container, g);
+					
+					this.loadButtons.add(curButton);
+					
+					g.setColor(Color.white);
+					g.drawString("Character Name: "+ curChar.getName(), this.X + 130, this.Y + 20*i);
+				}
 			}
 		} else {
 			// Adding to list
@@ -132,16 +166,12 @@ public class GameList extends AbstractComponent {
 		this.Y = y;
 		
 	}
-	public boolean ButtonPressed(int x, int y){
+	public boolean ButtonPressed(int x, int y) throws SlickException{
 		if (isInventory){
-
 			int i = 0;
-			
 			for (Button b: this.invenButtons) {
 				if (b.ButtonPressed(x, y)) {
-					System.out.println(i);
 					invenButtons.remove(b);
-					System.out.println("Removing: " + this.inventory.getItem(i).getName());
 					this.inventory.removeItem(this.inventory.getItem(i));
 					this.numItems--;
 					return true;
@@ -150,7 +180,18 @@ public class GameList extends AbstractComponent {
 				}
 			}
 			return false;
-		} else {
+		} else if (isLoad) {
+			for (int i = 0; i < this.loadButtons.size(); i++){
+				if (this.loadButtons.get(i).ButtonPressed(x, y)){
+					Game_Controller.player = chars.get(i);
+					Game_Controller.cur_player = i;
+					System.out.println("Player name: " + Game_Controller.player.getName());
+					return true;
+				}
+			}
+			return false;
+		}
+		else {
 			return false;
 		}
 	}
@@ -159,6 +200,11 @@ public class GameList extends AbstractComponent {
 		this.inventory = inventory;
 		this.numItems = inventory.numItems();
 		
+	}
+	public void setLoadList(ArrayList<Character> chars){
+		this.isLoad = true;
+		this.chars = chars;
+		this.numItems = chars.size();
 	}
 	
 }
