@@ -11,8 +11,7 @@ public class Data {
 	}
 	private void loadSaves(){
 		File f = new File("./Saves/save.ser");
-		
-		
+	
 		System.out.println(f.toString());
 		if (f.exists()){
 			try {

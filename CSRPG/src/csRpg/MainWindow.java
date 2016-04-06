@@ -22,14 +22,12 @@ public class MainWindow extends BasicGameState {
 	// buttons
 	private Button quit;
 	private Button save;
-	private Button options;
+	private Button menuButton;
 	private Button map;
-	private Button back;
 	
 	private GameList list;
 	
 	private Rectangle menu;
-	private Rectangle optionWindow;
 	
 	private Font awtFont = new Font("Times New Roman", Font.BOLD, 24);
     private TrueTypeFont font = new TrueTypeFont(awtFont, false);
@@ -49,10 +47,6 @@ public class MainWindow extends BasicGameState {
 		this.menu = new Rectangle(container.getWidth() - 225, 0, container.getWidth() - 225, container.getHeight());
 		
 		
-		// back to maain menu
-		this.back = new Button(container, "./Save", Color.white, false);
-		this.back.setLocation(menu_right_margin, container.getHeight() - 150);
-		
 		// ./load_saved_game button
 		this.save = new Button(container, "./Save", Color.white, false);
 		this.save.setLocation(menu_right_margin, container.getHeight() - 125);
@@ -60,9 +54,9 @@ public class MainWindow extends BasicGameState {
 		this.map = new Button(container, "./View_Map", Color.white, false);
 		this.map.setLocation(menu_right_margin, container.getHeight() - 100);
 			
-		// ./options button
-		this.options = new Button(container, "./Options", Color.white, false);
-		this.options.setLocation(menu_right_margin, container.getHeight() - 75);
+		// ./menu button goes back to menu
+		this.menuButton = new Button(container, "./Main_Menu", Color.white, false);
+		this.menuButton.setLocation(menu_right_margin, container.getHeight() - 75);
 		
 		// ./quit button
 		this.quit = new Button(container, "./Quit", Color.white, false);
@@ -123,7 +117,7 @@ public class MainWindow extends BasicGameState {
 		g.drawString("Inventory:", menu_right_margin , 300);
 		
 		this.save.render(container, g);
-		this.options.render(container, g);
+		this.menuButton.render(container, g);
 		this.quit.render(container, g);
 		this.map.render(container, g);
 		this.list.render(container, g);
@@ -133,14 +127,12 @@ public class MainWindow extends BasicGameState {
 		if (this.save.ButtonPressed(x, y)) {
 			Data d = new Data();
 			d.saveChar(Game_Controller.player);
-		} else if (this.options.ButtonPressed(x, y)) {
-			
+		} else if (this.menuButton.ButtonPressed(x, y)) {
+			game.enterState(0, new FadeOutTransition(Color.black), new FadeInTransition(Color.black));
 		} else if (this.quit.ButtonPressed(x, y)) {
 			System.exit(0);
 		} else if (this.map.ButtonPressed(x, y)) {
 			game.enterState(2, new FadeOutTransition(Color.black), new FadeInTransition(Color.black));
-		} else if (this.back.ButtonPressed(x, y)){
-			game.enterState(0, new FadeOutTransition(Color.black), new FadeInTransition(Color.black));
 		} else if (this.list.ButtonPressed(x, y)) {
 			
 		}

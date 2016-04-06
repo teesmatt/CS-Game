@@ -21,22 +21,14 @@ public class Title_Menu extends BasicGameState {
 	private Button play;
 	private Button quit;
 	private Button load;
-	private Button options;
 	private Button highscores;
-	
-	// option buttons
-	private Button options_close; // close the options window
-	private Button options_fullToggle; // fullscreen toggle
 	
 	private Image background;
 	
 	private Rectangle menu;
-	private Rectangle optionWindow;
 	
 	private Font awtFont = new Font("Times New Roman", Font.BOLD, 24);
     private TrueTypeFont font = new TrueTypeFont(awtFont, false);
-    
-	private boolean optionsDisplay;
 
 	public Title_Menu() {
 		// TODO Auto-generated constructor stub
@@ -58,10 +50,6 @@ public class Title_Menu extends BasicGameState {
 		
 		this.menu = new Rectangle(0,0,250,container.getHeight());
 		
-		// The options menu
-		this.optionWindow = new Rectangle(300,container.getHeight()/2-125,125,250);
-		this.optionsDisplay = false;
-		
 		// loads the image for the background of the menu
 		this.background = new Image("/assets/Background.jpeg");
 				
@@ -73,25 +61,14 @@ public class Title_Menu extends BasicGameState {
 		this.load = new Button(container, "./Load_Saved_Games", Color.white, false);
 		this.load.setLocation(50, 150);
 		
-		// ./options button
-		this.options = new Button(container, "./Options", Color.white, false);
-		this.options.setLocation(50, 200);
 		
 		this.highscores = new Button(container, "./Highscores", Color.white, false);
-		this.highscores.setLocation(50, 250);
+		this.highscores.setLocation(50, 200);
 		
 		// ./quit button
 		this.quit = new Button(container, "./Quit", Color.white, false);
-		this.quit.setLocation(50, 300);
-		
-		// option controls
-		// close button
-		this.options_close = new Button(container, "./Close", Color.white, false);
-		this.options_close.setLocation(300,container.getHeight()/2);
-		
-		// Fullscreen button
-		this.options_fullToggle = new Button(container, "./FullScreen", Color.white, false);
-		this.options_fullToggle.setLocation(300, container.getHeight()/2-100);
+		this.quit.setLocation(50, 250);
+	
 	}
 
 	@Override
@@ -113,20 +90,8 @@ public class Title_Menu extends BasicGameState {
 		
 		this.play.render(container, g);
 		this.load.render(container, g);
-		this.options.render(container, g);
 		this.quit.render(container, g);
 		this.highscores.render(container, g);
-		
-		// tests if the options should be displayed
-		if (this.optionsDisplay) {
-			g.setColor(new Color(0,0,0,0.2f));
-			g.fill(this.optionWindow);
-			g.setColor(Color.white);
-			g.drawString("./Options",300,container.getHeight()/2-125);
-			this.options_close.render(container, g);
-			this.options_fullToggle.render(container, g);
-		}
-		
 		
 	}
 
@@ -148,21 +113,12 @@ public class Title_Menu extends BasicGameState {
 
 				game.enterState(69, new FadeOutTransition(Color.black), new FadeInTransition(Color.black));
 
-			} else if (options.ButtonPressed(x, y)) {
-				
-				optionsDisplay = true;
-				
 			} else if (quit.ButtonPressed(x, y)) {
 				System.exit(0);
 			} else if (this.highscores.ButtonPressed(x, y)) {
 				game.enterState(11, new FadeOutTransition(Color.black), new FadeInTransition(Color.black));
 			} 
-			
-			
-			// get the mouse input if the options are being displayed
-			if (this.optionsDisplay) {
-				
-			}
+
 		}
 	}
 	
