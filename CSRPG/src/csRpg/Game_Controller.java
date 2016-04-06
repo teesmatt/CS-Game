@@ -42,12 +42,12 @@ public class Game_Controller extends StateBasedGame {
 		// adds each room to the game
 		this.addState(new LoadSaves());
 
-		this.addState(new Room("/assets/ClassroomLounge.png",ClassID,"button_smash"));
-		this.addState(new Room("/assets/ClassroomLounge.png",LoungeID,""));
-		this.addState(new Room("/assets/Pub.png",PubID,"Beer_Minigame"));
-		this.addState(new Room("/assets/Bussiness.png",BussinessID,"buis_visit"));
-		this.addState(new Room("/assets/Library.png",LibraryID,"library_adventure"));
-		this.addState(new Room("/assets/Math.png",MathID,"mathGame"));
+		this.addState(new Room("/assets/ClassroomLounge.png",ClassID,"button_smash",container.getWidth()/2-100,200));
+		this.addState(new Room("/assets/ClassroomLounge.png",LoungeID,"",container.getWidth()/2-100,500));
+		this.addState(new Room("/assets/Pub.png",PubID,"Beer_Minigame",container.getWidth()/2-100,container.getHeight()/2));
+		this.addState(new Room("/assets/Bussiness.png",BussinessID,"buis_visit",container.getWidth()/2-100,container.getHeight()/2));
+		this.addState(new Room("/assets/Library.png",LibraryID,"library_adventure",container.getWidth()/2-100,container.getHeight()/2));
+		this.addState(new Room("/assets/Math.png",MathID,"mathGame",container.getWidth()/2-100,container.getHeight()/2));
 
 		this.addState(new Highscores());
 		
