@@ -126,7 +126,7 @@ public class Library_Adventure extends BasicGameState {
 			//A+ = 10 seconds
 
 			if (timer < 30) { 
-				Game_Controller.player.calcGpa(1);
+				Game_Controller.player.calcGpa(4);
 				Game_Controller.player.setMiniGameScore(3, 100);
 			}
 

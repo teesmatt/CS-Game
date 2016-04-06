@@ -29,6 +29,9 @@ public class LoadSaves extends BasicGameState {
 	private Rectangle menu;
 	private ArrayList<Character> chars;
 	private GameList loadList; 
+	
+	private Button back_main;
+	
 	public LoadSaves(){
 		
 	}
@@ -36,6 +39,8 @@ public class LoadSaves extends BasicGameState {
 	@Override
 	public void init(GameContainer container, StateBasedGame game) throws SlickException {
 		this.game = game;
+		
+		this.menu = new Rectangle(0,0,600,container.getHeight());
 		
 		this.windowWidth = container.getWidth();
 		this.windowHeight = container.getHeight();
@@ -50,8 +55,8 @@ public class LoadSaves extends BasicGameState {
 		this.loadList.setLocation(100, 100);
 		this.loadList.setLoadList(this.chars);
 		
-		
-		
+		this.back_main = new Button(container, "./Back_to_main_menu", Color.white, false);
+		this.back_main.setLocation(50, container.getHeight() - 200);
 //		hud.init(container, game);
 				
 	}
@@ -61,10 +66,18 @@ public class LoadSaves extends BasicGameState {
 	
 		this.background.draw(0,0,container.getWidth(),container.getHeight());
 		
+		// sets the color for the rectangles behind the buttons
+		g.setColor(new Color(0,0,0,0.4f));
+		
+		// fills the rectangle behind the menu options
+		g.fill(this.menu);
+		
+		
 		g.setColor(Color.white);
 		g.drawString("SELECT_A_GAME_TO_LOAD", 50, 50);
 		
 		this.loadList.render(container, g);
+		this.back_main.render(container, g);
 			
 		// Renders the hud on the right
 //		hud.render(container, game, g);
@@ -87,6 +100,9 @@ public class LoadSaves extends BasicGameState {
 			} catch (SlickException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
+			}
+			if (this.back_main.ButtonPressed(x, y)){
+				game.enterState(0, new FadeOutTransition(Color.black), new FadeInTransition(Color.black));
 			}
 		}
 	}
