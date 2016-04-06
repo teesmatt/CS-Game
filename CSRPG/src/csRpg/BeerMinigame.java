@@ -170,15 +170,10 @@ public class BeerMinigame extends BasicGameState {
 			else {
 				
 				//A+ = 10 seconds
-<<<<<<< HEAD
-				if (timer > 10)
-					Game_Controller.player.calcGpa(4);
-=======
 				if (timer > 10) {
 					Game_Controller.player.calcGpa(1);
 					Game_Controller.player.setMiniGameScore(2, 100);
 				}
->>>>>>> 12df546aa74bf9f5ae530061c4dc7e696f94d5d2
 				
 				//B = 20 seconds
 				else if (timer > 7)
