@@ -225,15 +225,15 @@ public class Character extends Entity implements java.io.Serializable {
 		// Add effect for each effect. See documentation.
 		switch(effect) {
 		// Effect 1 = Food Health Increase
-		case 1: this.calcHealth(20);
+		case 0: this.calcHealth(20);
 				break;
 		// Effect 2 = Beer Sanity Increase
-		case 2: this.calcSanity(20 + this.alcohol_tolerance);
+		case 1: this.calcSanity(20 + this.alcohol_tolerance);
 				break;
 		
 		}
 		
-		inventory.removeItem(temp);
+//		inventory.removeItem(temp);
 	}
 	
 	public boolean getBuis() {

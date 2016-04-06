@@ -173,6 +173,7 @@ public class GameList extends AbstractComponent {
 				if (b.ButtonPressed(x, y)) {
 					invenButtons.remove(b);
 					this.inventory.removeItem(this.inventory.getItem(i));
+					Game_Controller.player.useItem(i);
 					this.numItems--;
 					return true;
 				} else {
@@ -184,6 +185,7 @@ public class GameList extends AbstractComponent {
 			for (int i = 0; i < this.loadButtons.size(); i++){
 				if (this.loadButtons.get(i).ButtonPressed(x, y)){
 					Game_Controller.player = chars.get(i);
+					Game_Controller.player.getInventory().defaultInventory();
 					Game_Controller.cur_player = i;
 					System.out.println("Player name: " + Game_Controller.player.getName());
 					return true;

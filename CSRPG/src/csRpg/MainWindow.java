@@ -70,21 +70,21 @@ public class MainWindow extends BasicGameState {
 		
 		Inventory inven;
 		// DEBUG CODE FOR INVENTORY ------------------------------------
-		if (Game_Controller.gameData.getNextIndex() == 0)
-		{
-			Item i1 = new Item("Food", 0);
-			Item i2 = new Item("Beer", 1);
-			Item i3 = new Item("Beer", 1);
-			inven = new Inventory();
-			inven.addItem(i1);
-			inven.addItem(i2);
-			inven.addItem(i3);
-			this.list = new GameList(container, "ListItem", Color.white, inven.numItems(), true);
-			this.list.setInventoryList(inven);
-		} else {
+//		if (Game_Controller.gameData.getNextIndex() == 0)
+//		{
+//			Item i1 = new Item("Food", 0);
+//			Item i2 = new Item("Beer", 1);
+//			Item i3 = new Item("Beer", 1);
+//			inven = new Inventory();
+//			inven.addItem(i1);
+//			inven.addItem(i2);
+//			inven.addItem(i3);
+//			this.list = new GameList(container, "ListItem", Color.white, inven.numItems(), true);
+//			this.list.setInventoryList(inven);
+//		} else {
 			this.list = new GameList(container, "ListItem", Color.white, Game_Controller.player.getInventory().numItems(), true);
 			this.list.setInventoryList(Game_Controller.player.getInventory());
-		}
+//		}
 		// -------------------------------------------------------------
 		this.list.setLocation(menu_right_margin + 10, 360);
 		//		this.list.setLocation(0, 0);

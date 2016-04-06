@@ -45,14 +45,12 @@ public class Inventory implements java.io.Serializable {
 	public void defaultInventory(){
 		// ------------------------------------
 		Item i1 = new Item("Food", 0);
-		Item i2 = new Item("Food", 0);
+		Item i2 = new Item("Beer", 1);
 		Item i3 = new Item("Beer", 1);
-		Item i4 = new Item("Beer", 1);
 		
 		items.add(i1);
 		items.add(i2);
 		items.add(i3);
-		items.add(i4);
 		// -------------------------------------------------------------
 	}
 	
