@@ -1,2 +1,4 @@
 *.class
-Game_Controller.class
+./bin/csRpg/Game_Controller.class
+./Saves/
+./Saves/*
