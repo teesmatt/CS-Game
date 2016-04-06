@@ -3,13 +3,16 @@ package csRpg;
 import org.newdawn.slick.Color;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
+import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
+import org.newdawn.slick.TrueTypeFont;
 import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
 import org.newdawn.slick.state.transition.FadeInTransition;
 import org.newdawn.slick.state.transition.FadeOutTransition;
 import org.newdawn.slick.Input;
 
+import java.awt.Font;
 import java.util.Random;
 
 public class Library_Adventure extends BasicGameState {
@@ -26,6 +29,11 @@ public class Library_Adventure extends BasicGameState {
 	private float timer;
 	
 	private boolean isFinished;
+	
+	private Image grid;
+	
+	private Font awtFont = new Font("Times New Roman", Font.BOLD, 24);
+    private TrueTypeFont font = new TrueTypeFont(awtFont, false);
 	
 	public Library_Adventure() {
 		
@@ -56,6 +64,8 @@ public class Library_Adventure extends BasicGameState {
 		this.loc_x = 0;
 		this.loc_y = 0;
 		
+		this.grid = new Image("assets/Grid.png");
+		
 	}
 	
 	public void init(GameContainer container, StateBasedGame game, boolean isFinished) throws SlickException {
@@ -74,14 +84,15 @@ public class Library_Adventure extends BasicGameState {
 		g.setColor(Color.gray);
 		g.fillRect(75,75,container.getWidth()-365,container.getHeight()-150);
 		
+		this.grid.draw(container.getWidth()/2-375,container.getHeight()/2-225,500,500);
+		Game_Controller.player.getSprite().draw(this.loc_x*50+container.getWidth()/2-375,this.loc_y*50+container.getHeight()/2-225,50,50);
+		
 		if (library[loc_x][loc_y] == 0) {
-			g.drawString("There is nothing in this section of the Library." 
-					+ "[" + loc_x + "][" + loc_y + "] books:" + books_count , 50, 50);
+			font.drawString(100 , 100, "There is nothing in this section of the Library");
 		}
 		else if(library[loc_x][loc_y] == 1)
 		{
-			g.drawString("You found the Science Book!" 
-					+ "[" + loc_x + "][" + loc_y + "] books:" + books_count, 50, 50);
+			font.drawString(100, 100, "You found the Science Book!");
 			if (books[0] != 1) {
 				books[0] = 1;
 				this.books_count++;
@@ -90,8 +101,7 @@ public class Library_Adventure extends BasicGameState {
 		}
 		else if(library[loc_x][loc_y] == 2)
 		{
-			g.drawString("You found the Geology Book!" 
-					+ "[" + loc_x + "][" + loc_y + "] books:" + books_count, 50, 50);
+			font.drawString(100, 100, "You found the Geology Book!");
 			if (books[1] != 1) {
 				books[1] = 1;
 				this.books_count++;
@@ -100,8 +110,7 @@ public class Library_Adventure extends BasicGameState {
 		}
 		else if(library[loc_x][loc_y] == 3)
 		{
-			g.drawString("You found the CS Book!" 
-					+ "[" + loc_x + "][" + loc_y + "] " + books_count, 50, 50);
+			font.drawString(100, 100, "You found the CS Book!");
 			if (books[2] != 1)
 			{
 				books[2] = 1;
@@ -110,7 +119,9 @@ public class Library_Adventure extends BasicGameState {
 			
 		}
 		
-		g.drawString(Float.toString(timer), 900, 50);
+		font.drawString(700, 100,"Books: " + books_count);
+		
+		font.drawString(850, 100, String.format("Time: %.2f",timer));
 	}
 
 	@Override
@@ -128,8 +139,6 @@ public class Library_Adventure extends BasicGameState {
 				Game_Controller.player.calcGpa(4);
 				Game_Controller.player.setMiniGameScore(3, 100);
 			}
-
-
 			//B = 20 seconds
 			else if (timer < 40)
 			{
@@ -157,9 +166,6 @@ public class Library_Adventure extends BasicGameState {
 
 			isFinished = true;;
 
-			game.enterState(Game_Controller.LibraryID, new FadeOutTransition(Color.black), new FadeInTransition(Color.black));
-
-
 		}
 	}
 	
@@ -169,7 +175,7 @@ public class Library_Adventure extends BasicGameState {
 	
 	 @Override
     public void keyPressed(int key, char c) {
-        if (key == Input.KEY_UP) {
+        if (key == Input.KEY_DOWN) {
         	if (this.loc_y != 9)
         		this.loc_y++;
         	else
@@ -184,7 +190,7 @@ public class Library_Adventure extends BasicGameState {
         		this.loc_x++;
         	else
         		this.loc_x = 0;
-        } else if (key == Input.KEY_DOWN) {
+        } else if (key == Input.KEY_UP) {
         	if (this.loc_y != 0)
         		this.loc_y--;
         	else
