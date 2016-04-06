@@ -33,7 +33,7 @@ public class Character extends Entity implements java.io.Serializable {
 		this.alcohol_tolerance = alcohol_tolerance;
 		this.alignment = alignment;
 		
-		this.timer = 5;
+		this.timer = 600;
 		
 		this.health = 100;
 		this.sanity = 100;

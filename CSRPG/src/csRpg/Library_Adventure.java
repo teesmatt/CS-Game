@@ -100,7 +100,7 @@ public class Library_Adventure extends BasicGameState {
 		}
 		else if(library[loc_x][loc_y] == 3)
 		{
-			g.drawString("You found the Porn Book!" 
+			g.drawString("You found the CS Book!" 
 					+ "[" + loc_x + "][" + loc_y + "] " + books_count, 50, 50);
 			if (books[2] != 1)
 			{
@@ -124,16 +124,11 @@ public class Library_Adventure extends BasicGameState {
 		}
 		else {
 			//A+ = 10 seconds
-<<<<<<< HEAD
-			if (timer < 30)
-				Game_Controller.player.calcGpa(4);
-=======
 			if (timer < 30) { 
-				Game_Controller.player.calcGpa(1);
+				Game_Controller.player.calcGpa(4);
 				Game_Controller.player.setMiniGameScore(3, 100);
 			}
->>>>>>> 12df546aa74bf9f5ae530061c4dc7e696f94d5d2
-			
+
 			//B = 20 seconds
 			else if (timer < 40)
 			{
@@ -158,11 +153,10 @@ public class Library_Adventure extends BasicGameState {
 				
 			Game_Controller.player.addCredit(3);
 			Game_Controller.player.calcHealth(-10);
-<<<<<<< HEAD
-=======
+
 			isFinished = true;;
-			game.enterState(2, new FadeOutTransition(Color.black), new FadeInTransition(Color.black));
->>>>>>> 12df546aa74bf9f5ae530061c4dc7e696f94d5d2
+			game.enterState(Game_Controller.LibraryID, new FadeOutTransition(Color.black), new FadeInTransition(Color.black));
+
 		}
 	}
 	
