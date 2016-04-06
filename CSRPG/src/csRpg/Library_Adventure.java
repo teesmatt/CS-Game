@@ -164,7 +164,7 @@ public class Library_Adventure extends BasicGameState {
 			Game_Controller.player.addCredit(3);
 			Game_Controller.player.calcHealth(-10);
 
-			isFinished = true;
+			isFinished = true;;
 
 		}
 	}
