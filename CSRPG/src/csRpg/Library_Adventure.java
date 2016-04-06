@@ -6,6 +6,8 @@ import org.newdawn.slick.Graphics;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
+import org.newdawn.slick.state.transition.FadeInTransition;
+import org.newdawn.slick.state.transition.FadeOutTransition;
 import org.newdawn.slick.Input;
 
 import java.util.Random;
@@ -136,7 +138,7 @@ public class Library_Adventure extends BasicGameState {
 				
 			Game_Controller.player.addCredit(3);
 			Game_Controller.player.calcHealth(-10);
-			
+			game.enterState(2, new FadeOutTransition(Color.black), new FadeInTransition(Color.black));
 		}
 	}
 	

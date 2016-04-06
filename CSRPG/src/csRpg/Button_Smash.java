@@ -120,7 +120,9 @@ public class Button_Smash extends BasicGameState{
 				Game_Controller.player.calcGpa(0);
 				Game_Controller.player.calcSanity(-30);
 			}
+
 			isFinished = true;
+
 		}
 		
 	}
