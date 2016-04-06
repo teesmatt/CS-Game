@@ -159,7 +159,7 @@ public class Room extends BasicGameState{
 			break;
 		case "mathGame":
 			if (Game_Controller.player.getCredits(1) == 1) { 
-				mathMnGm.init(container, game, Game_Controller.player.getMathMiniGameScore());
+				mathMnGm.init(container, game, Game_Controller.player.getMiniGameScore(1));
 				break;
 			}
 			mathMnGm.init(container, game);
@@ -237,7 +237,7 @@ public class Room extends BasicGameState{
 			if (mathMnGm.isFinished())
 			{
 				Game_Controller.player.addCredit(1);
-				Game_Controller.player.setMathMiniGameScore(mathMnGm.getScore());
+				Game_Controller.player.setMiniGameScore(1, mathMnGm.getScore());
 			}
 			mathMnGm.update(container, game, delta);
 			break;

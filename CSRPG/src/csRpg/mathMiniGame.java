@@ -1,10 +1,13 @@
 package csRpg;
 
+import java.awt.Font;
+
 import org.newdawn.slick.Color;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
+import org.newdawn.slick.TrueTypeFont;
 import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
 
@@ -15,6 +18,8 @@ public class mathMiniGame extends BasicGameState {
 	private int currentProb;
 	private Image prob4;
 	private boolean isFinished;
+	private Font awtFont = new Font("", 1, 20);
+    private TrueTypeFont font = new TrueTypeFont(awtFont, false);
 	
 	private void drawMultipleChoices(String question, String answerA, 
 			     String answerB, String answerC, String answerD, Graphics g)
@@ -77,8 +82,8 @@ public class mathMiniGame extends BasicGameState {
 		g.fillRect(75,75,container.getWidth()-365,container.getHeight()-150);
 		
 		g.setColor(Color.white);
-		g.drawString(String.valueOf("Score: "+this.score),80,80);
-		g.drawString(String.valueOf("Time: "+this.timer),80,100);
+		font.drawString(80, 80, String.valueOf("Score: "+this.score));
+		font.drawString(80,100, String.valueOf("Time: "+this.timer));
 		
 		switch (this.currentProb)
 		{

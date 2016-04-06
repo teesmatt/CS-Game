@@ -16,7 +16,7 @@ public class Character extends Entity {
 	private int alignment;
 	private String location;
 	private boolean isBuis;
-	private int mathMiniGameScore;
+	private int[] miniGameScore;
 	
 	
 	public Character(String name, int intelligence, int endurance, int alcohol_tolerance, int alignment, String image) throws SlickException {	
@@ -31,6 +31,7 @@ public class Character extends Entity {
 		this.sanity = 100;
 		this.gpa = 0;
 		this.credits = new int[5];
+		this.miniGameScore = new int[5];
 		
 		this.isBuis = false;
 		
@@ -177,13 +178,13 @@ public class Character extends Entity {
 		this.isBuis = buis;
 	}
 	
-	public void setMathMiniGameScore(int score)
+	public void setMiniGameScore(int index, int score)
 	{
-		this.mathMiniGameScore = score;
+		this.miniGameScore[index] = score;
 	}
 	
-	public int getMathMiniGameScore()
+	public int getMiniGameScore(int index)
 	{
-		return this.mathMiniGameScore;
+		return this.miniGameScore[index];
 	}
 }
