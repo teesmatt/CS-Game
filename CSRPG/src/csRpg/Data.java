@@ -10,7 +10,7 @@ public class Data {
 		loadSaves();
 	}
 	private void loadSaves(){
-		File f = new File("./Saves/save.ser");
+		File f = new File("/Saves/save.ser");
 		System.out.println(f.toString());
 		if (f.exists()){
 			try {
