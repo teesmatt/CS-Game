@@ -10,6 +10,8 @@ import org.newdawn.slick.SlickException;
 import org.newdawn.slick.TrueTypeFont;
 import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
+import org.newdawn.slick.state.transition.FadeInTransition;
+import org.newdawn.slick.state.transition.FadeOutTransition;
 
 public class Button_Smash extends BasicGameState{
 
@@ -122,6 +124,7 @@ public class Button_Smash extends BasicGameState{
 			}
 
 			isFinished = true;
+			arg1.enterState(Game_Controller.ClassID, new FadeOutTransition(Color.black), new FadeInTransition(Color.black));
 
 		}
 		

@@ -131,6 +131,9 @@ public class Character_Creation extends BasicGameState {
 		
 		this.submit = new Button(container, "./Create!", Color.white, false);
 		this.submit.setLocation(50, 350);
+		
+		this.back = new Button(container, "./Back", Color.white, false);
+		this.back.setLocation(50, container.getHeight()-50);
 	}
 
 	@Override
@@ -168,6 +171,8 @@ public class Character_Creation extends BasicGameState {
 		
 		this.gender.render(container, g);	
 		this.submit.render(container, g);
+		
+		this.back.render(container, g);
 	}
 
 	@Override
@@ -223,9 +228,11 @@ public class Character_Creation extends BasicGameState {
 						}
 					game.enterState(2, new FadeOutTransition(Color.black), new FadeInTransition(Color.black));
 				}
+			} else if (back.ButtonPressed(x, y)) {
 				
+				game.enterState(0, new FadeOutTransition(Color.black), new FadeInTransition(Color.black));
 				
-			} 
+			}
 		}
 	}
 
