@@ -1,6 +1,7 @@
 package csRpg;
 
 import java.awt.Font;
+import java.util.ArrayList;
 
 import org.newdawn.slick.Color;
 import org.newdawn.slick.GameContainer;
@@ -95,7 +96,6 @@ public class MainWindow extends BasicGameState {
 		// sets the color for the rectangles behind the buttons
 		g.setColor(new Color(0,0,0,0.2f));
 		
-		
 		// fills the rectangle behind the menu options
 		g.fill(this.menu);
 		
@@ -104,7 +104,7 @@ public class MainWindow extends BasicGameState {
 		g.drawString("CS_RPG", menu_right_margin , 25);
 
 		Character p = Game_Controller.player;
-		
+		g.drawString("Name: " + p.getName(), menu_right_margin, 50);
 		g.drawString("Attributes:", menu_right_margin, 75);
 		g.drawString("Intelligence: " + p.getIntelligence(), menu_right_margin + 10, 95);
 		g.drawString("Endurance: " + p.getEndurance(), menu_right_margin + 10, 115);
@@ -124,7 +124,7 @@ public class MainWindow extends BasicGameState {
 		this.list.render(container, g);
 		
 	}
-	public void wPressed(int x, int y) {
+	public void wPressed(int x, int y) throws SlickException {
 		if (this.save.ButtonPressed(x, y)) {
 			Data d = new Data();
 			d.saveChar(Game_Controller.player);

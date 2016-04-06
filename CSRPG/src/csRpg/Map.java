@@ -101,7 +101,12 @@ public class Map extends BasicGameState{
 				game.enterState(4, new FadeOutTransition(Color.black), new FadeInTransition(Color.black));
 			}
 			
-			hud.wPressed(x, y);
+			try {
+				hud.wPressed(x, y);
+			} catch (SlickException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 			
 		}
 		

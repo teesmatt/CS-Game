@@ -4,7 +4,9 @@ import org.newdawn.slick.*;
 import org.newdawn.slick.state.*;
 
 public class Game_Controller extends StateBasedGame {
-
+	
+	public static int cur_player = 0;
+	public static Data gameData = new Data();
 	public static final int windowWidth = 1366;
 	public static final int windowHeight = 768;
 	public static boolean fullScreen = false;

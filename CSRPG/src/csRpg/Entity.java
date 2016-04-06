@@ -3,16 +3,15 @@ package csRpg;
 import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
 
-public class Entity {
+public class Entity implements java.io.Serializable {
 
-		Image sprite;
+		String location;
 		
 		public Entity(String location) throws SlickException {
-			sprite = new Image(location);
+			this.location = location;
 		}
 		
-		public Image getSprite()
-		{
-			return sprite;
+		public Image getSprite() throws SlickException	{
+			return new Image(location);
 		}
 }

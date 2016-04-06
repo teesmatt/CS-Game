@@ -17,10 +17,12 @@ public class Character extends Entity implements java.io.Serializable {
 	private String location;
 	private boolean isBuis;
 	private int[] miniGameScore;
+	private String imgPath;
 	
 	
 	public Character(String name, int intelligence, int endurance, int alcohol_tolerance, int alignment, String image) throws SlickException {	
 		super(image);
+		this.imgPath = image;
 		this.name = name;
 		this.intelligence = intelligence;
 		this.endurance = endurance;
@@ -37,7 +39,9 @@ public class Character extends Entity implements java.io.Serializable {
 		
 		this.location = "CS_Lounge";
 	}
-	
+	public String getImagePath() {
+		return imgPath;
+	}
 	public String getName() {
 		return name;
 	}
