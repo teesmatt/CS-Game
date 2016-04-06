@@ -1,4 +1,4 @@
 *.class
 ./bin/csRpg/Game_Controller.class
 ./Saves
-./Saves/*
+CS-Game/Saves/save.ser
