@@ -108,8 +108,10 @@ public class Room extends BasicGameState{
 		if (this.roomID != 4) {
 			minigamebutton.draw(mini_button[0], mini_button[1], button_size[0], button_size[1]);
 		}
-		if (Game_Controller.player.getBuis()) {
-			buisnessstuff.draw(buis_button[0], buis_button[1], button_size[0], button_size[1]);
+		if (this.roomID != 8) {
+			if (Game_Controller.player.getBuis() && !Game_Controller.player.hasBuisnessed(this.roomID)) {
+				buisnessstuff.draw(buis_button[0], buis_button[1], button_size[0], button_size[1]);
+			}
 		}
 		
 		hud.render(container,game,g);
@@ -129,6 +131,7 @@ public class Room extends BasicGameState{
 	public void update(GameContainer container, StateBasedGame game, int delta)
 			throws SlickException {
 		// TODO Auto-generated method stub
+		
 		if (playing) {
 			updateMiniGame(container,game,delta);
 			//if (minigame.isfinished())
@@ -153,10 +156,15 @@ public class Room extends BasicGameState{
 					}
 				}
 			}
-			if (Game_Controller.player.getBuis() && x > buis_button[0] && x < buis_button[0] + button_size[1] && y > buis_button[1] && y < buis_button[1] + button_size[1]) {
-				
-				
-				
+			if (this.roomID != 8) {
+				if (!Game_Controller.player.hasBuisnessed(this.roomID) && 
+						Game_Controller.player.getBuis() && x > buis_button[0] && 
+						x < buis_button[0] + button_size[0] && y > buis_button[1] && 
+						y < buis_button[1] + button_size[1]) {
+					
+					Game_Controller.player.doBuisnessed(this.roomID);
+					
+				}
 			}
 			if (x > close_button[0] && x < close_button[0] + close_button[2] && y > close_button[1] && y < close_button[1] + close_button[3]) {
 				playing = false;
