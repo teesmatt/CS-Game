@@ -30,12 +30,22 @@ public class Game_Controller extends StateBasedGame {
 	public Game_Controller(String name) {
 		
 		super(name);
+		Inventory dummyinv = new Inventory();
+		dummyinv.defaultInventory();
+		try {
+			player = new Character("1", 1, 1, 1, 1, "/assets/male_playable_character_sprite.png", dummyinv);
+		} catch (SlickException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
 	}
 
 	@Override
 	public void initStatesList(GameContainer container) throws SlickException {
-	
+		
+		
+		
 		this.addState(new Title_Menu());
 		this.addState(new Character_Creation());
 		this.addState(new Map());

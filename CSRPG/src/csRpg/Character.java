@@ -17,9 +17,8 @@ public class Character extends Entity implements java.io.Serializable {
 	private String location;
 	private boolean isBuis;
 	private int[] miniGameScore;
-
+	
 	private String imgPath;
-
 
 	// the time left in the game
 	public float timer;
@@ -28,8 +27,16 @@ public class Character extends Entity implements java.io.Serializable {
 	// records where the player has gone once they have started the business game
 	private int[] buisnessed;
 	
-	public Character(String name, int intelligence, int endurance, int alcohol_tolerance, int alignment, String image) throws SlickException {	
+	public Character(String name, 
+			int intelligence, 
+			int endurance, 
+			int alcohol_tolerance, 
+			int alignment, 
+			String image, 
+			Inventory inventory) throws SlickException {	
 		super(image);
+		
+		this.inventory = inventory;
 		this.imgPath = image;
 		this.name = name;
 		this.intelligence = intelligence;
