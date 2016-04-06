@@ -191,10 +191,18 @@ public class Room extends BasicGameState{
 			break;
 
 		case "Beer_Minigame":
+			if (Game_Controller.player.getCredits(2) == 1) {
+				beerMG.init(container, game, true);
+				break;
+			}
 			beerMG.init(container, game);
 			break;
 
 		case "library_adventure":
+			if (Game_Controller.player.getCredits(3) == 1) {
+				lib_adv.init(container, game, true);
+				break;
+			}
 			lib_adv.init(container,  game);
 			break;
 		
@@ -272,11 +280,19 @@ public class Room extends BasicGameState{
 			}
 			mathMnGm.update(container, game, delta);
 			break;
+			
 		case "Beer_Minigame":
+			if (beerMG.isFinished())
+				break;
 			beerMG.update(container, game, delta);
+			break;
+			
 		case "library_adventure":
+			if (lib_adv.isFinished())
+				break;
 			lib_adv.update(container, game, delta);
 			break;
+			
 		case "buis_visit":
 			buisGame.update(container, game, delta);
 			break;
